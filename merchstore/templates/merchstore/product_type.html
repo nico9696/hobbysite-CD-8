@@ -4,6 +4,7 @@
         {% for type in types %}
             <li>
                 <a href="{% url 'show_products' type.id %}">{{ type.name }}</a> 
+                <p>description: {{ type.decription }}</p>
             </li>
         {% endfor %}
     </ul>
