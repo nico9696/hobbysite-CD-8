@@ -1,0 +1,10 @@
+{% extends "merchstore/layout.html" %}
+{% block body %}
+    <ul>
+        {% for type in types %}
+            <li>
+                <a href="{% url 'show_products' type.id %}">{{ type.name }}</a> 
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
