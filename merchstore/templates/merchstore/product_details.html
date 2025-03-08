@@ -1,13 +1,17 @@
 {% extends "merchstore/layout.html" %}
 {% block body %}
-    <ul>
-        {% for detail in product %}
-            <li>
-                <p>name: {{ detail.name }}</p>
-                <p>product type: {{ detail.product_type.name }}</p>
-                <p>description: {{ detail.description }}</p>
-                <p>price: {{ detail.price }}</p>
-            </li>
-        {% endfor %}
-    </ul>
+        <div class="product_details">
+            <ul class="product_details_list">
+                {% for detail in product %}
+                    <li>
+                        <div class="product-details-header">
+                            <h2>{{ detail.name }}</h2>
+                            <p>P{{ detail.price }}</p>
+                        </div>
+                        <p>product type: {{ detail.product_type.name }}</p>
+                        <p>description: {{ detail.description }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
 {% endblock %}

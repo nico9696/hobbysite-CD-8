@@ -1,16 +1,20 @@
 {% extends "merchstore/layout.html" %}
 {% block body %}
     {% for product_type in product_type_list %}
-        <h2>{{ product_type }}</h2>
-        <p>product type description: {{ product_type.description }}</p>
-        <ul>
-            {% for product in product_list %}
-                {% if product_type == product.product_type %}
-                    <li>
-                        <a href="{% url 'show_product_details' product.id %}">{{ product.name }}</a> 
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+        <div class="product-type">
+            <div class="product-type-description">
+                <h2>{{ product_type }}</h2>
+                <p>{{ product_type.description }}</p>
+            </div>
+            <ul class="product-type-list">
+                {% for product in product_list %}
+                    {% if product_type == product.product_type %}
+                        <li>
+                            <a href="{% url 'show_product_details' product.id %}">{{ product.name }}</a> 
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
     {% endfor %}
 {% endblock %}
