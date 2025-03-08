@@ -29,7 +29,7 @@ class Article(models.Model):
     updated_on = models.DateTimeField(auto_now=True) # Set every time the article is edited
         
     def __str__(self):
-        reeturn self.title
+        return self.title
         
     def get_absolute_url(self):
         return reverse('article_detail', args=[str(self.id)])
