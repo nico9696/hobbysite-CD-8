@@ -30,4 +30,7 @@ class Article(models.Model):
         
     def __str__(self):
         reeturn self.title
+        
+    def get_absolute_url(self):
+        return reverse('article_detail', args=[str(self.id)])
     
