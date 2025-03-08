@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 '''
-TO-DO: Add __str__() and get_absolute_url() methods
+TO-DO: Add get_absolute_url() method
      : Implement sorting feature
 '''
 
@@ -12,6 +12,9 @@ class ArticleCategory(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
 
+    def __str__(self):
+        return self.name
+    
 
 # Model for an article under a category
 class Article(models.Model):
@@ -24,5 +27,7 @@ class Article(models.Model):
     entry = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True) # Set only once upon article creation
     updated_on = models.DateTimeField(auto_now=True) # Set every time the article is edited
-    
+        
+    def __str__(self):
+        reeturn self.title
     
