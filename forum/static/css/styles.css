@@ -3,7 +3,7 @@ body {
     background-color: bisque;
     margin: 0;
     padding: 0;
-    color: #333;
+    color: black;
 }
 
 header {
@@ -25,7 +25,7 @@ main {
 /* Forum List */
 .main-content h2 {
     text-align: center;
-    color: #444;
+    color: black;
 }
 
 .category {
