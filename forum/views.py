@@ -2,11 +2,11 @@ from django.shortcuts import render
 from .models import PostCategory, Post
 
 def forum_list(request):
-    categories_with_threads = {} 
+    categories_with_threads = {}
 
     # loop through all category and get posts for each
     for category in PostCategory.objects.all():
-        posts_in_category = Post.objects.filter(category=category).order_by('created_on')
+        posts_in_category = Post.objects.filter(category=category).order_by('title')
 
         unique_threads = {} # dictionary for unqiue thread titles within category
         for post in posts_in_category:
@@ -25,6 +25,6 @@ def forum_detail(request, forum_id):
 
     ctx = {
         'thread_title': post.title,
-        'posts': Post.objects.filter(title=post.title).order_by('-created_on')
+        'posts': Post.objects.filter(title=post.title)
     }
     return render(request, 'forum_detail.html', ctx)
