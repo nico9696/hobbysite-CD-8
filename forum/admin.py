@@ -11,6 +11,8 @@ class PostAdmin(admin.ModelAdmin):
     model = Post
     search_fields = ('title', 'category__name', )
     list_display = ('title', 'category', 'created_on', 'updated_on')
+    list_filter = ('category', 'created_on')
+    ordering = ('-created_on',)
     
     
 admin.site.register(PostCategory, PostCategoryAdmin)
