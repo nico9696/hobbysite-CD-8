@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Article Detail</title>
-	</head>
-	<body>
-		<h1>{{ article.title }}</h1>
-		<p>{{ article.entry }}</p>
-		<p>Last Updated On: {{ article.updated_on }}, UTC </p>
-	</body>
-</html>
+{% extends "layout.html" %}
+
+{% block title %}
+	{{ article.title }} - Wikipidiyi
+{% endblock title %}
+
+{% block body %}
+	<h2>{{ article.title }}</h1>
+	<p>{{ article.entry }}</p>
+{% endblock body %}
+
+<footer>
+	<p>Last Updated On: {{ article.updated_on }}, UTC </p>
+</footer>

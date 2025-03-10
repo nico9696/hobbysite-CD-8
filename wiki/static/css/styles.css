@@ -1,0 +1,17 @@
+body {
+	font-family: 'Roboto';
+	background-color: bisque;
+	margin: 0px;
+}
+
+header {
+	background-color: tan;
+	margin: 0px;
+	padding: 1px 20px;
+
+.main-content {
+	background-color: cadetblue;
+	margin: 20px;
+	padding: 30px 30px;
+	
+}
