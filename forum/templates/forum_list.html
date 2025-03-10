@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Forum List</title>
+	</head>
+	<body>
+		<h1>Hobby Forums</h1>
+		{% for category in categories %}
+			<h2>{{ category.name }}</h2>
+			<hr>
+			<p>{{ category.description }}:</p>
+		
+			<!-- Find and list all forums from the category -->
+			<ul>
+				{% for forum in forums %}
+					{% if forum.category == category %}
+						<li>
+							<a href='{{ forum.get_absolute_url }}'>{{ forum.title }}</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		{% endfor %}
+	</body>
+</html>
