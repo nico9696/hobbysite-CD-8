@@ -4,6 +4,11 @@
 		<title>Article List</title>
 	</head>
 	<body>
-		<h1>This is the article list</h1>
+		<h1>List of Articles</h1>
+		<hr>
+		{% for article in articles %}
+			<h2>{{ article.name }}</h2>
+			<p>{{ article.description }}</p>
+		{% endfor %}
 	</body>
 </html>
