@@ -1,26 +1,26 @@
 {% extends "layout.html" %}
 
 {% block title %}
-	Wikipidiyi Articles
+    Wikipidiyi Articles
 {% endblock title %}
 
 {% block body %}
-	<h1 class='outer-heading'>Articles</h1>
-	<div class='main-content'>
-		{% for category in categories %}
-			<div class='category-section'>
-				<h2>{{ category.name }}</h2>
-				<hr>
-				<p>{{ category.description }}:</p>
-			
-				<ul>
-					{% for article in articles %}
-						{% if article.category == category %}
-							<li><a href='{{ article.get_absolute_url }}'>{{ article.title }}</a></li>
-						{% endif %}
-					{% endfor %}
-				</ul>
-			</div>
-		{% endfor %}
-	</div>
+    <h1 class="outer-heading">Articles</h1>
+    <div class="main-content">
+        {% for category in categories %}
+            <div class="category-section">
+                <h2>{{ category.name }}</h2>
+                <hr>
+                <p>{{ category.description }}:</p>
+
+                <ul>
+                    {% for article in articles %}
+                        {% if article.category == category %}
+                            <li><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock body %}

@@ -1,21 +1,21 @@
 {% extends "layout.html" %}
 
 {% block title %}
-	{{ article.title }} - Wikipidiyi
+    {{ article.title }} - Wikipidiyi
 {% endblock title %}
 
 {% block body %}
-	<div class='menu'>
-		<a href="{% url 'article_list' %}">Article List</a>
-	</div>
-	<div class='main-content'>
-		<h1>{{ article.title }}</h1>
-		<p>{{ article.entry }}</p>
-	</div>
+    <div class="menu">
+        <a href="{% url 'article_list' %}">Back to Article List</a>
+    </div>
+    <div class="main-content">
+        <h1>{{ article.title }}</h1>
+        <p>{{ article.entry }}</p>
+    </div>
 {% endblock body %}
 
 {% block footer %}
-	<footer>
-		<p>Page Last Updated On: <i>{{ article.updated_on }}, UTC</i></p>
-	</footer>
+    <footer>
+        <p>Page Last Updated On: <i>{{ article.updated_on }}, UTC</i></p>
+    </footer>
 {% endblock footer %}
