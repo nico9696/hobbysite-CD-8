@@ -5,15 +5,17 @@
 {% endblock title %}
 
 {% block body %}
+	<div class='menu'>
+		<a href="{% url 'article_list' %}">Article List</a>
+	</div>
 	<div class='main-content'>
 		<h1>{{ article.title }}</h1>
 		<p>{{ article.entry }}</p>
 	</div>
-	
-	{% block footer %}
-		<footer>
-			<p>Page Last Updated On: <i>{{ article.updated_on }}, UTC</i> </p>
-		</footer>
-	{% endblock footer %}
 {% endblock body %}
 
+{% block footer %}
+	<footer>
+		<p>Page Last Updated On: <i>{{ article.updated_on }}, UTC</i></p>
+	</footer>
+{% endblock footer %}

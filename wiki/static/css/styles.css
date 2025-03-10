@@ -11,7 +11,13 @@ hr {
 header {
 	background-color: tan;
 	margin: 0px;
-	padding: 1px 20px;
+	padding: 5px 20px;
+}
+
+.menu {
+	background-color: tan;
+	margin: 20px;
+	padding: 20px;
 }
 
 .main-content {
@@ -30,8 +36,7 @@ header {
 
 footer {
 	background-color: tan;
-	position: fixed;
 	bottom: 0;
 	width: 100%;
-	padding: 0.5em 2em;
+	padding: 2px 20px;
 }
