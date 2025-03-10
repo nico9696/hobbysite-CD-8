@@ -14,7 +14,12 @@ class ProductType(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
-    product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE, related_name="products")
+    product_type = models.ForeignKey(
+        ProductType, 
+        on_delete=models.SET_NULL, # When product type is deleted, all its products will have null product type
+        null=True,  # Allows for null values
+        blank=True,  # Allows for blank values
+        related_name="products")
     description = models.TextField()
     price = models.DecimalField(max_digits=20, decimal_places=2)  
 
