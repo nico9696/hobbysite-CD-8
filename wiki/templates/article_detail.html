@@ -5,10 +5,15 @@
 {% endblock title %}
 
 {% block body %}
-	<h2>{{ article.title }}</h1>
-	<p>{{ article.entry }}</p>
+	<div class='main-content'>
+		<h1>{{ article.title }}</h1>
+		<p>{{ article.entry }}</p>
+	</div>
+	
+	{% block footer %}
+		<footer>
+			<p>Page Last Updated On: <i>{{ article.updated_on }}, UTC</i> </p>
+		</footer>
+	{% endblock footer %}
 {% endblock body %}
 
-<footer>
-	<p>Last Updated On: {{ article.updated_on }}, UTC </p>
-</footer>

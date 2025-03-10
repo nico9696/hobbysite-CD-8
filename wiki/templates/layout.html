@@ -4,14 +4,21 @@
 	<head>
 		<title>{% block title %}{% endblock title %}</title>
 		<link rel='stylesheet' href="{% static 'css/styles.css' %}">
+		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 	</head>
 	<body>
 		<header>
 			<h1>WIKIPIDIYI</h1>
-			
+			<h3>An online free "encyclopedia"</h3>
 		</header>
 		
 		{% block body %}
 		{% endblock %}
+		
+		{% block footer %}
+			<footer>
+				<p>Hobby Site - Wikipidiyi</p>
+			</footer>
+		{% endblock footer %}
 	</body>
 </html>

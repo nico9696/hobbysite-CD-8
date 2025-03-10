@@ -1,17 +1,37 @@
 body {
-	font-family: 'Roboto';
+	font-family: 'Roboto', sans-serif;
 	background-color: bisque;
 	margin: 0px;
+}
+
+hr {
+	border: 1px solid black;
 }
 
 header {
 	background-color: tan;
 	margin: 0px;
 	padding: 1px 20px;
+}
 
 .main-content {
 	background-color: cadetblue;
 	margin: 20px;
 	padding: 30px 30px;
-	
+}
+
+.outer-heading {
+	margin: 20px 40px;
+}
+
+.category-section {
+	margin-bottom: 50px;
+}
+
+footer {
+	background-color: tan;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: 0.5em 2em;
 }
