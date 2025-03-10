@@ -4,12 +4,12 @@ from .models import PostCategory, Post
 def forum_list(request):
     ctx = {
         'categories': PostCategory.objects.all(),
-        'posts': Post.objects.all()
+        'forums': Post.objects.all()
     }
     return render(request, 'forum_list.html', ctx)
 
 def forum_detail(request, forum_id):
     ctx = {
-        'forum': Post.objects.get(id=forum_id)
+        'post': Post.objects.get(id=forum_id)
     }
     return render(request, 'forum_detail.html', ctx)
