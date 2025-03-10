@@ -14,6 +14,7 @@ class ArticleCategory(models.Model):
     class Meta:
         ordering = ['name']
 
+
 # Model for an article under a category
 class Article(models.Model):
     title = models.CharField(max_length=255)

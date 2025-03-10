@@ -4,11 +4,22 @@
 		<title>Article List</title>
 	</head>
 	<body>
-		<h1>List of Articles</h1>
-		{% for article in articles %}
-			<h2>{{ article.category.name }}</h2>
+		<h1>Wikipidiyi Articles</h1>
+		{% for category in categories %}
+			<h2>{{ category.name }}</h2>
 			<hr>
-			<p>{{ article.category.description }}:</p>
+			<p>{{ category.description }}:</p>
+		
+			<!-- Find and list all articles from the category -->
+			<ul>
+				{% for article in articles %}
+					{% if article.category == category %}
+						<li>
+							<a href='{{ article.get_absolute_url }}'>{{ article.title }}</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
 		{% endfor %}
 	</body>
 </html>
