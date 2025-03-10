@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Forum Detail</title>
-	</head>
-	<body>
-		<h1>{{ post.title }}</h1>
-		<p>{{ post.entry }}</p>
-		<p>Last Updated On: {{ post.updated_on }}, UTC </p>
-	</body>
-</html>
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="post-details">
+    <h2>{{ post.title }}</h2>
+    <p class="post-entry">{{ post.entry }}</p>
+    <p class="timestamp">Last Updated On: {{ post.updated_on }}, UTC</p>
+</div>
+{% endblock %}

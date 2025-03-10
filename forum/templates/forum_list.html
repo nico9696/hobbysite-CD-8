@@ -1,25 +1,25 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Forum List</title>
-	</head>
-	<body>
-		<h1>Forum Thread</h1>
-		{% for category in categories %}
-			<h2>{{ category.name }}</h2>
-			<hr>
-			<p>{{ category.description }}:</p>
-		
-			<!-- Find and list all forums from the category -->
-			<ul>
-				{% for post in posts %}
-					{% if post.category == category %}
-						<li>
-							<a href='{{ post.get_absolute_url }}'>{{ post.title }}</a>
-						</li>
-					{% endif %}
-				{% endfor %}
-			</ul>
-		{% endfor %}
-	</body>
-</html>
+{% extends "layout.html" %}
+
+{% block content %}
+<div class='main-content'>
+    <h2>Forum Threads</h2>
+    
+    {% for category in categories %}
+        <div class="category">
+            <h3>{{ category.name }}</h3>
+            <p>{{ category.description }}</p>
+            <hr>
+            
+            <ul class="forum-list">
+                {% for post in posts %}
+                    {% if post.category == category %}
+                        <li>
+                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
