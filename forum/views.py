@@ -4,7 +4,7 @@ from .models import PostCategory, Post
 def forum_list(request):
     ctx = {
         'categories': PostCategory.objects.all(),
-        'forums': Post.objects.all()
+        'posts': Post.objects.all()
     }
     return render(request, 'forum_list.html', ctx)
 
