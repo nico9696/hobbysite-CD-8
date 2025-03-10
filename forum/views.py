@@ -8,7 +8,7 @@ def forum_list(request):
     }
     return render(request, 'forum_list.html', ctx)
 
-def article_detail(request, forum_id):
+def forum_detail(request, forum_id):
     ctx = {
         'forum': Post.objects.get(id=forum_id)
     }
