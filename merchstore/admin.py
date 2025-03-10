@@ -16,6 +16,7 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('name', )
     list_display = ('id', 'name', 'product_type', 'description', 'price')  # Shows these readably
     ordering = ('name',)  # Orders Product alphabetically by name
+    list_filter = ('product_type')
 
 # models registered here.
 admin.site.register(ProductType, ProductTypeAdmin)
