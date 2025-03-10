@@ -5,10 +5,10 @@
 	</head>
 	<body>
 		<h1>List of Articles</h1>
-		<hr>
 		{% for article in articles %}
-			<h2>{{ article.name }}</h2>
-			<p>{{ article.description }}</p>
+			<h2>{{ article.category.name }}</h2>
+			<hr>
+			<p>{{ article.category.description }}:</p>
 		{% endfor %}
 	</body>
 </html>

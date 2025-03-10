@@ -2,11 +2,6 @@ from django.db import models
 from django.urls import reverse
 
 
-'''
-TO-DO: Add get_absolute_url() method
-     : Implement sorting feature
-'''
-
 # Model for a category of articles
 class ArticleCategory(models.Model):
     name = models.CharField(max_length=255)
@@ -15,6 +10,9 @@ class ArticleCategory(models.Model):
     def __str__(self):
         return self.name
     
+    # Sort category names in alphabetical order
+    class Meta:
+        ordering = ['name']
 
 # Model for an article under a category
 class Article(models.Model):
@@ -33,4 +31,8 @@ class Article(models.Model):
         
     def get_absolute_url(self):
         return reverse('article_detail', args=[str(self.id)])
+        
+    # Sort articles from newest created to oldest created
+    class Meta:
+        ordering = ['-created_on']
     
