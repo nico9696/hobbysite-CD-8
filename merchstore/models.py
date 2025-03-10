@@ -8,8 +8,9 @@ class ProductType(models.Model):
     def __str__(self):
         return str(self.name) 
     
+    # Orders ProductType alphabetically by name
     class Meta:
-        ordering = ['name']  # Orders ProductType alphabetically by name
+        ordering = ['name']  
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -17,5 +18,6 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=20, decimal_places=2)  
 
+    # Orders Product alphabetically by name
     class Meta:
-        ordering = ['name']  # Orders Product alphabetically by name
+        ordering = ['name']  

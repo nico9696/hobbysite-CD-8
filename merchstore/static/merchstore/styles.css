@@ -37,7 +37,7 @@ h1{
     color: black;
 }
 
-.product_details{
+.product-details{
     background-color: cadetblue;
     width: 50%;
     margin-left: auto;
@@ -46,7 +46,7 @@ h1{
     border-radius: 10px;
 }
 
-.product_details_list{
+.product-details-list{
     list-style: none;
 }
 
