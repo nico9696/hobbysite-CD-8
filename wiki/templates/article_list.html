@@ -12,14 +12,14 @@
                 <h2>{{ category.name }}</h2>
                 <hr>
                 <p>{{ category.description }}:</p>
-
-                <ul class="articles-list">
-                    {% for article in articles %}
-                        {% if article.category == category %}
-                            <li><a href="{{ article.get_absolute_url }}" class="url-button">{{ article.title }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
+				
+				<ul class="articles-list">
+					{% for article in articles %}
+						{% if article.category == category %}
+							<li><a href="{{ article.get_absolute_url }}" class="link-button">{{ article.title }}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul>
             </div>
         {% endfor %}
     </div>
