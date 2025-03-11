@@ -2,7 +2,6 @@ from django.db import models
 from django.urls import reverse
 
 
-# Model for a category of articles
 class ArticleCategory(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
@@ -15,12 +14,11 @@ class ArticleCategory(models.Model):
         ordering = ['name']
 
 
-# Model for an article under a category
 class Article(models.Model):
     title = models.CharField(max_length=255)
     category = models.ForeignKey(
         ArticleCategory,
-        null=True, # Allows articles to be created with a null category 
+        null=True, # Allows articles to belong to a null category 
         on_delete=models.SET_NULL # Becomes null upon deletion of the category
     )
     entry = models.TextField()
