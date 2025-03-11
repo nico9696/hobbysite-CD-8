@@ -30,9 +30,10 @@ main {
 
 .category {
     background-color: cadetblue;
+    border: 1px black solid;
     padding: 15px;
     margin-bottom: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 .category h3 {
@@ -68,8 +69,9 @@ main {
 /* Forum Detail */
 .post-details {
     background-color: cadetblue;
+    border: 1px black solid;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 .post-entry {
