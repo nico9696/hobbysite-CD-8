@@ -10,33 +10,57 @@ hr {
 
 header {
 	background-color: tan;
-	margin: 0px;
 	padding: 5px 20px;
+	text-align: center;
 }
 
 .menu {
-	background-color: tan;
 	margin: 20px;
-	padding: 20px;
-}
-
-.main-content {
-	background-color: cadetblue;
-	margin: 20px;
-	padding: 30px 30px;
+	display: flex;
 }
 
 .outer-heading {
 	margin: 20px 40px;
 }
 
+.main-content {
+	margin: 20px;
+	background-color: cadetblue;
+	padding: 30px 30px;
+	border-radius: 20px;
+}
+
 .category-section {
 	margin-bottom: 50px;
 }
 
+.articles-list {
+	list-style: none;
+	display: flex;
+	gap: 20px;
+}
+
+.url-button {
+	display: flex;
+	padding: 10px 20px;
+	border-radius: 5px;
+	background-color: bisque;
+	border: 2px solid tan;
+	text-decoration: none;
+	color: black;
+	text-align: center;
+}
+
+.url-button:hover {
+	background-color: tan;
+	color: white;
+}
+
 footer {
 	background-color: tan;
-	bottom: 0;
-	width: 100%;
 	padding: 2px 20px;
+}
+
+.footer-text {
+	text-align: center;
 }
