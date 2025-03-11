@@ -1,9 +1,6 @@
 from django.contrib import admin
 from .models import ArticleCategory, Article
 
-'''
-TO-DO: Add more admin panel features 
-'''
 
 class ArticleCategoryAdmin(admin.ModelAdmin):
     model = ArticleCategory
