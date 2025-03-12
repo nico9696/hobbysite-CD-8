@@ -1,0 +1,57 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color:bisque;
+}
+
+h1{
+    text-align: center;
+}
+
+.commission{
+    border: 1px black solid;
+    border-radius: 10px;
+    background-color: cadetblue;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.commission-description{
+    display: flex;
+    justify-content: space-between;
+}
+
+.commission-list{
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+
+.commission-list li{
+    padding: 20px;
+    background-color: bisque;
+    border-radius: 10px;
+}
+
+.commission-list li a {
+    text-decoration: none; 
+    color: black;
+}
+
+.commission_details{
+    background-color: cadetblue;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding:15px;
+    border-radius: 10px;
+}
+
+.commission_details_list{
+    list-style: none;
+}
+
+.commission-details-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
