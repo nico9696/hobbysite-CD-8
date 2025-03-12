@@ -2,9 +2,6 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Article
 
-#def article_list(request):
-#    return render(request, 'blog/article_list.html', {})
-
 class ArticleList(ListView):
     model = Article
     template_name = 'blog/article_list.html'
