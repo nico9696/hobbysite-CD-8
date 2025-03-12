@@ -9,13 +9,20 @@
     <h3>Comments:</h3>
     <ul>
         {% for comment in comments %}
-            <li>
+
+            <ul>
+                <div class="commission">
                 </p>{{ comment.entry }}</p>
-                <p>created on: {{ comment.created_on }}</p>
-                <p>updated on: {{ comment.updated_on }}</p>
-            </li>
+                    <div class="dates">
+                        <p>created on: {{ comment.created_on }}</p>
+                        <p>updated on: {{ comment.updated_on }}</p>
+                    </div>
+                </div>
+            </ul>
         {% empty %}
-            <li>No comments available.</li>
+            <div class="commission">
+            <p>No comments.</p>
+            <div>
         {% endfor %}  
     </ul>
 {% endblock %}
