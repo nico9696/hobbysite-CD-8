@@ -6,8 +6,8 @@
     {% for category in category_list %}
         <div class="article-category">
             <div class="article-category-description">
-                <h2>{{ category.grouper.name }}</h2>
-                <p>{{ category.grouper.description }}</p>
+                <h2>{{ category.grouper.name }}</h2></span> 
+                <p>| {{category.grouper.description }}</p>
             </div>
             <ul class="article-category-list">
                 {% for article in category.list|dictsortreversed:"created_on" %}
