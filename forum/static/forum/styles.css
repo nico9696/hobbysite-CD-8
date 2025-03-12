@@ -67,6 +67,11 @@ main {
 }
 
 /* Forum Detail */
+.category-name {
+    text-align: center;
+    font-weight: bold;
+}
+
 .post-details {
     background-color: cadetblue;
     border: 1px black solid;
