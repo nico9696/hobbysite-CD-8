@@ -25,6 +25,7 @@ def forum_detail(request, forum_id):
 
     ctx = {
         'thread_title': post.title,
-        'posts': Post.objects.filter(title=post.title)
+        'posts': Post.objects.filter(title=post.title),
+        'category': post.category
     }
     return render(request, 'forum_detail.html', ctx)
