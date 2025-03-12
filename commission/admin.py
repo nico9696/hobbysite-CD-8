@@ -10,6 +10,8 @@ class CommentAdmin(admin.ModelAdmin):
      model = Comment
      search_fields = ('entry', 'commission__title')
      list_display = ('id', 'entry', 'commission', 'created_on', 'updated_on')
+     list_filter = ('commission', )
+
  
 admin.site.register(Commission, CommissionAdmin)
 admin.site.register(Comment, CommentAdmin)
