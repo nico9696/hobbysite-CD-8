@@ -10,12 +10,14 @@
     </div>
     <div class="main-content">
         <h1>{{ article.title }}</h1>
+		<p><b>Category:</b> {{ article.category }}</p>
         <p>{{ article.entry }}</p>
     </div>
 {% endblock body %}
 
 {% block footer %}
     <footer>
-        <p>Page Last Updated On: <i>{{ article.updated_on }}, UTC</i></p>
+        <p>Page last updated on <i>{{ article.updated_on }}, UTC</i></p>
+		<p>Page created on <i>{{ article.created_on }}, UTC</i></p>
     </footer>
 {% endblock footer %}
