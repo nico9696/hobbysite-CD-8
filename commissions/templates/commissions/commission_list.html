@@ -4,7 +4,11 @@
      <ul>
          {% for commission in commission_list %}
              <li>
-                 <a href="{% url 'commission_detail' commission.id %}">{{ commission.title }}</a> 
+                 <a href="{% url 'commission_detail' commission.id %}">{{ commission.title }}</a>
+                 <p>description: {{ commission.description }}</p>
+                 <p>people required: {{ commission.people_required }}</p>
+                 <p>created on: {{ commission.created_on }}</p>
+                 <p>updated on: {{ commission.updated_on }}</p>
              </li>
          {% endfor %}
      </ul>

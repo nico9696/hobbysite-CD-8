@@ -10,7 +10,9 @@
     <ul>
         {% for comment in comments %}
             <li>
-                <strong>{{ comment.created_on }}</strong>: {{ comment.entry }}
+                </p>{{ comment.entry }}</p>
+                <p>created on: {{ comment.created_on }}</p>
+                <p>updated on: {{ comment.updated_on }}</p>
             </li>
         {% empty %}
             <li>No comments available.</li>
