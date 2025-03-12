@@ -1,1 +1,19 @@
+{% extends "commission/layout.html" %}
 
+{% block title %}{{ commission.title }}{% endblock %}
+
+{% block body %}
+    <h2>{{ commission.title }}</h2>
+    <p>{{ commission.description }}</p>
+
+    <h3>Comments:</h3>
+    <ul>
+        {% for comment in comments %}
+            <li>
+                <strong>{{ comment.created_on }}</strong>: {{ comment.entry }}
+            </li>
+        {% empty %}
+            <li>No comments available.</li>
+        {% endfor %}
+        
+    </ul>
