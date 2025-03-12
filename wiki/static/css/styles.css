@@ -36,6 +36,7 @@ header {
 
 .articles-list {
 	list-style: none;
+	flex-wrap: wrap;
 	display: flex;
 	gap: 20px;
 }
