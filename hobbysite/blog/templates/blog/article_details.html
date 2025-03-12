@@ -1,5 +1,25 @@
-<h1>{{ article.title }}</h1>
-{{ article.entry }}
+{% extends "blog/layout.html" %}
 
-<br/><br>
-<a href="{% url 'article_list' %}">Back</a>
+{% block body %}
+    <div class="article-details">
+        <ul class="article-details-list">
+            <li>
+                <div class="article-details-header">
+                    <h2>{{ object.title }}</h2>
+                    <div class="article-timestamps">
+                        <p>Created on: {{ object.created_on}}</p>
+                        <p>Updated on: {{ object.updated_on}}</p>
+                    </div>
+                </div>
+                <p>Category: 
+                    {% if object.category %}
+                        {{ object.category.name }}
+                    {% else %}
+                        Others
+                    {% endif %}
+                </p>
+                <p class="article-content">Entry: {{ object.entry }}</p>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
