@@ -11,6 +11,9 @@ class ArticleList(ListView):
     context_object_name = 'articles'
     ordering = ['-created_on']
 
+    def get_queryset(self):
+        return Article.objects.filter(category__isnull=False)
+
 class ArticleDetails(DetailView):
     model = Article 
     template_name = 'blog/article_details.html'
