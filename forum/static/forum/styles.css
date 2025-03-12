@@ -1,0 +1,92 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: bisque;
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+
+header {
+    background-color: tan;
+    padding: 15px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+main {
+    width: 95%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Forum List */
+.main-content h2 {
+    text-align: center;
+    color: black;
+}
+
+.category {
+    background-color: cadetblue;
+    border: 1px black solid;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.category h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.forum-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.forum-list li {
+    display: flex;
+    background-color: bisque;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.forum-list li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.forum-list li:hover {
+    background-color: tan;
+}
+
+/* Forum Detail */
+.category-name {
+    text-align: center;
+    font-weight: bold;
+}
+
+.post-details {
+    background-color: cadetblue;
+    border: 1px black solid;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.post-entry {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.timestamp {
+    font-size: 14px;
+    font-style: italic;
+    color: bisque;
+    text-align: right;
+}

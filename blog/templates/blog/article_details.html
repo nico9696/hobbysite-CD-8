@@ -1,0 +1,25 @@
+{% extends "blog/layout.html" %}
+
+{% block body %}
+    <div class="article-details">
+        <ul class="article-details-list">
+            <li>
+                <div class="article-details-header">
+                    <h1>{{ object.title }}</h1>
+                    <div class="article-timestamps">
+                        <p>Created on: {{ object.created_on}}</p>
+                        <p>Updated on: {{ object.updated_on}}</p>
+                    </div>
+                </div>
+                <p>Category: 
+                    {% if object.category %}
+                        {{ object.category.name }}
+                    {% else %}
+                        Others
+                    {% endif %}
+                </p>
+                <p class="article-content">Entry: {{ object.entry }}</p>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

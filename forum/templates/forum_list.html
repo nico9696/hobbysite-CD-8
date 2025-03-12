@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="main-content">
+    <h2>Forum Threads</h2>
+
+    {% for category, thread_titles in categories_with_threads.items %}
+        <div class="category">
+            <h3>{{ category.name }}</h3>
+            <p>{{ category.description }}</p>
+            <hr>
+
+            <ul class="forum-list">
+                {% for title, post_id in thread_titles.items %}
+                    <li>
+                        <a href="{% url 'forum_detail' forum_id=post_id %}">{{ title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

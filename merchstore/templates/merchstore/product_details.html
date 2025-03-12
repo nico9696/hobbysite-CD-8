@@ -1,0 +1,17 @@
+{% extends "merchstore/layout.html" %}
+{% block body %}
+        <div class="product-details">
+            <ul class="product-details-list">
+                {% for detail in product %}
+                    <li>
+                        <div class="product-details-header">
+                            <h2>{{ detail.name }}</h2>
+                            <p>P{{ detail.price }}</p>
+                        </div>
+                        <p>product type: {{ detail.product_type.name }}</p>
+                        <p>description: {{ detail.description }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: bisque;
+}
+
+h1 {
+    text-align: center;
+}
+
+.article-category {
+    border: 1px black solid;
+    border-radius: 10px;
+    background-color: cadetblue;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.article-category-description {
+    display: flex;
+    justify-content: space-between;
+}
+
+.article-category-list {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+
+.article-category-list li {
+    padding: 20px;
+    background-color: bisque;
+    border-radius: 10px;
+}
+
+.article-category-list li a {
+    text-decoration: none;
+    color: black;
+}
+
+.article-details {
+    background-color: cadetblue;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.article-details-list {
+    list-style: none;
+}
+
+.article-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
