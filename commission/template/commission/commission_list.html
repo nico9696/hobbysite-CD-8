@@ -1,1 +1,11 @@
+{% extends "commission/layout.html" %}
 
+ {% block body %}
+     <ul>
+         {% for commission in commission_list %}
+             <li>
+                 <a href="{% url 'commission_detail' commission.id %}">{{ commission.title }}</a> 
+             </li>
+         {% endfor %}
+     </ul>
+ {% endblock %}
