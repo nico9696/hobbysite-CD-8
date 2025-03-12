@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock title %}</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> <!-- Imports Roboto font -->
+    </head>
+    <body>
+        <header>
+            <h1>WIKIPIDIYI</h1>
+            <h3>An online free "encyclopedia"</h3>
+        </header>
+
+        {% block body %}
+        {% endblock body %}
+
+        {% block footer %}
+            <footer>
+                <p class="footer-text">Hobby Site - Wikipidiyi</p>
+            </footer>
+        {% endblock footer %}
+    </body>
+</html>
