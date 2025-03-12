@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Commissions, Comment
+from .models import Commission, Comment
 
 class CommissionAdmin(admin.ModelAdmin):
-     model = Commissions
+     model = Commission
      search_fields = ('title', )
      list_display = ('id', 'title','description', 'created_on', 'updated_on', 'people_required')
  
@@ -13,5 +13,5 @@ class CommentAdmin(admin.ModelAdmin):
      list_filter = ('commission', )
 
  
-admin.site.register(Commissions, CommissionAdmin)
+admin.site.register(Commission, CommissionAdmin)
 admin.site.register(Comment, CommentAdmin)
