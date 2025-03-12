@@ -1,9 +1,7 @@
 {% extends "commissions/layout.html" %}
 
  {% block body %}
-     <ul>
          {% for commission in commission_list %}
-             <ul>
                 <div class="commission">
                     <a href="{% url 'commission_detail' commission.id %}">{{ commission.title }}</a>
                     <p>description: {{ commission.description }}</p>
@@ -13,7 +11,5 @@
                         <p>updated on: {{ commission.updated_on }}</p>
                     </div>
                 </div>
-            </ul>
          {% endfor %}
-     </ul>
  {% endblock %}
