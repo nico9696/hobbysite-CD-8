@@ -1,0 +1,32 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color:bisque;
+}
+
+h1{
+    text-align: center;
+}
+
+.commission{
+    border: 1px black solid;
+    border-radius: 10px;
+    background-color: cadetblue;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.dates{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+.comments{
+    border: 1px black solid;
+    border-radius: 10px;
+    background-color: cadetblue;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+

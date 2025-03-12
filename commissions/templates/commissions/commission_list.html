@@ -1,0 +1,15 @@
+{% extends "commissions/layout.html" %}
+
+ {% block body %}
+         {% for commission in commission_list %}
+                <div class="commission">
+                    <a href="{% url 'commission_detail' commission.id %}">{{ commission.title }}</a>
+                    <p>description: {{ commission.description }}</p>
+                    <p>people required: {{ commission.people_required }}</p>
+                    <div class="dates">
+                        <p>created on: {{ commission.created_on }}</p>
+                        <p>updated on: {{ commission.updated_on }}</p>
+                    </div>
+                </div>
+         {% endfor %}
+ {% endblock %}
