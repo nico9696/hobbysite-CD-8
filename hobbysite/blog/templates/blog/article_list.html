@@ -1,11 +1,25 @@
-<h1>Blog Posts</h1>
+{% extends "blog/layout.html" %}
 
-<ul>
-    {% for article in object_list %}
-    <li>
-        <h2><a href="{% url 'article_details' article.pk %}">{{ article.title }}</a></h2>
-        <p>Category: {{ article.category }}</p>
-        <p>Created on: {{ article.created_on }}</p>
-    </li>
+{% block body %}
+    {% regroup articles|dictsort:"category.name" by category as category_list %}
+
+    {% for category in category_list %}
+        <div class="article-category">
+            <div class="article-category-description">
+                <h2>{{ category.grouper.name }}</h2>
+                <p>{{ category.grouper.description }}</p>
+            </div>
+            <ul class="article-category-list">
+                {% for article in category.list|dictsortreversed:"created_on" %}
+                    <li>
+                        <a href="{% url 'article_details' article.pk %}">{{ article.title }}</a>
+                    </li>
+                {% empty %}
+                    <li>No articles available.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% empty %}
+        <p>No categories available.</p>
     {% endfor %}
-</ul>
+{% endblock %}
