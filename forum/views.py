@@ -18,7 +18,7 @@ def forum_list(request):
     ctx = {
         'categories_with_threads': categories_with_threads
     }
-    return render(request, 'forum_list.html', ctx)
+    return render(request, 'forum/forum_list.html', ctx)
 
 def forum_detail(request, forum_id):
     post = Post.objects.get(id=forum_id)
@@ -28,4 +28,4 @@ def forum_detail(request, forum_id):
         'posts': Post.objects.filter(title=post.title),
         'category': post.category
     }
-    return render(request, 'forum_detail.html', ctx)
+    return render(request, 'forum/forum_detail.html', ctx)
