@@ -7,6 +7,8 @@ class ArticleCategory(models.Model):
 
     class Meta:
         ordering = ["name"]
+        verbose_name = "Article Category"
+        verbose_name_plural = "Article Category" 
 
     def __str__(self):
         return self.name
@@ -22,6 +24,8 @@ class Article(models.Model):
 
     class Meta:
         ordering = ["-created_on"]
+        verbose_name = "Article"
+        verbose_name_plural = "Article" 
 
     def __str__(self):
         return self.title

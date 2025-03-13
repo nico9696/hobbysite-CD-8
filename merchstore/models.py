@@ -11,6 +11,8 @@ class ProductType(models.Model):
     # Orders ProductType alphabetically by name
     class Meta:
         ordering = ['name']  
+        verbose_name = "Product Type"
+        verbose_name_plural = "Product Type" 
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -26,3 +28,5 @@ class Product(models.Model):
     # Orders Product alphabetically by name
     class Meta:
         ordering = ['name']  
+        verbose_name = "Product"
+        verbose_name_plural = "Product" 
