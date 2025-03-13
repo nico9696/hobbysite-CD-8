@@ -12,6 +12,8 @@ class ArticleCategory(models.Model):
     # Sort category names in alphabetical order
     class Meta:
         ordering = ['name']
+        verbose_name = "Article Category"
+        verbose_name_plural = "Article Category" 
 
 
 class Article(models.Model):
@@ -34,4 +36,6 @@ class Article(models.Model):
     # Sort articles from newest created to oldest created
     class Meta:
         ordering = ['-created_on']
+        verbose_name = "Article"
+        verbose_name_plural = "Article" 
     

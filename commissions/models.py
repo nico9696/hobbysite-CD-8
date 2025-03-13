@@ -11,7 +11,9 @@ class Commission(models.Model):
          return self.title
     
     class Meta:
-         ordering = ['created_on']
+          ordering = ['created_on']
+          verbose_name = "Commission"
+          verbose_name_plural = "Commission" 
 
 class Comment(models.Model):
     commission = models.ForeignKey(Commission,on_delete=models.CASCADE)
@@ -23,4 +25,6 @@ class Comment(models.Model):
          return f"Comment on {self.commission.title}"
     
     class Meta:
-         ordering = ['-created_on']
+          ordering = ['-created_on']
+          verbose_name = "Comment"
+          verbose_name_plural = "Comment" 
