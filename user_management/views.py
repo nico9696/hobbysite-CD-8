@@ -12,9 +12,12 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse("recipe_list"))
-    return render(request, "profile/login.html")
+            return HttpResponseRedirect(reverse("home"))
+    return render(request, "user_management/login.html")
 
 def logout_view(request):
     logout(request)
-    return render(request, "profile/login.html")
+    return render(request, "user_management/login.html")
+
+def home(request):
+    return render(request, "user_management/home.html")

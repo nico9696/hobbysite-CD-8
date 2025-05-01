@@ -1,0 +1,16 @@
+{% extends "user_management/layout.html" %}
+{% load static %}
+
+{% block page_title %}Home | Hobbysite{% endblock %}
+
+{% block style %}<style></style>{% endblock %}
+
+{% block body %}
+    <ul>
+        <li><a href="{% url 'show_products_list' %}">Merch Store</a></li>
+        <li><a href="{% url 'article_list' %}">Wiki</a></li>
+        <li><a href="{% url 'article_list' %}">Blog</a></li>
+        <li><a href="{% url 'forum_list' %}">Forum</a></li>
+        <li><a href="{% url 'commission_list' %}">Commission</a></li>
+    </ul>
+{% endblock %}
