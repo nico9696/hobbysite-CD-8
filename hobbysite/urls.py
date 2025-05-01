@@ -8,4 +8,5 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('wiki/', include('wiki.urls')),
     path('merchstore/', include('merchstore.urls')),
+    path('profile/', include('user_management.urls')),
 ]
