@@ -1,0 +1,27 @@
+{% extends "user_management/layout.html" %}
+{% load static %}
+
+{% block page_title %}Login | Hobbysite{% endblock %}
+
+{% block style %}<style></style>{% endblock %}
+
+{% block body %}
+
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <input type="submit" value="Login">
+    </form>
+
+    <p>Don't have an account?</p>
+    <a href="{% url 'register' %}">
+        <button type="button">Register</button>
+    </a>
+
+    <p>Forgot Password?</p>
+    <a href="{% url 'reset_password' %}">
+        <button type="button">Reset Password</button>
+    </a>
+
+{% endblock %}

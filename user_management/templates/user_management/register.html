@@ -1,0 +1,27 @@
+{% extends "user_management/layout.html" %}
+{% load static %}
+
+{% block page_title %}Register | Hobbysite{% endblock %}
+
+{% block style %}<style></style>{% endblock %}
+
+{% block body %}
+
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <input type="text" name="display_name" placeholder="Display Name">
+        <input type="email" name="email" placeholder="Email">
+        <input type="submit" value="Register">
+    </form>
+
+     <!-- Display error message -->
+     {% if messages %}
+     <ul>
+         {% for message in messages %}
+             <li style="color: red;">{{ message }}</li>
+         {% endfor %}
+     </ul>
+ {% endif %}
+{% endblock %}
