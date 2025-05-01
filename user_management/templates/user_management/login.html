@@ -13,4 +13,10 @@
         <input type="password" name="password" placeholder="Password">
         <input type="submit" value="Login">
     </form>
+
+    <p>Don't have an account?</p>
+    <a href="{% url 'register' %}">
+        <button type="button">Register</button>
+    </a>
+
 {% endblock %}
