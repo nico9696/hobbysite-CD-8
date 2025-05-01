@@ -49,6 +49,3 @@ def register(request):
         return redirect("home")
     else:
         return render(request, "user_management/register.html")
-    
-def reset(request):
-    return render(request, "user_management/password_reset_form.html")
