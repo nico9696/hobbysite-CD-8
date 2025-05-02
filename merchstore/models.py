@@ -17,7 +17,11 @@ class ProductType(models.Model):
         verbose_name_plural = "Product Type" 
 
 class Product(models.Model):
-    STATUS_CHOICES = [ 'Available', 'On sale', 'Out of stock']
+    STATUS_CHOICES = [
+        ('available', 'Available'),
+        ('on_sale', 'On sale'),
+        ('out_of_stock', 'Out of stock'),
+    ]
 
     name = models.CharField(max_length=255)
     product_type = models.ForeignKey(
@@ -34,7 +38,7 @@ class Product(models.Model):
         related_name="owner")
     description = models.TextField()
     price = models.DecimalField(max_digits=20, decimal_places=2)  
-    stock = models.IntegerField()
+    stock = models.IntegerField(default=0)
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
@@ -48,7 +52,13 @@ class Product(models.Model):
         verbose_name_plural = "Product" 
 
 class Transaction(models.Model):
-    STATUS_CHOICES = ['On cart', 'To Pay', 'To Ship', 'To Receive', 'Delivered']
+    STATUS_CHOICES = [
+        ('on_cart', 'On cart'),
+        ('to_pay', 'To Pay'),
+        ('to_ship', 'To Ship'),
+        ('to_receive', 'To Receive'),
+        ('delivered', 'Delivered'),
+    ]
 
     buyer = models.ForeignKey(
         Profile, 
