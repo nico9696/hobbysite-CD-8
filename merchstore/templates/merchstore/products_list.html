@@ -1,5 +1,7 @@
 {% extends "merchstore/layout.html" %}
 {% block body %}
+    <a href="{% url 'add_product' %}">Add new product!</a>
+
     <ul>
         {% for product in users_products_list %}
             <li>

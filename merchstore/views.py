@@ -30,9 +30,11 @@ def show_products_list(request):
         "null_product_type_list": Product.objects.filter(product_type__isnull=True)
         })
 
+
 @login_required(login_url='login')
 def show_product_details(request, num):
     return render(request, "merchstore/product_details.html", {"product": Product.objects.filter(id=num)})
+
 
 @login_required(login_url='login')
 def add_product(request):
