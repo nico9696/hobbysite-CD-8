@@ -14,4 +14,11 @@
                 {% endfor %}
             </ul>
         </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <h2>Buy Product</h2>
+            <!-- {{ add_recipe_form.as_p }} -->
+            <button type="submit">Submit</button>
+        </form>
 {% endblock %}

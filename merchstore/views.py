@@ -28,7 +28,7 @@ def show_products_list(request):
         "product_type_list": product_types,
         "product_list": Product.objects.all(),
         "null_product_type_list": Product.objects.filter(product_type__isnull=True)
-        })
+    })
 
 
 @login_required(login_url='login')
