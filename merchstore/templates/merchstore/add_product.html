@@ -1,0 +1,11 @@
+{% extends "merchstore/layout.html" %}
+{% block body %}
+    <form method="post">
+        {% csrf_token %}
+        <h2>Add product</h2>
+        {{ add_recipe_form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="{% url 'show_products_list'%}">Back to list of all products!</a>
+{% endblock %}
