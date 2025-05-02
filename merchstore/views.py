@@ -20,6 +20,7 @@ def show_products_list(request):
 
     return render(request, "merchstore/products_list.html", {
         "users_products_list": is_users,
+        "not_users_products_list": is_not_users,
 
         "product_type_list": product_types,
         "product_list": Product.objects.all(),
