@@ -38,11 +38,16 @@ def show_product_details(request, num):
 
 @login_required(login_url='login')
 def add_product(request):
+    user = request.user  # the logged-in user
+    profile = Profile.objects.get(user=user)  # fetch the user's profile
+
     if (request.method == "POST"): 
         product_form = ProductForm(request.POST, prefix="product")
 
         if product_form.is_valid():
-            product_form.save()
+            product = product_form.save(commit=False) # Create but don't save yet
+            product.owner = profile # Set the desired field value
+            product.save() # Now save to the database
 
         return redirect('show_products_list')
     
