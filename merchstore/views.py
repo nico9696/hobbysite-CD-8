@@ -3,6 +3,9 @@ from .models import ProductType, Product
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 from django.db.models import Q
+from .forms import ProductForm
+from django.shortcuts import redirect
+
 
 @login_required(login_url='login')
 def show_products_list(request):
@@ -30,3 +33,19 @@ def show_products_list(request):
 @login_required(login_url='login')
 def show_product_details(request, num):
     return render(request, "merchstore/product_details.html", {"product": Product.objects.filter(id=num)})
+
+@login_required(login_url='login')
+def add_product(request):
+    if (request.method == "POST"): 
+        product_form = ProductForm(request.POST, prefix="product")
+
+        if product_form.is_valid():
+            product_form.save()
+
+        return redirect('show_products_list')
+    
+    product_form = ProductForm(prefix="product")
+
+    return render(request, 'merchstore/add_product.html', {
+        'add_product_form': product_form,
+    })
