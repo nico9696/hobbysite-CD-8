@@ -11,6 +11,15 @@ class ProductTypeAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'description')  # Shows these readably
     ordering = ('name',)  # Orders ProductType alphabetically by name
 
+    # got help from ChatGPT
+    # fulfills: "determined by developers and cannot be modified by regular users"
+    def has_change_permission(self, request, obj=None):
+        return request.user.is_superuser  # or some custom group check
+    def has_add_permission(self, request):
+        return request.user.is_superuser
+    def has_delete_permission(self, request, obj=None):
+        return request.user.is_superuser
+
 class ProductAdmin(admin.ModelAdmin):
     model = Product
     search_fields = ('name', )
