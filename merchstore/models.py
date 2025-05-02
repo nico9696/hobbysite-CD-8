@@ -1,4 +1,6 @@
 from django.db import models
+from user_management.models import Profile
+from django.core.validators import MinValueValidator
 
 class ProductType(models.Model):
     name = models.CharField(max_length=255)
@@ -15,6 +17,8 @@ class ProductType(models.Model):
         verbose_name_plural = "Product Type" 
 
 class Product(models.Model):
+    STATUS_CHOICES = [ 'Available', 'On sale', 'Out of stock']
+
     name = models.CharField(max_length=255)
     product_type = models.ForeignKey(
         ProductType, 
@@ -22,11 +26,49 @@ class Product(models.Model):
         null=True,  # Allows for null values
         blank=True,  # Allows for blank values
         related_name="products")
+    owner = models.ForeignKey(
+        Profile, 
+        on_delete=models.CASCADE, 
+        null=True,  
+        blank=True,  
+        related_name="owner")
     description = models.TextField()
     price = models.DecimalField(max_digits=20, decimal_places=2)  
+    stock = models.IntegerField()
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='Available'
+    )
 
     # Orders Product alphabetically by name
     class Meta:
         ordering = ['name']  
         verbose_name = "Product"
         verbose_name_plural = "Product" 
+
+class Transaction(models.Model):
+    STATUS_CHOICES = ['On cart', 'To Pay', 'To Ship', 'To Receive', 'Delivered']
+
+    buyer = models.ForeignKey(
+        Profile, 
+        on_delete=models.SET_NULL, 
+        null=True,  
+        blank=True,  
+        related_name="buyer")
+    product = models.ForeignKey(
+        Product, 
+        on_delete=models.SET_NULL, 
+        null=True,  
+        blank=True,  
+        related_name="product")
+    amount = models.IntegerField(
+        validators=[MinValueValidator(1)],
+    )
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+    )
+    created_on = models.DateTimeField(
+        auto_now_add=True,
+    )
