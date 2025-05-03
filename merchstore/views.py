@@ -114,3 +114,12 @@ def show_cart(request, profile):
     return render(request, 'merchstore/cart.html', {
         'users_transactions': transaction,
     })
+
+@login_required(login_url='login') 
+def update_product(request, id): 
+    user = request.user 
+    profile = Profile.objects.get(user=user) 
+    product = Transaction.objects.filter(buyer=profile)
+    # return render(request, 'merchstore/cart.html', {
+    #     'users_transactions': transaction,
+    # })
