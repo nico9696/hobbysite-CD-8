@@ -116,10 +116,19 @@ def show_cart(request, profile):
     })
 
 @login_required(login_url='login') 
-def update_product(request, id): 
-    user = request.user 
-    profile = Profile.objects.get(user=user) 
-    product = Transaction.objects.filter(buyer=profile)
-    # return render(request, 'merchstore/cart.html', {
-    #     'users_transactions': transaction,
-    # })
+def update_product(request, product_id): 
+    product = Transaction.objects.get(id=product_id)
+    if (request.method == "POST"): 
+        product_form = ProductForm(request.POST, request.FILES, instance=product)
+
+        if product_form.is_valid():
+            product_form.save() # Now save to the database
+
+        return redirect('show_products_list')
+    
+    else:
+        product_form = ProductForm(instance=product)  # Pre-filled with existing values
+
+    return render(request, 'merchstore/update.html', {
+        'update_product_form': product_form,
+    })
