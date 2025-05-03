@@ -7,14 +7,17 @@ def article_list(request):
 
     # Separate user's articles from the rest of the list
     if user.is_authenticated:
+        profile = user.profile
         ctx = {
-            'user_articles': Article.objects.filter(author=user),
-            'non_user_articles': Article.objects.exclude(author=user)
+            'user_articles': Article.objects.filter(author=profile),
+            'non_user_articles': Article.objects.exclude(author=profile),
+            'categories': ArticleCategory.objects.all()
         }
     else:
         ctx = {
             'user_articles': Article.objects.none(),
-            'non_user_articles': Article.objects.all()
+            'non_user_articles': Article.objects.all(),
+            'categories': ArticleCategory.objects.all()
         }
     
     return render(request, 'wiki/article_list.html', ctx)

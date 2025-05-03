@@ -21,16 +21,16 @@
             </div>
         {% endif %}
         
-        <h2>Other Aticles</h2>
+        <h2>Other Articles</h2>
+        <hr>
         {% for category in categories %}
             <div class="category-section">
-                <h2>{{ category.name }}</h2>
-                <hr>
+                <h3>{{ category.name }}</h2>
                 <p>{{ category.description }}</p>
                 <ul class="articles-list">
                     {% for article in non_user_articles %}
                         {% if article.category == category %}
-                            <li><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></li>
+                            <li><a href="{{ article.get_absolute_url }}" class="link-button">{{ article.title }}</a></li>
                         {% endif %}
                     {% endfor %}
                 </ul>
