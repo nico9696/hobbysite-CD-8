@@ -13,7 +13,7 @@ class ArticleCategory(models.Model):
     class Meta:
         ordering = ['name']
         verbose_name = "Article Category"
-        verbose_name_plural = "Article Category" 
+        verbose_name_plural = "Article Categories" 
 
 
 class Article(models.Model):
@@ -47,5 +47,25 @@ class Article(models.Model):
     class Meta:
         ordering = ['-created_on']
         verbose_name = "Article"
-        verbose_name_plural = "Article" 
+        verbose_name_plural = "Articles" 
     
+
+class Comment(models.Model):
+    author = models.ForeignKey(
+        'user_management.Profile',
+        null=True,
+        on_delete=models.SET_NULL
+    )
+    article = models.ForeignKey(
+        Article,
+        on_delete=models.CASCADE
+    )
+    entry = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    # Sort articles from newest created to oldest created
+    class Meta:
+        ordering = ['created_on']
+        verbose_name = "Comment"
+        verbose_name_plural = "Comments" 
