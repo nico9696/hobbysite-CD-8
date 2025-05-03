@@ -38,6 +38,6 @@
                 </button>
             </form>
             {% else %}
-                <a href="url update_product product_obj.id">Update/Edit your product</a>
+                <a href="{% url 'update_product' product_obj.id %}">Update/Edit your product</a>
         {% endif %}
 {% endblock %}

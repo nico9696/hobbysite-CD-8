@@ -117,7 +117,7 @@ def show_cart(request, profile):
 
 @login_required(login_url='login') 
 def update_product(request, product_id): 
-    product = Transaction.objects.get(id=product_id)
+    product = Product.objects.get(id=product_id)
     if (request.method == "POST"): 
         product_form = ProductForm(request.POST, request.FILES, instance=product)
 
