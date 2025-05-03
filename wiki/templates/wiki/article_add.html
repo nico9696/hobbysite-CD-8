@@ -1,0 +1,14 @@
+{% extends "wiki/layout.html" %}
+
+{% block title %}
+    Create New Article
+{% endblock %}
+
+{% block body %}
+    <h1>Create New Article</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ article_form.as_p }}
+        <button type="submit" class="link-button">Submit</button>
+    </form>
+{% endblock %}

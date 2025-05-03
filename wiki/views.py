@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import ArticleCategory, Article
+from .forms import ArticleForm
 
 
 def article_list(request):
@@ -30,8 +32,20 @@ def article_detail(request, article_id):
     return render(request, 'wiki/article_detail.html', ctx)
 
 
+@login_required
 def article_add(request):
-    return render(request, 'wiki/article_add.html')
+    # Check user's submitted information
+    if request.method == 'POST':
+        article_form = ArticleForm(request.POST)
+        if article_form.is_valid():
+            article = article_form.save(commit=False)
+            article.author = request.user.profile
+            article.save()
+            return redirect('wiki_list')
+    else:
+        article_form = ArticleForm()
+
+    return render(request, 'wiki/article_add.html', {'article_form': article_form})
 
 
 def article_edit(request, article_id):

@@ -28,10 +28,10 @@ header {
 
 .content-div {
 	flex: 1;
+	margin: 20px;
 }
 
 .main-content {
-	margin: 20px;
 	background-color: cadetblue;
 	padding: 30px 30px;
 	border-radius: 20px;

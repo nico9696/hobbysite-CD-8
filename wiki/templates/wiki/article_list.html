@@ -5,7 +5,10 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="outer-heading">Articles</h1>
+    <div class="menu">
+        <a class="link-button" href="{% url 'article_add' %}">Create New Article</a>
+    </div>
+    <h1 class="outer-heading" style="text-align:center">Articles</h1>
     <div class="main-content">
         {% if user_articles %}
             <div class="category-section">
