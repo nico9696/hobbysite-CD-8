@@ -134,10 +134,13 @@ def update_product(request, product_id):
     })
 
 @login_required(login_url='login') 
-def show_transactions(request, profile): # show what user has sold
+def show_transactions(request): # show what user has sold
     user = request.user 
     profile = Profile.objects.get(user=user) 
     products = Product.objects.filter(owner=profile)
+    transactions = Transaction.objects.filter(product__owner=profile)
+
     return render(request, 'merchstore/transactions.html', {
         'products': products,
+        'transactions': transactions,
     })

@@ -9,7 +9,7 @@
                     <h2>{{ transaction.product }}</h2>
                     <p>Qty: {{ transaction.amount }}</p>
                 </div>
-                <p>status: {{ transaction.status }}</p>
+                <p>status: {{ transaction.get_status_display }}</p>
                 <p>Created on: {{ transaction.created_on }}</p>
             </ul>
         </div>

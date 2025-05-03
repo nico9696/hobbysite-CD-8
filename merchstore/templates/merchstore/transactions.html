@@ -1,0 +1,12 @@
+{% extends "merchstore/layout.html" %}
+{% block body %}
+    {% for transaction in transactions %}
+        <p>Buyer: {{transaction.buyer}}</p>
+        <p>Product: {{transaction.product}}</p>
+        <p>Amount: {{transaction.amount}}</p>
+        <p>Status: {{transaction.get_status_display}}</p>
+        <p>Created on: {{transaction.created_on}}</p>
+        <br>
+    {% endfor %}
+    <a href="{% url 'show_products_list'%}">Back to list of all products!</a>
+{% endblock %}

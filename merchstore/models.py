@@ -82,6 +82,7 @@ class Transaction(models.Model):
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
+        default='on_cart',
     )
     created_on = models.DateTimeField(
         auto_now_add=True,
