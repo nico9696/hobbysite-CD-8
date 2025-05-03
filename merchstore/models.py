@@ -45,6 +45,10 @@ class Product(models.Model):
         default='Available'
     )
 
+    # Ensures that products are displayed by their names (instead of IDs) in admin
+    def __str__(self):
+        return str(self.name) 
+
     # Orders Product alphabetically by name
     class Meta:
         ordering = ['name']  

@@ -44,7 +44,12 @@ def show_product_details(request, num):
         transaction_form = TransactionForm(request.POST, prefix="transaction")
 
         if transaction_form.is_valid():
-            transaction_form.save()
+            transaction = transaction_form.save(commit=False) # Create but don't save yet
+            transaction.buyer = profile # Set the desired field value
+            transaction.product = product_obj
+            transaction.save() # Now save to the database
+            product_obj.stock -= transaction.amount # reduces stock based on quantity bought
+            product_obj.save()
         return redirect('show_products_list')
 
     transaction_form = TransactionForm(prefix="transaction")
