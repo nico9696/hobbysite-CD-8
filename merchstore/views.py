@@ -10,7 +10,6 @@ from django.shortcuts import redirect
 from django.contrib import messages
 
 
-# @login_required(login_url='login')
 def show_products_list(request):
     user = request.user  # the logged-in user
 
@@ -33,14 +32,13 @@ def show_products_list(request):
     return render(request, "merchstore/products_list.html", {
         "users_products_list": is_users,
         "not_users_products_list": is_not_users,
-
+        "user": user,
         "product_type_list": product_types,
         "product_list": Product.objects.all(),
         "null_product_type_list": Product.objects.filter(product_type__isnull=True)
     })
 
 
-# @login_required(login_url='login')
 def show_product_details(request, num):
     user = request.user  # the logged-in user
     

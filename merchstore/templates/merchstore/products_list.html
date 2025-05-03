@@ -1,6 +1,7 @@
 {% extends "merchstore/layout.html" %}
 {% block body %}
     <a href="{% url 'add_product' %}">Add new product!</a>
+    <a href="{% url 'show_cart' user.username %}">Show cart!</a>
 
     <h1>your products</h1>
     <div class="product-type">
