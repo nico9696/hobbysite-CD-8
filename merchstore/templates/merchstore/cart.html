@@ -1,0 +1,17 @@
+{% extends "merchstore/layout.html" %}
+{% block body %}
+
+    <h1>CART VIEW (see what you BOUGHT)</h1>
+    {% for transaction in users_transactions %}
+        <div class="product-details">
+            <ul class="product-details-list">
+                <div class="product-details-header">
+                    <h2>{{ transaction.product }}</h2>
+                    <p>Qty: {{ transaction.amount }}</p>
+                </div>
+                <p>status: {{ transaction.status }}</p>
+                <p>Created on: {{ transaction.created_on }}</p>
+            </ul>
+        </div>
+    {% endfor %}
+{% endblock %}

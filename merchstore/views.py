@@ -76,7 +76,7 @@ def show_product_details(request, num):
             elif product_obj.stock >= 1:
                 product_obj.status = 'available'
             product_obj.save()
-        return redirect('show_products_list')
+        return redirect('show_cart', transaction.buyer)
 
     transaction_form = TransactionForm(prefix="transaction")
 
@@ -112,7 +112,7 @@ def add_product(request):
 def show_cart(request, profile): 
     user = request.user 
     profile = Profile.objects.get(user=user) 
-    transaction = Transaction.objects.filter(owner=profile)
+    transaction = Transaction.objects.filter(buyer=profile)
     return render(request, 'merchstore/cart.html', {
         'users_transactions': transaction,
     })
