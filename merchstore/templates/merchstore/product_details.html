@@ -1,5 +1,14 @@
 {% extends "merchstore/layout.html" %}
 {% block body %}
+{% if messages %}
+        <!-- to render messages like not enough stock -->
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
         <div class="product-details">
             <ul class="product-details-list">
                 {% for detail in product_qs %}
@@ -11,7 +20,7 @@
                         <p>product type: {{ detail.product_type.name }}</p>
                         <p>description: {{ detail.description }}</p>
                         <p>stock: {{ detail.stock }}</p>
-                        <p>status: {{ detail.status }}</p>
+                        <p>status: {{ detail.get_status_display }}</p>
                         <p>owner: {{ detail.owner }}</p>
                     </li>
                 {% endfor %}

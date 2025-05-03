@@ -7,6 +7,7 @@ from .models import Profile
 from django.db.models import Q
 from .forms import ProductForm, TransactionForm
 from django.shortcuts import redirect
+from django.contrib import messages
 
 
 # @login_required(login_url='login')
@@ -63,7 +64,17 @@ def show_product_details(request, num):
             transaction.buyer = profile # Set the desired field value
             transaction.product = product_obj
             transaction.save() # Now save to the database
+
+            # Prevent overselling
+            if transaction.amount > product_obj.stock:
+                messages.error(request, "Not enough stock available.")
+                return redirect('show_product_details', num=num)  
+            
             product_obj.stock -= transaction.amount # reduces stock based on quantity bought
+            if product_obj.stock <= 0: # change status based on stock
+                product_obj.status = 'out_of_stock'
+            elif product_obj.stock >= 1:
+                product_obj.status = 'available'
             product_obj.save()
         return redirect('show_products_list')
 
