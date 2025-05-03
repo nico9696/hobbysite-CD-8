@@ -13,9 +13,7 @@
                 <hr>
                 <ul class="articles-list">
                     {% for article in user_articles %}
-                        {% if article.category == category %}
-                            <li><a href="{{ article.get_absolute_url }}" class="link-button">{{ article.title }}</a></li>
-                        {% endif %}
+                        <li><a href="{{ article.get_absolute_url }}" class="link-button">{{ article.title }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
