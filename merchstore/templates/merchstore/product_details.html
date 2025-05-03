@@ -18,7 +18,7 @@
             </ul>
         </div>
         
-        {% if product_obj.owner !=  profile %}
+        {% if product_obj.owner !=  profile  %}
             <form method="post">
                 {% csrf_token %}
                 <h2>Buy Product</h2>

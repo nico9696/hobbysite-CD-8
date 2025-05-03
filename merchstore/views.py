@@ -9,12 +9,18 @@ from .forms import ProductForm, TransactionForm
 from django.shortcuts import redirect
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def show_products_list(request):
     user = request.user  # the logged-in user
-    profile = Profile.objects.get(user=user)  # fetch the user's profile
-    is_users = Product.objects.filter(owner=profile)
-    is_not_users = Product.objects.filter(~Q(owner=profile))
+
+    # if the user is logged in
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user=user)  # fetch the user's profile
+        is_users = Product.objects.filter(owner=profile)
+        is_not_users = Product.objects.filter(~Q(owner=profile))
+    else:
+        is_users = None
+        is_not_users = Product.objects.all()
 
     product_types = list(ProductType.objects.all())  # Converts QuerySet to list
     has_null_products = Product.objects.filter(product_type__isnull=True).exists()  # Checks if null product type exists
@@ -33,15 +39,24 @@ def show_products_list(request):
     })
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def show_product_details(request, num):
     user = request.user  # the logged-in user
-    profile = Profile.objects.get(user=user)  # fetch the user's profile
+    
+    # if the user is logged in
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user=user)  # fetch the user's profile
+    else:
+        profile = None
+
     product_qs = Product.objects.filter(id=num) # returns queryset (for iterating in template)
     product_obj = Product.objects.get(id=num) # returns object (to get one field/attribute of object in template)
 
     if (request.method == "POST"):
         transaction_form = TransactionForm(request.POST, prefix="transaction")
+
+        if not request.user.is_authenticated:
+            return redirect('login') 
 
         if transaction_form.is_valid():
             transaction = transaction_form.save(commit=False) # Create but don't save yet
