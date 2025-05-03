@@ -3,8 +3,9 @@
     <form method="post">
         {% csrf_token %}
         <h2>Add product</h2>
+        <p>Owner: you</p>
         {{ add_product_form.as_p }}
-        <button type="submit">Submit</button>
+        <button type="submit">Create</button>
     </form>
 
     <a href="{% url 'show_products_list'%}">Back to list of all products!</a>

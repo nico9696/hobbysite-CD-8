@@ -2,13 +2,16 @@
 {% block body %}
     <a href="{% url 'add_product' %}">Add new product!</a>
 
-    <ul>
-        {% for product in users_products_list %}
-            <li>
-                <a href="{% url 'show_product_details' product.id %}">{{ product.name }}</a> 
-            </li>
-        {% endfor %}
-    </ul>
+    <h1>your products</h1>
+    <div class="product-type">
+        <ul class="product-type-list">
+            {% for product in users_products_list %}
+                <li>
+                    <a href="{% url 'show_product_details' product.id %}">{{ product.name }}</a> 
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 
     <h1>other peep's products</h1>
     {% for product_type in product_type_list %}

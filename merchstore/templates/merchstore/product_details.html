@@ -2,7 +2,7 @@
 {% block body %}
 {% if messages %}
         <!-- to render messages like not enough stock -->
-        <ul class="messages">
+        <ul class="messages" style="list-style-type: none; padding-left: 0; color: red;">
             {% for message in messages %}
                 <li>{{ message }}</li>
             {% endfor %}
@@ -32,7 +32,10 @@
                 {% csrf_token %}
                 <h2>Buy Product</h2>
                 {{ buy_product_form.as_p }}
-                <button type="submit">BUY</button>
+                <button type="submit" 
+                        {% if product_obj.stock <= 0 %}disabled{% endif %}>
+                    BUY
+                </button>
             </form>
         {% endif %}
 {% endblock %}
