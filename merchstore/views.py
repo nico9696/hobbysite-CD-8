@@ -1,7 +1,7 @@
 # left off: Users should not be able to purchase their own products.
 
 from django.shortcuts import render
-from .models import ProductType, Product
+from .models import ProductType, Product, Transaction
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 from django.db.models import Q
@@ -106,4 +106,13 @@ def add_product(request):
 
     return render(request, 'merchstore/add_product.html', {
         'add_product_form': product_form,
+    })
+
+@login_required(login_url='login') 
+def show_cart(request, profile): 
+    user = request.user 
+    profile = Profile.objects.get(user=user) 
+    transaction = Transaction.objects.filter(owner=profile)
+    return render(request, 'merchstore/cart.html', {
+        'users_transactions': transaction,
     })
