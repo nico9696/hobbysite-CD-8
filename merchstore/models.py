@@ -38,7 +38,7 @@ class Product(models.Model):
         related_name="owner")
     description = models.TextField()
     price = models.DecimalField(max_digits=20, decimal_places=2)  
-    stock = models.IntegerField(default=0)
+    stock = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,

@@ -1,9 +1,11 @@
+# left off: Users should not be able to purchase their own products.
+
 from django.shortcuts import render
 from .models import ProductType, Product
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 from django.db.models import Q
-from .forms import ProductForm
+from .forms import ProductForm, TransactionForm
 from django.shortcuts import redirect
 
 
@@ -33,15 +35,33 @@ def show_products_list(request):
 
 @login_required(login_url='login')
 def show_product_details(request, num):
-    return render(request, "merchstore/product_details.html", {"product": Product.objects.filter(id=num)})
+    user = request.user  # the logged-in user
+    profile = Profile.objects.get(user=user)  # fetch the user's profile
+    product_qs = Product.objects.filter(id=num) # returns queryset (for iterating in template)
+    product_obj = Product.objects.get(id=num) # returns object (to get one field/attribute of object in template)
+
+    if (request.method == "POST"):
+        transaction_form = TransactionForm(request.POST, prefix="transaction")
+
+        if transaction_form.is_valid():
+            transaction_form.save()
+        return redirect('show_products_list')
+
+    transaction_form = TransactionForm(prefix="transaction")
+
+    return render(request, "merchstore/product_details.html", {
+        "product_qs": product_qs,
+        "product_obj": product_obj,
+        "profile": profile,
+        'buy_product_form': transaction_form,
+    })
 
 
 @login_required(login_url='login')
 def add_product(request):
-    user = request.user  # the logged-in user
-    profile = Profile.objects.get(user=user)  # fetch the user's profile
-
     if (request.method == "POST"): 
+        user = request.user  # the logged-in user
+        profile = Profile.objects.get(user=user)  # fetch the user's profile
         product_form = ProductForm(request.POST, prefix="product")
 
         if product_form.is_valid():

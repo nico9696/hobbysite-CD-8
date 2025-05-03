@@ -9,4 +9,4 @@ class ProductForm(forms.ModelForm):
 class TransactionForm(forms.ModelForm):
     class Meta:
         model = Transaction
-        fields= '__all__'
+        fields= ['amount']

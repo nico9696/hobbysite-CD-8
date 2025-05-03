@@ -2,7 +2,7 @@
 {% block body %}
         <div class="product-details">
             <ul class="product-details-list">
-                {% for detail in product %}
+                {% for detail in product_qs %}
                     <li>
                         <div class="product-details-header">
                             <h2>{{ detail.name }}</h2>
@@ -10,15 +10,19 @@
                         </div>
                         <p>product type: {{ detail.product_type.name }}</p>
                         <p>description: {{ detail.description }}</p>
+                        <p>stock: {{ detail.stock }}</p>
+                        <p>status: {{ detail.status }}</p>
                     </li>
                 {% endfor %}
             </ul>
         </div>
-
-        <form method="post">
-            {% csrf_token %}
-            <h2>Buy Product</h2>
-            <!-- {{ add_recipe_form.as_p }} -->
-            <button type="submit">Submit</button>
-        </form>
+        
+        {% if product_obj.owner !=  profile %}
+            <form method="post">
+                {% csrf_token %}
+                <h2>Buy Product</h2>
+                {{ buy_product_form.as_p }}
+                <button type="submit">BUY</button>
+            </form>
+        {% endif %}
 {% endblock %}
