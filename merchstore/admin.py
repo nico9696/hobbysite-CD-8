@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ProductType, Product
+from .models import ProductType, Product, Transaction
 
 # enables adding product type straight from product table
 class ProductInline(admin.TabularInline):  
@@ -23,10 +23,17 @@ class ProductTypeAdmin(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     model = Product
     search_fields = ('name', )
-    list_display = ('id', 'name', 'product_type', 'description', 'price')  # Shows these readably
+    list_display = ('id', 'name', 'product_type', 'owner', 'description', 'price', 'stock', 'status')  # Shows these readably
     ordering = ('name',)  # Orders Product alphabetically by name
-    list_filter = ('product_type', )
+    list_filter = ('product_type', 'owner', 'status')
+
+class TransactionAdmin(admin.ModelAdmin):
+    model = Transaction
+    search_fields = ('buyer', 'product' )
+    list_display = ('buyer', 'product', 'amount', 'status', 'created_on')
+    list_filter = ('buyer', 'product', 'status', 'created_on')
 
 # models registered here.
 admin.site.register(ProductType, ProductTypeAdmin)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Transaction, TransactionAdmin)
