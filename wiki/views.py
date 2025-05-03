@@ -3,10 +3,20 @@ from .models import ArticleCategory, Article
 
 
 def article_list(request):
-    ctx = {
-        'categories': ArticleCategory.objects.all(),
-        'articles': Article.objects.all()
-    }
+    user = request.user
+
+    # Separate user's articles from the rest of the list
+    if user.is_authenticated:
+        ctx = {
+            'user_articles': Article.objects.filter(author=user),
+            'non_user_articles': Article.objects.exclude(author=user)
+        }
+    else:
+        ctx = {
+            'user_articles': Article.objects.none(),
+            'non_user_articles': Article.objects.all()
+        }
+    
     return render(request, 'wiki/article_list.html', ctx)
 
 

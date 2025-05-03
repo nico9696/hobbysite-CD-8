@@ -2,6 +2,9 @@ body {
 	font-family: 'Roboto', sans-serif;
 	background-color: bisque;
 	margin: 0px;
+	height: 100vh; /* height of browser */
+	display: flex;
+	flex-direction: column;
 }
 
 hr {
@@ -21,6 +24,10 @@ header {
 
 .outer-heading {
 	margin: 20px 40px;
+}
+
+.content-div {
+	flex: 1;
 }
 
 .main-content {
@@ -58,7 +65,7 @@ header {
 }
 
 footer {
-	background-color: tan;
+	background-color: rgb(175, 148, 108);
 	padding: 2px 20px;
 }
 
