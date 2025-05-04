@@ -43,6 +43,7 @@ header {
     content: "";
 	clear: both;
     display: table;
+	padding: 10px;
 }
 
 .side-content {
@@ -151,11 +152,11 @@ form button {
 
 .article-textarea {
 	width: 90%;
-	resize: 'vertical'
+	resize: vertical;
 }
 
 .comment-textarea {
 	width: 100%;
 	height: 5em;
-	resize: 'vertical';
+	resize: vertical;
 }
