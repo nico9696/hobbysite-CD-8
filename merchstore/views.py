@@ -121,6 +121,10 @@ def update_product(request, product_id):
         product_form = ProductForm(request.POST, request.FILES, instance=product)
 
         if product_form.is_valid():
+            if product.stock <= 0: # change status based on stock
+                product.status = 'out_of_stock'
+            elif product.stock >= 1:
+                product.status = 'available'
             product_form.save() # Now save to the database
 
         return redirect('show_products_list')
@@ -136,12 +140,8 @@ def update_product(request, product_id):
 def show_transactions(request): # show what user has sold
     user = request.user 
     profile = Profile.objects.get(user=user) 
-    products = Product.objects.filter(owner=profile)
     transactions = Transaction.objects.filter(product__owner=profile).order_by('buyer__user__username', 'created_on') # filters transactions to what user has sold AND order it by name of buyer
-    all_profiles = Profile.objects.all()
 
     return render(request, 'merchstore/transactions.html', {
-        'products': products,
         'transactions': transactions,
-        'all_profiles': all_profiles,
     })
