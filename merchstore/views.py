@@ -1,9 +1,8 @@
 # left off: Users should not be able to purchase their own products.
 
 from django.shortcuts import render
-from .models import ProductType, Product, Transaction
+from .models import ProductType, Product, Transaction, Profile
 from django.contrib.auth.decorators import login_required
-from .models import Profile
 from django.db.models import Q
 from .forms import ProductForm, TransactionForm
 from django.shortcuts import redirect
@@ -138,9 +137,11 @@ def show_transactions(request): # show what user has sold
     user = request.user 
     profile = Profile.objects.get(user=user) 
     products = Product.objects.filter(owner=profile)
-    transactions = Transaction.objects.filter(product__owner=profile)
+    transactions = Transaction.objects.filter(product__owner=profile).order_by('buyer__user__username', 'created_on') # filters transactions to what user has sold AND order it by name of buyer
+    all_profiles = Profile.objects.all()
 
     return render(request, 'merchstore/transactions.html', {
         'products': products,
         'transactions': transactions,
+        'all_profiles': all_profiles,
     })
