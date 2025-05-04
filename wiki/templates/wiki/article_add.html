@@ -8,10 +8,12 @@
     <div class="menu">
         <a href="{% url 'wiki_list' %}" class="link-button">Back to Article List</a>
     </div>
-    <h1>Create New Article</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ article_form.as_p }}
-        <button type="submit" class="link-button">Submit</button>
-    </form>
+    <div class="article-form">
+        <h1>Create New Article</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ article_form.as_p }}
+            <button type="submit" class="link-button">Submit</button>
+        </form>
+    </div>
 {% endblock %}

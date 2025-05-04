@@ -27,7 +27,7 @@
     </div>
 
     <div class="side-content">
-        <h2>Read More</h2>
+        <h2>Read More :</h2>
         <ul></ul>
             {% for article in related_articles %}
                 <a href="{{ article.get_absolute_url }}" class="link-button">{{ article.title }}</a>
@@ -37,12 +37,14 @@
     <div class="main-content">
         <h2>Comments</h2>
         {% if user.is_authenticated %}
-            <form method="post" style="margin-bottom:50px">
-                {% csrf_token %}
-                {{ comment_form.as_p }}
-                <button type="submit" class="link-button">Comment</button>
-            </form>
-            
+            <div class="comment-creation">
+                <form method="post" style="margin-bottom:50px">
+                    {% csrf_token %}
+                    {{ comment_form.as_p }}
+                    <button type="submit" class="link-button">Comment</button>
+                </form>
+            </div>
+
             {% for comment in comments %}
                 <hr>
                 <div class="comment">

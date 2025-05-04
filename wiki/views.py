@@ -27,7 +27,7 @@ def article_list(request):
 
 def article_detail(request, article_id):
     article = Article.objects.get(id=article_id)
-    related_articles = Article.objects.filter(category=article.category).exclude(id=article_id)[:2]
+    related_articles = Article.objects.filter(category=article.category).exclude(id=article_id)[:3]
     comments = Comment.objects.filter(article=article).order_by('-created_on')
 
     user = request.user
