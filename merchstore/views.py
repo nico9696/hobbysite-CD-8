@@ -109,9 +109,9 @@ def add_product(request):
 def show_cart(request, profile): 
     user = request.user 
     profile = Profile.objects.get(user=user) 
-    transaction = Transaction.objects.filter(buyer=profile)
+    transaction = Transaction.objects.filter(buyer=profile).order_by('product__owner__user__username', 'created_on') # filters transactions to what user has bought AND order it by name of seller
     return render(request, 'merchstore/cart.html', {
-        'users_transactions': transaction,
+        'transactions': transaction,
     })
 
 @login_required(login_url='login') 
