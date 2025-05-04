@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import ArticleCategory, Article
-from .forms import ArticleForm
+from .forms import ArticleForm, CommentForm
 
 
 def article_list(request):
@@ -29,9 +29,22 @@ def article_detail(request, article_id):
     article = Article.objects.get(id=article_id)
     related_articles = Article.objects.filter(category=article.category).exclude(id=article_id)[:2]
 
+    user = request.user
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.author = request.user.profile
+            comment.article = article
+            comment.save()
+            return redirect(article.get_absolute_url())
+    else:
+        comment_form = CommentForm()
+
     ctx = {
         'article': article,
-        'related_articles': related_articles
+        'related_articles': related_articles,
+        'comment_form': comment_form
     }
     return render(request, 'wiki/article_detail.html', ctx)
 

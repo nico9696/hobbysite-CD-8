@@ -79,6 +79,7 @@ header {
 
 .link-button:active {
 	background-color: #c0a582;
+	border-color: #c0a582;
 }
 
 .article-image {
@@ -87,10 +88,6 @@ header {
 	margin-bottom: 20px;
 	width: 300px;
 	height: auto;
-}
-
-.comment-section {
-
 }
 
 footer {

@@ -64,7 +64,10 @@ class Comment(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
-    # Sort articles from newest created to oldest created
+    def __str__(self):
+        return f"By {self.author.user} in {self.article.title} on {self.created_on}"
+
+    # Sort comments from oldest to newest
     class Meta:
         ordering = ['created_on']
         verbose_name = "Comment"

@@ -25,9 +25,16 @@
                 <a href="{{ article.get_absolute_url }}" class="link-button">{{ article.title }}</a>
             {% endfor %}
     </div>
-    
-    <div class="main-content">
 
+    <div class="main-content">
+        <h2>Comments</h2>
+        {% if user.is_authenticated %}
+            <form method="post">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button type="submit" class="link-button">Comment</button>
+            </form>
+        {% endif %}
     </div>
 {% endblock body %}
 
