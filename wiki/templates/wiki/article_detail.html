@@ -17,11 +17,17 @@
 		<p><b>Category:</b> {{ article.category }}</p>
         <p>{{ article.entry | linebreaks }}</p>
     </div>
+
     <div class="side-content">
         <h2>Read More</h2>
-        {% for article in related_articles %}
-            <a href="{{ article.get_absolute_url }}" class="link-button">{{ article.title }}</a>
-        {% endfor %}
+        <ul></ul>
+            {% for article in related_articles %}
+                <a href="{{ article.get_absolute_url }}" class="link-button">{{ article.title }}</a>
+            {% endfor %}
+    </div>
+    
+    <div class="main-content">
+
     </div>
 {% endblock body %}
 

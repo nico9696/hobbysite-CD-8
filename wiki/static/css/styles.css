@@ -44,14 +44,10 @@ header {
     display: table;
 }
 
-.side-content h2 {
-	display: inline;
-	margin-right: 20px;
-}
-
-.side-content .link-button {
-	display: inline;
-	margin-right: 20px;
+.side-content {
+	display: flex;
+	align-items: center;
+	gap: 20px;
 }
 
 .category-section {
@@ -81,12 +77,20 @@ header {
 	color: white;
 }
 
+.link-button:active {
+	background-color: #c0a582;
+}
+
 .article-image {
 	float: right;
 	margin-left: 20px;
 	margin-bottom: 20px;
 	width: 300px;
 	height: auto;
+}
+
+.comment-section {
+
 }
 
 footer {
