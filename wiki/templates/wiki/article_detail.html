@@ -8,6 +8,9 @@
 {% block body %}
     <div class="menu">
         <a href="{% url 'wiki_list' %}" class="link-button">Back to Article List</a>
+        {% if article.author == user.profile %}
+            <a href="{% url 'article_edit' article.id %}" class="link-button">Edit Your Article</a>
+        {% endif %}
     </div>
     <div class="main-content">
         {% if article.header_image %}
@@ -44,7 +47,7 @@
                 <hr>
                 <div class="comment">
                     <h3>{{ comment.author }}</h3>
-                    <p>{{ comment.entry }}</p>
+                    <p>{{ comment.entry | linebreaks }}</p>
                     <div class="comment-date">
                         Posted on: {{comment.created_on}}<br>
                         Last edited on: {{ comment.updated_on }}

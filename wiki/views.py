@@ -67,8 +67,20 @@ def article_add(request):
     return render(request, 'wiki/article_add.html', {'article_form': article_form})
 
 
+@login_required
 def article_edit(request, article_id):
+    article = Article.objects.get(id=article_id)
+
+    if request.method == 'POST':
+        article_form = ArticleForm(request.POST, request.FILES, instance=article)
+        if article_form.is_valid():
+            article_form.save()
+            return redirect(article.get_absolute_url())
+    else:
+        article_form = ArticleForm(instance=article)
+
     ctx = {
-        'article': Article.objects.get(id=article_id)
+        'article': article,
+        'article_form': article_form
     }
     return render(request, 'wiki/article_edit.html', ctx)

@@ -20,6 +20,7 @@ header {
 .menu {
 	margin: 20px;
 	display: flex;
+	gap: 20px;
 }
 
 .outer-heading {
@@ -120,6 +121,6 @@ footer {
 	padding: 2px 20px;
 }
 
-.footer-text {
+footer > * {
 	text-align: center;
 }
