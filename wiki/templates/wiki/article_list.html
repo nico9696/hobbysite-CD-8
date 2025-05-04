@@ -4,11 +4,12 @@
     Wikipidiyi Articles
 {% endblock %}
 
+{% block nav %}
+    <a class="link-button" href="{% url 'article_add' %}">Create New Article</a>
+{% endblock %}
+
 {% block body %}
-    <div class="menu">
-        <a class="link-button" href="{% url 'article_add' %}">Create New Article</a>
-    </div>
-    <h1 class="outer-heading" style="text-align:center">Articles</h1>
+    <h1 style="text-align:center">Articles</h1>
     <div class="main-content">
         {% if user_articles %}
             <div class="category-section">

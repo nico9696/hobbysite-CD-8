@@ -4,11 +4,12 @@
     Edit Article - Wikipidiyi
 {% endblock %}
 
-{% block body %}
-    <div class="menu">
+{% block nav %}
         <a href="{% url 'wiki_list' %}" class="link-button">Back to Article List</a>
         <a href="{% url 'article_detail' article.id %}" class="link-button">Return to Article</a>
-    </div>
+{% endblock %}
+
+{% block body %}
     <div class="main-content article-form">
         <h1>Edit Article</h1>
         <form method="post" enctype="multipart/form-data">
