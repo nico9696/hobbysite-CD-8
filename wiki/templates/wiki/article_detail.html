@@ -1,4 +1,5 @@
 {% extends "wiki/layout.html" %}
+{% load static %}
 
 {% block title %}
     {{ article.title }} - Wikipidiyi
@@ -9,10 +10,14 @@
         <a href="{% url 'wiki_list' %}" class="link-button">Back to Article List</a>
     </div>
     <div class="main-content">
+        {% if article.header_image %}
+        <img src="{{ article.header_image.url }}" alt="{{ article.title }}" class="article-image">
+        {% endif %}
         <h1>{{ article.title }}</h1>
 		<p><b>Category:</b> {{ article.category }}</p>
-        <p>{{ article.entry }}</p>
+        <p>{{ article.entry | linebreaks }}</p>
     </div>
+    <!-- Place "Read More" at bottom -->
 {% endblock body %}
 
 {% block footer %}

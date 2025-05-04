@@ -37,6 +37,12 @@ header {
 	border-radius: 20px;
 }
 
+.main-content::after {
+    content: "";
+	clear: both;
+    display: table;
+}
+
 .category-section {
 	margin-bottom: 50px;
 }
@@ -62,6 +68,14 @@ header {
 .link-button:hover {
 	background-color: tan;
 	color: white;
+}
+
+.article-image {
+	float: right;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	width: 300px;
+	height: auto;
 }
 
 footer {

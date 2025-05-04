@@ -138,3 +138,6 @@ EMAIL_USE_TLS = True
 # Media folders
 MEDIA_ROOT = BASE_DIR/'media'
 MEDIA_URL = '/media/'
+
+# Login
+LOGIN_URL = '/profile/login/'

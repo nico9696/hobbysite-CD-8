@@ -36,7 +36,7 @@ def article_detail(request, article_id):
 def article_add(request):
     # Check user's submitted information
     if request.method == 'POST':
-        article_form = ArticleForm(request.POST)
+        article_form = ArticleForm(request.POST, request.FILES)
         if article_form.is_valid():
             article = article_form.save(commit=False)
             article.author = request.user.profile
