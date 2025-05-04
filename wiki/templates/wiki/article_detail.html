@@ -17,7 +17,12 @@
 		<p><b>Category:</b> {{ article.category }}</p>
         <p>{{ article.entry | linebreaks }}</p>
     </div>
-    <!-- Place "Read More" at bottom -->
+    <div class="side-content">
+        <h2>Read More</h2>
+        {% for article in related_articles %}
+            <a href="{{ article.get_absolute_url }}" class="link-button">{{ article.title }}</a>
+        {% endfor %}
+    </div>
 {% endblock body %}
 
 {% block footer %}

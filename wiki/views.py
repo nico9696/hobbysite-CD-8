@@ -26,8 +26,12 @@ def article_list(request):
 
 
 def article_detail(request, article_id):
+    article = Article.objects.get(id=article_id)
+    related_articles = Article.objects.filter(category=article.category).exclude(id=article_id)[:2]
+
     ctx = {
-        'article': Article.objects.get(id=article_id)
+        'article': article,
+        'related_articles': related_articles
     }
     return render(request, 'wiki/article_detail.html', ctx)
 
