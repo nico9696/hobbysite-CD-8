@@ -5,17 +5,18 @@
 {% endblock %}
 
 {% block nav %}
-        <a href="{% url 'wiki_list' %}" class="link-button">Back to Article List</a>
-        <a href="{% url 'article_detail' article.id %}" class="link-button">Return to Article</a>
+        <a href="{% url 'article_detail' article.id %}" class="link-button">Return</a>
 {% endblock %}
 
 {% block body %}
-    <div class="main-content article-form">
+    <div class="main-content">
         <h1>Edit Article</h1>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ article_form.as_p }}
-            <button type="submit" class="link-button">Submit</button>
+            <div class="submit-wrapper">
+                <button type="submit" class="link-button">Submit</button>
+            </div>
         </form>
     </div>
 {% endblock %}

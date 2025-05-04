@@ -8,7 +8,7 @@
 {% block nav %}
     <a href="{% url 'wiki_list' %}" class="link-button">Back to Article List</a>
     {% if article.author == user.profile %}
-        <a href="{% url 'article_edit' article.id %}" class="link-button">Edit Your Article</a>
+        <a href="{% url 'article_edit' article.id %}" class="link-button">Edit</a>
     {% endif %}
 {% endblock %}
 
@@ -28,23 +28,22 @@
     </div>
 
     <div class="side-content">
-        <h2>Read More :</h2>
-        <ul></ul>
-            {% for article in related_articles %}
-                <a href="{{ article.get_absolute_url }}" class="link-button">{{ article.title }}</a>
-            {% endfor %}
+        <h3>Read More :</h3>
+        {% for article in related_articles %}
+            <a href="{{ article.get_absolute_url }}" class="link-button">{{ article.title }}</a>
+        {% endfor %}
     </div>
 
     <div class="main-content">
         <h2>Comments</h2>
         {% if user.is_authenticated %}
-            <div class="comment-creation">
-                <form method="post" style="margin-bottom:50px">
-                    {% csrf_token %}
-                    {{ comment_form.as_p }}
+            <form method="post" style="margin-bottom:50px">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <div class="submit-wrapper">
                     <button type="submit" class="link-button">Comment</button>
-                </form>
-            </div>
+                </div>
+            </form>
 
             {% for comment in comments %}
                 <hr>

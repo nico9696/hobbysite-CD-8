@@ -34,7 +34,7 @@ footer {
 	margin: 20px;
 }
 
-.main-content, .side-content, .article-form {
+.main-content, .side-content {
 	background-color: cadetblue;
 	padding: 30px 30px;
 	margin: 20px 0;
@@ -48,6 +48,7 @@ footer {
 }
 
 .side-content {
+	padding: 10px 20px;
 	display: flex;
 	align-items: center;
 	gap: 20px;
@@ -66,8 +67,7 @@ footer {
 
 .article-image {
 	float: right;
-	margin-left: 20px;
-	margin-bottom: 20px;
+	margin: 20px 0 20px 20px;
 	width: 300px;
 	height: auto;
 }
@@ -83,14 +83,8 @@ footer {
 	flex-direction: column;
 }
 
-.comment h3 {
-	display: inline;
-	margin-right: 50px;
-}
-
 .comment p {
-	margin: 5px 0px;
-	margin-left: 5%;
+	margin: 0 2.5% 20px;
 }
 
 .comment .comment-date {
@@ -98,13 +92,9 @@ footer {
 	font-size: 0.75em;
 }
 
-.comment-creation {
-	width: 100%;
-	padding-bottom: 20px;
-}
-
 .link-button {
 	display: flex;
+	font-size: 1em;
 	padding: 10px 20px;
 	border-radius: 5px;
 	background-color: bisque;
@@ -124,30 +114,41 @@ footer {
 	border-color: #c0a582;
 }
 
-.article-form label {
-	display: inline-flex;
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+form label {
 	font-weight: bold;
-	font-size: 1.25em;
 	margin-bottom: 10px;
+	vertical-align:middle;
 }
 
 form button {
-	float: right;
+	width: fit-content;
+}
+
+.submit-wrapper {
+	display: flex;
+	justify-content: flex-end;
 }
 
 .article-input, .article-textarea, .comment-textarea {
 	background-color: rgb(222, 248, 248);
 	padding: 5px;
+	box-sizing: border-box;
 	border-radius: 5px;
 	border: 1px solid rgb(43, 69, 80);
 }
 
 .article-input, .article-textarea {
-	margin: 10px 20px;
+	margin: 0px 20px;
+	vertical-align: middle;
 }
 
 .article-textarea {
-	width: 90%;
+	width: 80%;
 	resize: vertical;
 }
 

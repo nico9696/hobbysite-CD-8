@@ -9,12 +9,14 @@
 {% endblock %}
 
 {% block body %}
-    <div class="article-form">
+    <div class="main-content">
         <h1>Create New Article</h1>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ article_form.as_p }}
-            <button type="submit" class="link-button">Submit</button>
+            <div class="submit-wrapper">
+                <button type="submit" class="link-button">Submit</button>
+            </div>
         </form>
     </div>
 {% endblock %}
