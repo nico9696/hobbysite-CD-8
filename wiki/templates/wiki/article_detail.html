@@ -16,6 +16,11 @@
         <h1>{{ article.title }}</h1>
 		<p><b>Category:</b> {{ article.category }}</p>
         <p>{{ article.entry | linebreaks }}</p>
+
+        <p class="article-date">
+            Created on: {{ article.created_on }}, UTC<br>
+            Last updated on: {{ article.updated_on }}, UTC
+        </p>
     </div>
 
     <div class="side-content">
@@ -29,18 +34,23 @@
     <div class="main-content">
         <h2>Comments</h2>
         {% if user.is_authenticated %}
-            <form method="post">
+            <form method="post" style="margin-bottom:50px">
                 {% csrf_token %}
                 {{ comment_form.as_p }}
                 <button type="submit" class="link-button">Comment</button>
             </form>
+            
+            {% for comment in comments %}
+                <hr>
+                <div class="comment">
+                    <h3>{{ comment.author }}</h3>
+                    <p>{{ comment.entry }}</p>
+                    <div class="comment-date">
+                        Posted on: {{comment.created_on}}<br>
+                        Last edited on: {{ comment.updated_on }}
+                    </div>
+                </div>
+            {% endfor %}
         {% endif %}
     </div>
 {% endblock body %}
-
-{% block footer %}
-    <footer>
-        <p>Page last updated on <i>{{ article.updated_on }}, UTC</i></p>
-		<p>Page created on <i>{{ article.created_on }}, UTC</i></p>
-    </footer>
-{% endblock footer %}
