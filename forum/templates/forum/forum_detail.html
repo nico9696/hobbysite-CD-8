@@ -35,4 +35,18 @@
 <p><a href="{% url 'login' %}">Log in</a> to add a comment.</p>
 {% endif %}
 
+<hr>
+<h3>Related Posts</h3>
+<ul>
+    {% for related_thread in related_threads %}
+        <li><a href="{% url 'forum_detail' forum_id=related_thread.id %}">{{ related_thread.title }}</a></li>
+    {% endfor %}
+</ul>
+
+{% if thread.author == user.profile %}
+    <a href="{% url 'thread_update' forum_id=thread.id %}">Edit Thread</a>
+{% endif %}
+
+<a href="{% url 'forum_list' %}">Back to Forum</a>
+
 {% endblock %}
