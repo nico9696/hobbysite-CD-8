@@ -1,26 +1,38 @@
 {% extends "forum/layout.html" %}
 
 {% block content %}
-<h1 class="category-name">{{ category.name }}</h1>
+<h1 class="category-name">{{ thread.category.name }}</h1>
 <div class="post-details">
-    <h2>{{ thread_title }}</h2>
-
-    {% for post in posts %}
-        <div class="post-entry">
-            <p>{{ post.entry }}</p>
-            <p class="timestamp">
-                Created on: {{ post.created_on }}, UTC <br>
-                Updated on: {{ post.updated_on }}, UTC
-            </p>
-            <hr>
-        </div>
-    {% endfor %}
+    <h2>{{ thread.title }}</h2>
+    <p>By {{ thread.author }} on {{ thread.created_on }}</p>
+    <p>{{ thread.entry }}</p>
+    {% if thread.image %}
+        <img src="{{ thread.image.url }}" alt="Thread Image">
+    {% endif %}
 </div>
 
-<form method="POST" action="{% url 'comment_create' thread_id=thread.id %}">
+<hr>
+<h3>Comments</h3>
+{% for comment in comments %}
+    <div class="post-entry">
+        <p><strong>{{ comment.author }}</strong>: {{ comment.entry }}</p>
+        <p class="timestamp">
+            Created on: {{ comment.created_on }}, UTC <br>
+            Updated on: {{ comment.updated_on }}, UTC
+        </p>
+    </div>
+{% endfor %}
+
+{% if user.is_authenticated %}
+<hr>
+<h3>Add a Comment</h3>
+<form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Submit</button>
 </form>
+{% else %}
+<p><a href="{% url 'login' %}">Log in</a> to add a comment.</p>
+{% endif %}
 
 {% endblock %}
