@@ -1,6 +1,10 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from .models import Article
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.urls import reverse_lazy
+from .models import Article, ArticleCategory, Comment
+from .forms import ArticleForm, CommentForm
+from user_management.models import Profile
 
 class ArticleList(ListView):
     model = Article
