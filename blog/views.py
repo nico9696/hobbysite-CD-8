@@ -1,10 +1,12 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 from .models import Article, ArticleCategory, Comment
 from .forms import ArticleForm, CommentForm
-from user_management.models import Profile
 
 class ArticleList(ListView):
     model = Article
@@ -13,23 +15,14 @@ class ArticleList(ListView):
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
-            user_articles = Article.objects.filter(author__user=self.request.user)
-            all_articles = Article.objects.exclude(author__user=self.request.user)
-        else:
-            user_articles = Article.objects.none()
-            all_articles = Article.objects.all()
-        return {
-            'user_articles': user_articles,
-            'grouped_articles': ArticleCategory.objects.prefetch_related('article_set'),
-            'all_articles': all_articles
-        }
+            return Article.objects.exclude(author=self.request.user.profile).filter(category__isnull=False)
+        return Article.objects.filter(category__isnull=False)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        querysets = self.get_queryset()
-        context['user_articles'] = querysets['user_articles']
-        context['grouped_articles'] = querysets['grouped_articles']
-        context['all_articles'] = querysets['all_articles']
+        if self.request.user.is_authenticated:
+            context['user_articles'] = Article.objects.filter(author=self.request.user.profile)
+        context['category_list'] = self.get_queryset().order_by('category__name')
         return context
 
 class ArticleDetails(DetailView):
@@ -39,46 +32,43 @@ class ArticleDetails(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        article = self.object
+        article = self.get_object()
         context['related_articles'] = Article.objects.filter(author=article.author).exclude(pk=article.pk)[:2]
         context['comments'] = Comment.objects.filter(article=article).order_by('-created_on')
-        if self.request.user.is_authenticated:
-            context['comment_form'] = CommentForm()
+        context['comment_form'] = CommentForm()
         return context
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-        if request.user.is_authenticated:
-            form = CommentForm(request.POST)
-            if form.is_valid():
-                comment = form.save(commit=False)
-                comment.author = request.user.profile
-                comment.article = self.object
-                comment.save()
-        return redirect('article_details', pk=self.object.pk)
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden()
+
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user.profile
+            comment.article = self.object
+            comment.save()
+            return redirect('article_details', pk=self.object.pk)
+
+        context = self.get_context_data(object=self.object)
+        context['comment_form'] = form
+        return self.render_to_response(context)
 
 class ArticleCreate(LoginRequiredMixin, CreateView):
     model = Article
-    form_class = ArticleForm
     template_name = 'blog/article_create.html'
-    success_url = reverse_lazy('blog_list')
+    form_class = ArticleForm
 
     def form_valid(self, form):
         form.instance.author = self.request.user.profile
         return super().form_valid(form)
-    
+
 class ArticleUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Article
-    form_class = ArticleForm
     template_name = 'blog/article_update.html'
-    success_url = reverse_lazy('blog_list')
-
-    def form_valid(self, form):
-        # Ensure created_on and author are not changed
-        form.instance.author = self.get_object().author
-        form.instance.created_on = self.get_object().created_on
-        return super().form_valid(form)
+    form_class = ArticleForm
 
     def test_func(self):
         article = self.get_object()
-        return self.request.user.is_authenticated and article.author.user == self.request.user
+        return self.request.user.profile == article.author
