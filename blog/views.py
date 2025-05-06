@@ -52,3 +52,13 @@ class ArticleDetails(DetailView):
                 comment.article = self.object
                 comment.save()
         return redirect('article_details', pk=self.object.pk)
+
+class ArticleCreate(LoginRequiredMixin, CreateView):
+    model = Article
+    form_class = ArticleForm
+    template_name = 'blog/article_form.html'
+    success_url = reverse_lazy('blog_list')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user.profile
+        return super().form_valid(form)
