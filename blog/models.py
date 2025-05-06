@@ -1,5 +1,5 @@
 from django.db import models
-from user_management.models import Profile  # Assuming your Profile model is in this app
+from user_management.models import Profile
 
 
 class ArticleCategory(models.Model):
@@ -7,7 +7,7 @@ class ArticleCategory(models.Model):
     description = models.TextField()
 
     class Meta:
-        ordering = ["name"]
+        ordering = ['name']
         verbose_name = "Article Category"
         verbose_name_plural = "Article Categories"
 
@@ -18,10 +18,10 @@ class ArticleCategory(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=255)
     author = models.ForeignKey(
-        Profile, on_delete=models.SET_NULL, null=True
+        Profile, on_delete=models.SET_NULL, null=True, blank=True
     )
     category = models.ForeignKey(
-        ArticleCategory, on_delete=models.SET_NULL, null=True
+        ArticleCategory, on_delete=models.SET_NULL, null=True, blank=True
     )
     entry = models.TextField()
     header_image = models.ImageField(upload_to='blog_headers/', blank=True, null=True)
@@ -29,7 +29,7 @@ class Article(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ["-created_on"]
+        ordering = ['-created_on']
         verbose_name = "Article"
         verbose_name_plural = "Articles"
 
@@ -39,7 +39,7 @@ class Article(models.Model):
 
 class Comment(models.Model):
     author = models.ForeignKey(
-        Profile, on_delete=models.SET_NULL, null=True
+        Profile, on_delete=models.SET_NULL, null=True, blank=True
     )
     article = models.ForeignKey(
         Article, on_delete=models.CASCADE, related_name="comments"
@@ -49,7 +49,7 @@ class Comment(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ["created_on"]
+        ordering = ['created_on']
         verbose_name = "Comment"
         verbose_name_plural = "Comments"
 
