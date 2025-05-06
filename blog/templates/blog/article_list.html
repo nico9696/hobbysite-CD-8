@@ -1,7 +1,7 @@
 {% extends "blog/layout.html" %}
 
 {% block body %}
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and user.profile %}
         <div class="article-category">
             <h2>Your Articles</h2>
             <ul class="article-category-list">
@@ -14,7 +14,10 @@
                 {% endfor %}
             </ul>
         </div>
-        <p><a href="{% url 'article_create' %}">Create New Article</a></p>
+
+        <div class="create-article-link" style="margin-bottom: 15px;">
+            <p><a href="{% url 'article_create' %}">Create New Article</a></p>
+        </div>
     {% endif %}
 
     {% for category in category_list %}
