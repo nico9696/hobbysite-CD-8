@@ -29,6 +29,26 @@ class ArticleList(ListView):
         return context
 
 class ArticleDetails(DetailView):
-    model = Article 
+    model = Article
     template_name = 'blog/article_details.html'
     context_object_name = 'article'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        article = self.object
+        context['related_articles'] = Article.objects.filter(author=article.author).exclude(pk=article.pk)[:2]
+        context['comments'] = Comment.objects.filter(article=article).order_by('-created_on')
+        if self.request.user.is_authenticated:
+            context['comment_form'] = CommentForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if request.user.is_authenticated:
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.author = request.user.profile
+                comment.article = self.object
+                comment.save()
+        return redirect('article_details', pk=self.object.pk)
