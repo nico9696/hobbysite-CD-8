@@ -56,9 +56,25 @@ class ArticleDetails(DetailView):
 class ArticleCreate(LoginRequiredMixin, CreateView):
     model = Article
     form_class = ArticleForm
-    template_name = 'blog/article_form.html'
+    template_name = 'blog/article_create.html'
     success_url = reverse_lazy('blog_list')
 
     def form_valid(self, form):
         form.instance.author = self.request.user.profile
         return super().form_valid(form)
+    
+class ArticleUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Article
+    form_class = ArticleForm
+    template_name = 'blog/article_update.html'
+    success_url = reverse_lazy('blog_list')
+
+    def form_valid(self, form):
+        # Ensure created_on and author are not changed
+        form.instance.author = self.get_object().author
+        form.instance.created_on = self.get_object().created_on
+        return super().form_valid(form)
+
+    def test_func(self):
+        article = self.get_object()
+        return self.request.user.is_authenticated and article.author.user == self.request.user
