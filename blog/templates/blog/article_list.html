@@ -1,16 +1,30 @@
 {% extends "blog/layout.html" %}
 
 {% block body %}
-    {% regroup articles|dictsort:"category.name" by category as category_list %}
+    {% if user.is_authenticated %}
+        <div class="article-category">
+            <h2>Your Articles</h2>
+            <ul class="article-category-list">
+                {% for article in user_articles %}
+                    <li>
+                        <a href="{% url 'article_details' article.pk %}">{{ article.title }}</a>
+                    </li>
+                {% empty %}
+                    <li>No articles yet. <a href="{% url 'article_create' %}">Write one?</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <p><a href="{% url 'article_create' %}">Create New Article</a></p>
+    {% endif %}
 
     {% for category in category_list %}
         <div class="article-category">
             <div class="article-category-description">
-                <h2>{{ category.grouper.name }}</h2></span> 
+                <h2>{{ category.grouper.name }}</h2>
                 <p>| {{category.grouper.description }}</p>
             </div>
             <ul class="article-category-list">
-                {% for article in category.list|dictsortreversed:"created_on" %}
+                {% for article in category.list %}
                     <li>
                         <a href="{% url 'article_details' article.pk %}">{{ article.title }}</a>
                     </li>
