@@ -15,13 +15,19 @@ class ArticleList(ListView):
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
-            return Article.objects.exclude(author=self.request.user.profile).filter(category__isnull=False)
+            try:
+                return Article.objects.exclude(author=self.request.user.profile).filter(category__isnull=False)
+            except AttributeError:
+                return Article.objects.filter(category__isnull=False)
         return Article.objects.filter(category__isnull=False)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.user.is_authenticated:
-            context['user_articles'] = Article.objects.filter(author=self.request.user.profile)
+            try:
+                context['user_articles'] = Article.objects.filter(author=self.request.user.profile)
+            except AttributeError:
+                context['user_articles'] = []
         context['category_list'] = self.get_queryset().order_by('category__name')
         return context
 
@@ -46,7 +52,10 @@ class ArticleDetails(DetailView):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.author = request.user.profile
+            try:
+                comment.author = request.user.profile
+            except AttributeError:
+                return HttpResponseForbidden("User profile missing.")
             comment.article = self.object
             comment.save()
             return redirect('article_details', pk=self.object.pk)
@@ -61,7 +70,10 @@ class ArticleCreate(LoginRequiredMixin, CreateView):
     form_class = ArticleForm
 
     def form_valid(self, form):
-        form.instance.author = self.request.user.profile
+        try:
+            form.instance.author = self.request.user.profile
+        except AttributeError:
+            return HttpResponseForbidden("User profile missing.")
         return super().form_valid(form)
 
 class ArticleUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -71,4 +83,7 @@ class ArticleUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         article = self.get_object()
-        return self.request.user.profile == article.author
+        try:
+            return self.request.user.profile == article.author
+        except AttributeError:
+            return False
