@@ -4,7 +4,9 @@
 <h1 class="category-name">{{ thread.category.name }}</h1>
 <div class="post-details">
     <h2>{{ thread.title }}</h2>
-    <p>{{ thread.entry }}</p>
+    <div class="post-entry">
+        <p>{{ thread.entry }}</p>
+    </div>
     {% if thread.image %}
         <img src="{{ thread.image.url }}" alt="Thread Image">
     {% endif %}
