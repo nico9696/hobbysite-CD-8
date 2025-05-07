@@ -16,7 +16,7 @@ class ThreadAdmin(admin.ModelAdmin):
 
 class CommentAdmin(admin.ModelAdmin):
     model = Comment
-    list_display = ('author', 'thread', 'created_on')
+    list_display = ('author', 'thread', 'entry', 'created_on')
     search_fields = ('entry', 'author__display_name')
     list_filter = ('created_on',)
     
