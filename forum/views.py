@@ -30,7 +30,7 @@ def forum_list(request):
 
 def forum_detail(request, forum_id):
     thread = Thread.objects.get(id=forum_id)
-    related_threads = Thread.objects.filter(category=thread.category).exclude(id=thread.id)[:3]
+    related_threads = Thread.objects.filter(category=thread.category).exclude(id=thread.id)[:2]
     comments = Comment.objects.filter(thread=thread)
 
     # Handle CommentForm
