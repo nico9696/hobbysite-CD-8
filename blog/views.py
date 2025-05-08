@@ -107,3 +107,10 @@ class ArticleUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return self.request.user.profile == article.author
         except AttributeError:
             return False
+
+    def form_valid(self, form):
+        form.instance.updated_on = timezone.now()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('article_details', kwargs={'pk': self.object.pk})
