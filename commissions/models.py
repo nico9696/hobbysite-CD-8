@@ -2,6 +2,7 @@ from django.db import models
 from user_management.models import Profile
 
 class Commission(models.Model):
+    author =  models.ForeignKey(Profile,on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     description = models.TextField()
     STATUS_CHOICES = [
