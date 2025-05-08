@@ -4,20 +4,47 @@
 <div class="main-content">
     <h2>Forum Threads</h2>
 
-    {% for category, thread_titles in categories_with_threads.items %}
-        <div class="category">
-            <h3>{{ category.name }}</h3>
-            <p>{{ category.description }}</p>
-            <hr>
+    <a href="{% url 'thread_create' %}">Create a New Thread</a>
 
-            <ul class="forum-list">
-                {% for title, post_id in thread_titles.items %}
-                    <li>
-                        <a href="{% url 'forum_detail' forum_id=post_id %}">{{ title }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+    {% if user_threads_by_category %}
+        <h3>My Threads</h3>
+        {% for category, threads in user_threads_by_category.items %}
+            {% if threads %}
+                <div class="category">
+                    <h3>{{ category.name }}</h3>
+                    <p>{{ category.description }}</p>
+                    <hr>
+        
+                    <ul class="forum-list">
+                        {% for title, thread_id in threads.items %}
+                            <li>
+                                <a href="{% url 'forum_detail' forum_id=thread_id %}">{{ title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endfor %}
+        <hr>
+    {% endif %}
+
+    <h3>Other Threads</h3>
+    {% for category, threads in other_threads_by_category.items %}
+        {% if threads %}
+            <div class="category">
+                <h3>{{ category.name }}</h3>
+                <p>{{ category.description }}</p>
+                <hr>
+
+                <ul class="forum-list">
+                    {% for title, thread_id in threads.items %}
+                        <li>
+                            <a href="{% url 'forum_detail' forum_id=thread_id %}">{{ title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
     {% endfor %}
 </div>
 {% endblock %}

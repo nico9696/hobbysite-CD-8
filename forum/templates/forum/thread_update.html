@@ -1,0 +1,15 @@
+{% extends "forum/layout.html" %}
+
+{% block content %}
+<div class="main-content">
+    <h2>Edit Thread</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Thread</button>
+    </form>
+
+    <a href="{% url 'forum_detail' thread.id %}">Back to Thread</a>
+</div>
+{% endblock %}
