@@ -104,4 +104,7 @@ class Transaction(models.Model):
             self.product.save()
         else:
             raise ValidationError("Not enough stock available to complete the transaction.")
+        
+        if self.buyer == self.product.owner:
+            raise ValidationError("Buyer is same as owner")
         super().save(*args, **kwargs)
