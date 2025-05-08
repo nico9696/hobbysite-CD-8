@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import ProductType, Product, Transaction
+from django.contrib import messages
 
 # enables adding product type straight from product table
 class ProductInline(admin.TabularInline):  
@@ -27,11 +28,32 @@ class ProductAdmin(admin.ModelAdmin):
     ordering = ('name',)  # Orders Product alphabetically by name
     list_filter = ('product_type', 'owner', 'status')
 
+    def save_model(self, request, obj, form, change):
+        # Adjust status based on stock
+        if obj.stock <= 0:
+            obj.status = 'out_of_stock'
+        elif obj.stock >= 1:
+            obj.status = 'available'
+        super().save_model(request, obj, form, change)
+
 class TransactionAdmin(admin.ModelAdmin):
     model = Transaction
     search_fields = ('buyer', 'product' )
     list_display = ('buyer', 'product', 'amount', 'status', 'created_on')
     list_filter = ('buyer', 'product', 'status', 'created_on')
+
+    def save_model(self, request, obj, form, change):
+        if obj.amount <= obj.product.stock and obj.buyer != obj.product.owner:
+            obj.product.stock -= obj.amount
+            obj.product.save()
+            super().save_model(request, obj, form, change)
+        else:
+            if obj.amount > obj.product.stock:
+                messages.set_level(request, messages.ERROR)
+                messages.error(request, "Transaction not saved: Amount exceeds stock.")
+            if obj.buyer == obj.product.owner:
+                messages.set_level(request, messages.ERROR)
+                messages.error(request, "Transaction not saved: Buyer is same as owner.")
 
 # models registered here.
 admin.site.register(ProductType, ProductTypeAdmin)
