@@ -20,14 +20,14 @@
         </div>
     {% endif %}
 
-    {% for category in category_list %}
+    {% for category, articles in articles_by_category.items %}
         <div class="article-category">
             <div class="article-category-description">
-                <h2>{{ category.grouper.name }}</h2>
-                <p>| {{category.grouper.description }}</p>
+                <h2>{{ category.name }}</h2>
+                <p>{{ category.description }}</p>
             </div>
             <ul class="article-category-list">
-                {% for article in category.list %}
+                {% for article in articles %}
                     <li>
                         <a href="{% url 'article_details' article.pk %}">{{ article.title }}</a>
                     </li>
