@@ -44,6 +44,8 @@ h1{
     margin-right: auto;
     padding:15px;
     border-radius: 10px;
+    margin-bottom: 50px;
+    border: 1px solid black;
 }
 
 .product-details-list{
