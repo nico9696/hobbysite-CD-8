@@ -2,7 +2,7 @@
 {% block body %}
     {% if user.is_authenticated %}
         <a href="{% url 'add_product' %}">Add new product!</a>
-        <a href="{% url 'show_cart' user.username %}">Show cart!</a>
+        <a href="{% url 'show_cart' %}">Show cart!</a>
         <a href="{% url 'show_transactions' %}">Show Transactions!</a>
     {% endif %}
 

@@ -75,7 +75,7 @@ def show_product_details(request, num):
             transaction.buyer = profile # Set the desired field value
             transaction.product = product_obj
             transaction.save() # Now save to the database
-        return redirect('show_cart', transaction.buyer)
+        return redirect('show_cart')
 
     transaction_form = TransactionForm(prefix="transaction")
 
@@ -108,7 +108,7 @@ def add_product(request):
     })
 
 @login_required(login_url='login') 
-def show_cart(request, profile): 
+def show_cart(request): 
     user = request.user 
     profile = Profile.objects.get(user=user) 
     transaction = Transaction.objects.filter(buyer=profile).order_by('product__owner__user__username', 'created_on') # filters transactions to what user has bought AND order it by name of seller
