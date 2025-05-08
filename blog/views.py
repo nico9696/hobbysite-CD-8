@@ -14,9 +14,7 @@ class ArticleList(ListView):
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
-            # Exclude articles from the logged-in user from the "All Articles" list
             other_articles = Article.objects.exclude(author=self.request.user.profile).filter(category__isnull=False)
-            # Get the user's own articles
             user_articles = Article.objects.filter(author=self.request.user.profile).filter(category__isnull=False)
             return other_articles, user_articles
         return Article.objects.filter(category__isnull=False), []
@@ -24,10 +22,8 @@ class ArticleList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         
-        # Retrieve the articles and user-specific articles from the queryset
         other_articles, user_articles = self.get_queryset()
 
-        # Categorize articles by category
         articles_by_category = {}
         for article in other_articles:
             if article.category:
