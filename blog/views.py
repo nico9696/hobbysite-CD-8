@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from .models import Article, ArticleCategory, Comment
 from .forms import ArticleForm, CommentForm
+from django.utils import timezone
 
 class ArticleList(ListView):
     model = Article
@@ -92,6 +93,7 @@ class ArticleCreate(LoginRequiredMixin, CreateView):
             form.instance.author = self.request.user.profile
         except AttributeError:
             return HttpResponseForbidden("User profile missing.")
+        form.instance.created_on = form.instance.updated_on = timezone.now()
         return super().form_valid(form)
 
 class ArticleUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
