@@ -1,5 +1,3 @@
-# left off: Users should not be able to purchase their own products.
-
 from django.shortcuts import render
 from .models import ProductType, Product, Transaction, Profile
 from django.contrib.auth.decorators import login_required
@@ -58,9 +56,6 @@ def show_product_details(request, num):
 
         if transaction_form.is_valid():
             transaction = transaction_form.save(commit=False) # Create but don't save yet
-            transaction.buyer = profile # Set the desired field value
-            transaction.product = product_obj
-            transaction.save() # Now save to the database
 
             # Prevent overselling
             if transaction.amount > product_obj.stock:
@@ -68,11 +63,18 @@ def show_product_details(request, num):
                 return redirect('show_product_details', num=num)  
             
             product_obj.stock -= transaction.amount # reduces stock based on quantity bought
-            if product_obj.stock <= 0: # change status based on stock
+
+            # change status based on stock
+            if product_obj.stock <= 0: 
                 product_obj.status = 'out_of_stock'
             elif product_obj.stock >= 1:
                 product_obj.status = 'available'
+
             product_obj.save()
+
+            transaction.buyer = profile # Set the desired field value
+            transaction.product = product_obj
+            transaction.save() # Now save to the database
         return redirect('show_cart', transaction.buyer)
 
     transaction_form = TransactionForm(prefix="transaction")
@@ -121,10 +123,12 @@ def update_product(request, product_id):
         product_form = ProductForm(request.POST, request.FILES, instance=product)
 
         if product_form.is_valid():
-            if product.stock <= 0: # change status based on stock
+            # change status based on stock
+            if product.stock <= 0: 
                 product.status = 'out_of_stock'
             elif product.stock >= 1:
                 product.status = 'available'
+            
             product_form.save() # Now save to the database
 
         return redirect('show_products_list')

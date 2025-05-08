@@ -1,6 +1,7 @@
 from django.db import models
 from user_management.models import Profile
 from django.core.validators import MinValueValidator
+from django.core.exceptions import ValidationError
 
 class ProductType(models.Model):
     name = models.CharField(max_length=255)
@@ -48,6 +49,15 @@ class Product(models.Model):
     # Ensures that products are displayed by their names (instead of IDs) in admin
     def __str__(self):
         return str(self.name) 
+    
+    # Automatically adjust status based on stock before saving
+    def save(self, *args, **kwargs):
+        if self.stock <= 0:
+            self.status = 'out_of_stock'
+        if self.stock > 0:
+            self.status = 'available'
+        super().save(*args, **kwargs)
+
 
     # Orders Product alphabetically by name
     class Meta:
@@ -87,3 +97,11 @@ class Transaction(models.Model):
     created_on = models.DateTimeField(
         auto_now_add=True,
     )
+
+    def save(self, *args, **kwargs):
+        if self.amount <= self.product.stock:
+            self.product.stock -= self.amount
+            self.product.save()
+        else:
+            raise ValidationError("Not enough stock available to complete the transaction.")
+        super().save(*args, **kwargs)
