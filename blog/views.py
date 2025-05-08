@@ -2,12 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 from django.http import HttpResponseForbidden
 from .models import Article, ArticleCategory, Comment
 from .forms import ArticleForm, CommentForm
-from django.utils import timezone
 
 class ArticleList(ListView):
     model = Article
@@ -16,21 +14,22 @@ class ArticleList(ListView):
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
-            try:
-                return Article.objects.exclude(author=self.request.user.profile).filter(category__isnull=False)
-            except AttributeError:
-                return Article.objects.filter(category__isnull=False)
-        return Article.objects.filter(category__isnull=False)
+            # Exclude articles from the logged-in user from the "All Articles" list
+            other_articles = Article.objects.exclude(author=self.request.user.profile).filter(category__isnull=False)
+            # Get the user's own articles
+            user_articles = Article.objects.filter(author=self.request.user.profile).filter(category__isnull=False)
+            return other_articles, user_articles
+        return Article.objects.filter(category__isnull=False), []
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         
-        context['category_list'] = ArticleCategory.objects.all()
+        # Retrieve the articles and user-specific articles from the queryset
+        other_articles, user_articles = self.get_queryset()
 
+        # Categorize articles by category
         articles_by_category = {}
-
-
-        for article in self.get_queryset():
+        for article in other_articles:
             if article.category:
                 if article.category not in articles_by_category:
                     articles_by_category[article.category] = []
@@ -40,11 +39,10 @@ class ArticleList(ListView):
                     articles_by_category['Uncategorized'] = []
                 articles_by_category['Uncategorized'].append(article)
 
-        if self.request.user.is_authenticated:
-            user_articles = Article.objects.filter(author=self.request.user.profile)
-            context['user_articles'] = user_articles
-
+        # Add the categories list and the user articles to context
+        context['category_list'] = ArticleCategory.objects.all()
         context['articles_by_category'] = articles_by_category
+        context['user_articles'] = user_articles
         context['create_article_link'] = True
 
         return context
@@ -83,6 +81,7 @@ class ArticleDetails(DetailView):
         context['comment_form'] = form
         return self.render_to_response(context)
 
+
 class ArticleCreate(LoginRequiredMixin, CreateView):
     model = Article
     template_name = 'blog/article_create.html'
@@ -95,6 +94,7 @@ class ArticleCreate(LoginRequiredMixin, CreateView):
             return HttpResponseForbidden("User profile missing.")
         form.instance.created_on = form.instance.updated_on = timezone.now()
         return super().form_valid(form)
+
 
 class ArticleUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Article
