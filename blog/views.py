@@ -23,13 +23,31 @@ class ArticleList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
+        context['category_list'] = ArticleCategory.objects.all()
+
+        articles_by_category = {}
+
+
+        for article in self.get_queryset():
+            if article.category:
+                if article.category not in articles_by_category:
+                    articles_by_category[article.category] = []
+                articles_by_category[article.category].append(article)
+            else:
+                if 'Uncategorized' not in articles_by_category:
+                    articles_by_category['Uncategorized'] = []
+                articles_by_category['Uncategorized'].append(article)
+
         if self.request.user.is_authenticated:
-            try:
-                context['user_articles'] = Article.objects.filter(author=self.request.user.profile)
-            except AttributeError:
-                context['user_articles'] = []
-        context['category_list'] = self.get_queryset().order_by('category__name')
+            user_articles = Article.objects.filter(author=self.request.user.profile)
+            context['user_articles'] = user_articles
+
+        context['articles_by_category'] = articles_by_category
+        context['create_article_link'] = True
+
         return context
+
 
 class ArticleDetails(DetailView):
     model = Article
