@@ -8,6 +8,11 @@
     <p>Status: {{ commission.get_status_display }} </p>
     <p>Total Manpower Required: {{ sum_manpower }} </p>
     <p>Open Positions: {{ sum_open_manpower }} </p>
+    {% if user.is_authenticated %}
+        <a href="{% url 'commission_update' commission_id=commission.id %}">
+            <button>Edit Commission</button>
+        </a>
+    {% endif %}
 
     <h3>Jobs:</h3>
     <ul>
