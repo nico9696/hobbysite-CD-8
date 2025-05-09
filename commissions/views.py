@@ -35,21 +35,28 @@ def commission_list(request):
 def commission_detail(request, commission_id):
     commission = Commission.objects.filter(id=commission_id).first()
     jobs = Job.objects.filter(commission=commission)
+    sum_manpower = 0
+    sum_open_manpower = 0
 
     job_details = []
     for job in jobs:
         accepted_applicants = JobApplication.objects.filter(job=job, status='Accepted').count()
         open_manpower = job.people_required - accepted_applicants
+        sum_manpower += job.people_required
+        sum_open_manpower += open_manpower
+
 
         job_details.append({
             'job': job,
             'open_manpower': open_manpower,
-            'accepted_applicants': accepted_applicants
+            'accepted_applicants': accepted_applicants,
         })
 
     ctx = {
         "commission": commission,
         "job_details": job_details,
+        "sum_manpower" : sum_manpower,
+        "sum_open_manpower" : sum_open_manpower
     }
     
     return render(request, 'commissions/commission_detail.html', ctx)

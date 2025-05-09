@@ -5,7 +5,9 @@
 {% block body %}
     <h2>{{ commission.title }}</h2>
     <p>{{ commission.description }}</p>
-    <p>Status: {{ commission.get_status_display }}</p>
+    <p>Status: {{ commission.get_status_display }} </p>
+    <p>Total Manpower Required: {{ sum_manpower }} </p>
+    <p>Open Positions: {{ sum_open_manpower }} </p>
 
     <h3>Jobs:</h3>
     <ul>
