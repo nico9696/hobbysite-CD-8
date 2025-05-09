@@ -7,6 +7,9 @@
 
 {% if user.is_authenticated %}
     <ul>
+        <a href="{% url 'job_update' commission_id=commission.id %}">
+            <button>Edit Job</button>
+        </a>
         {% for applicant in applicants %}
                     <li>
                         {{ applicant.applicant }} - Status: {{ applicant.get_status_display }}
