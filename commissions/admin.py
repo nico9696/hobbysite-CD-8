@@ -16,8 +16,8 @@ class JobAdmin(admin.ModelAdmin):
 class JobApplicationAdmin(admin.ModelAdmin):
      model = JobApplication
      search_fields = ('job', 'author__display_name')
-     list_display = ('id', 'job', 'commission', 'applied_on', 'applicant', 'status')
-     list_filter = ('commission', 'job', 'status',)
+     list_display = ('id', 'job', 'get__commission', 'applied_on', 'applicant', 'status')
+     list_filter = ('job__commission', 'job', 'status',)
  
 admin.site.register(Commission, CommissionAdmin)
 admin.site.register(Job, JobAdmin)
