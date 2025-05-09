@@ -12,20 +12,37 @@
     <h3>Jobs:</h3>
     <ul>
         {% for job in job_details %}
-
             <ul>
                 <div class="commission">
-                </p>{{ job.job.role }} - Max: {{ job.job.people_required }}, Current:  {{ job.accepted_applicants }}</p>
+                    <p>{{ job.job.role }} - Max: {{ job.job.people_required }}, Current: {{ job.accepted_applicants }}</p>
                 </div>
+
+                {% if user.is_authenticated %}
+                    {% if job.accepted_applicants < job.job.people_required %}
+                        {% if not job.job_application %}
+                            <form method="post" action="{% url 'commission_detail' commission_id=commission.id %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="job_id" value="{{ job.job.id }}">
+                                <button type="submit">Apply</button>
+                            </form>
+                        {% else %}
+                            <p>You have already applied for this job.</p>
+                        {% endif %}
+                    {% else %}
+                        <p>All positions for this job are filled.</p>
+                    {% endif %}
+                {% else %}
+                    <p><a href="{% url 'login' %}"> You Must be Logged In to Apply</a></p>
+                {% endif %}
             </ul>
         {% empty %}
             <div class="commission">
-            <p>No Jobs.</p>
-            <div>
+                <p>No Jobs.</p>
+            </div>
         {% endfor %}  
+
         <a href="{% url 'job_create' commission_id=commission.id %}">
             <button>Create Job</button>
         </a>
-        
     </ul>
 {% endblock %}

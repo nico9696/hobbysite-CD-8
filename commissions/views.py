@@ -45,12 +45,27 @@ def commission_detail(request, commission_id):
         sum_manpower += job.people_required
         sum_open_manpower += open_manpower
 
+        job_application = JobApplication.objects.filter(job=job, applicant=request.user.profile).first()
+
 
         job_details.append({
             'job': job,
             'open_manpower': open_manpower,
             'accepted_applicants': accepted_applicants,
+            'job_application': job_application,
         })
+
+    if request.method == 'POST':
+            job_id = request.POST.get('job_id')
+            job = Job.objects.filter(id=job_id).first()
+
+            if job:
+                existing_application = JobApplication.objects.filter(job=job, applicant=request.user.profile).first()
+                if not existing_application:
+                    JobApplication.objects.create(job=job, applicant=request.user.profile, status='Pending')
+
+
+            return redirect('commission_detail', commission_id=commission.id)
 
     ctx = {
         "commission": commission,
