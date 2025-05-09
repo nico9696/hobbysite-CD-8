@@ -32,11 +32,15 @@
                 {% if user.is_authenticated %}
                     {% if job.accepted_applicants < job.job.people_required %}
                         {% if not job.job_application %}
-                            <form method="post" action="{% url 'commission_detail' commission_id=commission.id %}">
-                                {% csrf_token %}
-                                <input type="hidden" name="job_id" value="{{ job.job.id }}">
-                                <button type="submit">Apply</button>
-                            </form>
+                            {% if job.status == 'Open' %}
+                                <form method="post" action="{% url 'commission_detail' commission_id=commission.id %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="job_id" value="{{ job.job.id }}">
+                                    <button type="submit">Apply</button>
+                                </form>
+                            {% else %}
+                                <p>All positions for this job are filled.</p>
+                            {% endif %}
                         {% else %}
                             <p>You have already applied for this job.</p>
                         {% endif %}

@@ -8,5 +8,6 @@ urlpatterns = [
     path('<int:commission_id>/edit/', views.commission_update, name='commission_update'),
     path('commissions/<int:commission_id>/job/create/', views.job_create, name='job_create'),
     path('job/<int:job_id>/applicants/', views.job_detail, name='job_detail'),
-    path('commissions/<int:commission_id>/job/edit/', views.job_update, name='job_update'),
+    path('job/<int:job_id>/edit/', views.job_update, name='job_update'),
+
 ]

@@ -185,17 +185,17 @@ def job_detail(request, job_id):
     return render(request, 'commissions/job_detail.html', ctx)
 
 @login_required
-def job_update(request, commission_id):
-    commission = Commission.objects.filter(id=commission_id).first()
-    job = Job.objects.filter(commission=commission).first()
+def job_update(request, job_id):
+    job = Job.objects.filter(id=job_id).first()
+    commission = job.commission
 
     if request.method == 'POST':
         job_form = JobForm(request.POST, instance=job)
 
-        if job_form.is_valid() and any(job_form.cleaned_data.values()):
-            job.save()
+        if job_form.is_valid():
+            job = job_form.save()
 
-        return redirect('job_detail', job_id=job.id)
+            return redirect('job_detail', job_id=job.id)
     else:
         job_form = JobForm(instance=job)
 
@@ -203,6 +203,7 @@ def job_update(request, commission_id):
 
     ctx = {
         'job_form': job_form,
+        'jobs': jobs,
         'commission': commission,
     }
 
