@@ -3,6 +3,8 @@
 {% block title %}Commissions{% endblock %}
 
 {% block body %}
+
+
     <h2>Commissions You Have Created</h2>
     {% if created_by_user %}
         <ul>
@@ -50,4 +52,7 @@
     {% else %}
         <p>No commissions available.</p>
     {% endif %}
+    <a href="{% url 'commission_create' %}">
+        <button>Create Commission</button>
+    </a>
 {% endblock %}
