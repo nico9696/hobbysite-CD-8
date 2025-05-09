@@ -128,4 +128,4 @@ def job_detail(request, job_id):
         'applicants': applicants,
     }
 
-    return render(request, 'jobs/job_detail.html', ctx)
+    return render(request, 'commissions/job_detail.html', ctx)

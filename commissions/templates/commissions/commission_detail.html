@@ -1,0 +1,32 @@
+{% extends "commissions/layout.html" %}
+
+{% block title %}{{ commission.title }}{% endblock %}
+
+{% block body %}
+    <h2>{{ commission.title }}</h2>
+    <p>{{ commission.description }}</p>
+    <p>Status: {{ commission.get_status_display }}</p>
+
+    <h3>Jobs:</h3>
+    <ul>
+        {% for job in job_detail %}
+
+            <ul>
+                <div class="commission">
+                </p>{{ job.role }} - Max: {{ job.people_required }}, Current:  {{ job.open_manpower }}</p>
+                    <div class="dates">
+                        <p>created on: {{ job.applied_on }}</p>
+                        <p>updated on: {{ job.applied_on }}</p>
+                    </div>
+                </div>
+            </ul>
+        {% empty %}
+            <div class="commission">
+            <p>No Jobs.</p>
+            <div>
+        {% endfor %}  
+        <a href="{% url 'job_detail' commission_id=commission.id %}">
+            <button>Create Job</button>
+        </a>
+    </ul>
+{% endblock %}
