@@ -10,8 +10,7 @@ def commission_list(request):
 
     if user.is_authenticated:
         created_by_user = Commission.objects.filter(author=user)
-        applied_by_user = Commission.objects.filter(jobapplication__applicant=user)
-
+        applied_by_user = Commission.objects.filter(job__jobapplication__applicant=user.profile).distinct()
 
     status_order = Case(
         When(status='Open', then=Value(0)),
@@ -31,11 +30,23 @@ def commission_list(request):
     
     return render(request, 'commissions/commission_list.html', ctx)
 
-    #add link to creation of commission 
-
-
-
 def commission_detail(request, commission_id):
-    commission = Commission.objects.filter(id=commission_id).first()  
-    comments = Comment.objects.filter(commission=commission)
-    return render(request, 'commissions/commission_detail.html', {"commission": commission, "comments": comments})
+    commission = Commission.objects.filter(id=commission_id).first()
+    jobs = Job.objects.filter(commission=commission)
+
+    job_details = []
+    for job in jobs:
+        accepted_applicants = JobApplication.objects.filter(job=job, status='Accepted').count()
+        open_manpower = job.people_required - accepted_applicants
+
+        job_details.append({
+            'job': job,
+            'open_manpower': open_manpower
+        })
+
+    ctx = {
+        "commission": commission,
+        "job_details": job_details,
+    }
+    
+    return render(request, 'commissions/commission_detail.html', ctx)
