@@ -43,7 +43,8 @@ def commission_detail(request, commission_id):
 
         job_details.append({
             'job': job,
-            'open_manpower': open_manpower
+            'open_manpower': open_manpower,
+            'accepted_applicants': accepted_applicants
         })
 
     ctx = {
@@ -116,7 +117,7 @@ def job_create(request, commission_id):
         job_form = JobForm(request.POST)
         if job_form.is_valid():
             job = job_form.save(commit=False)
-            job.author = request.user.profile
+            job.commission = commission
             job.save()
             return redirect('commission_detail', commission_id=commission.id)
     else:
@@ -127,4 +128,4 @@ def job_create(request, commission_id):
         'commission': commission
     }
 
-    return render(request, 'commissions/job_form.html', ctx)
+    return render(request, 'commissions/job_create.html', ctx)

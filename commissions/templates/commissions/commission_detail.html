@@ -9,15 +9,11 @@
 
     <h3>Jobs:</h3>
     <ul>
-        {% for job in job_detail %}
+        {% for job in job_details %}
 
             <ul>
                 <div class="commission">
-                </p>{{ job.role }} - Max: {{ job.people_required }}, Current:  {{ job.open_manpower }}</p>
-                    <div class="dates">
-                        <p>created on: {{ job.applied_on }}</p>
-                        <p>updated on: {{ job.applied_on }}</p>
-                    </div>
+                </p>{{ job.job.role }} - Max: {{ job.job.people_required }}, Current:  {{ job.accepted_applicants }}</p>
                 </div>
             </ul>
         {% empty %}
@@ -25,7 +21,7 @@
             <p>No Jobs.</p>
             <div>
         {% endfor %}  
-        <a href="{% url 'job_detail' commission_id=commission.id %}">
+        <a href="{% url 'job_create' commission_id=commission.id %}">
             <button>Create Job</button>
         </a>
         
