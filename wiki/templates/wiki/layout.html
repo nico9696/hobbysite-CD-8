@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{% block title %}{% endblock title %}</title>
+        <title>{% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> <!-- Imports Roboto font -->
     </head>
@@ -12,13 +12,15 @@
             <h3>An online free "encyclopedia"</h3>
         </header>
 
-        {% block body %}
-        {% endblock body %}
+        <div class="content-div">
+            <nav>
+                {% block nav %}{% endblock %}
+            </nav>
+            {% block body %}{% endblock %}
+        </div>
 
-        {% block footer %}
-            <footer>
-                <p class="footer-text">Hobby Site - Wikipidiyi</p>
-            </footer>
-        {% endblock footer %}
+        <footer>
+            <p class>Hobby Site - Wikipidiyi</p>
+        </footer>
     </body>
 </html>
