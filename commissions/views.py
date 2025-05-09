@@ -151,3 +151,22 @@ def job_create(request, commission_id):
     }
 
     return render(request, 'commissions/job_create.html', ctx)
+
+@login_required
+def job_detail(request, job_id):
+    job = Job.objects.filter(id=job_id).first()
+
+    applicants = JobApplication.objects.filter(job=job)
+    
+    if request.method == "POST":
+        for applicant in applicants:
+            form = JobApplicantsForm(request.POST, instance=applicant)
+            if form.is_valid():
+                form.save()
+
+    ctx = {
+        'job': job,
+        'applicants': applicants
+    }
+
+    return render(request, 'commissions/job_create.html', ctx)
