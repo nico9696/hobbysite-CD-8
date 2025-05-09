@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Commission, Job, JobApplication, Profile
 from django.db.models import Case, When, Value, IntegerField
+from django.contrib.auth.decorators import login_required
+from .forms import CommissionForm, JobForm, JobApplicationForm, JobApplicantsForm
 
 def commission_list(request):
     user = request.user
@@ -9,7 +11,7 @@ def commission_list(request):
     applied_by_user = []
 
     if user.is_authenticated:
-        created_by_user = Commission.objects.filter(author=user)
+        created_by_user = Commission.objects.filter(author=user.profile)
         applied_by_user = Commission.objects.filter(job__jobapplication__applicant=user.profile).distinct()
 
     status_order = Case(
@@ -50,3 +52,22 @@ def commission_detail(request, commission_id):
     }
     
     return render(request, 'commissions/commission_detail.html', ctx)
+
+@login_required
+def commission_create(request):
+    if request.method == "POST":
+        form = CommissionForm(request.POST)
+        if form.is_valid():
+            commission = form.save(commit=False)
+            commission.author = request.user.profile
+            commission.save()
+            return redirect('commission_detail', commission_id=commission.id)
+    else:
+        form = CommissionForm()
+
+    ctx = {
+        'form': form
+    }
+
+    return render(request, 'commissions/commission_form.html', ctx)
+
