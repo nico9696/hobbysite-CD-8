@@ -8,5 +8,6 @@ class Profile(models.Model):
 	display_name = models.CharField(max_length=63)
 	email_address = models.EmailField(max_length=200)
 
+	# shows the owner's name instead of Profile object (1), Profile object (2), etc., 
 	def __str__(self):
-		return self.display_name
+		return self.user.get_full_name() or self.user.username

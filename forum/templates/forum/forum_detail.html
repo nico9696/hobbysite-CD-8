@@ -1,19 +1,60 @@
 {% extends "forum/layout.html" %}
 
 {% block content %}
-<h1 class="category-name">{{ category.name }}</h1>
+<h1 class="category-name">{{ thread.category.name }}</h1>
 <div class="post-details">
-    <h2>{{ thread_title }}</h2>
+    <h2>{{ thread.title }}</h2>
+    <div class="post-entry">
+        <p>{{ thread.entry }}</p>
+    </div>
+    {% if thread.image %}
+        <img src="{{ thread.image.url }}" alt="Thread Image">
+    {% endif %}
+    <p class="timestamp">
+        By {{ thread.author.user.username }} <br>
+        Created on: {{ thread.created_on }}, UTC <br>
+        Updated on: {{ thread.updated_on }}, UTC
+    </p>
+    <hr>
 
-    {% for post in posts %}
+    {% for comment in comments %}
         <div class="post-entry">
-            <p>{{ post.entry }}</p>
+            <p>{{ comment.entry }}</p>
+            {% if comment.image %}
+                <img src="{{ comment.image.url }}" alt="Thread Image">
+            {% endif %}
             <p class="timestamp">
-                Created on: {{ post.created_on }}, UTC <br>
-                Updated on: {{ post.updated_on }}, UTC
+                By {{ comment.author.user.username }} <br>
+                Created on: {{ comment.created_on }}, UTC <br>
+                Updated on: {{ comment.updated_on }}, UTC
             </p>
             <hr>
         </div>
     {% endfor %}
 </div>
+
+{% if user.is_authenticated %}
+    <hr>
+    <h3>Write a Comment</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+{% endif %}
+
+<hr>
+<h3>Related Posts</h3>
+<ul>
+    {% for related_thread in related_threads %}
+        <li><a href="{% url 'forum_detail' forum_id=related_thread.id %}">{{ related_thread.title }}</a></li>
+    {% endfor %}
+</ul>
+
+{% if thread.author == user.profile %}
+    <a href="{% url 'thread_update' thread.id %}">Edit Thread</a>
+{% endif %}
+<br>
+<a href="{% url 'forum_list' %}">Back to Forum</a>
+
 {% endblock %}
