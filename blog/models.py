@@ -18,7 +18,7 @@ class ArticleCategory(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=255)
     author = models.ForeignKey(
-        Profile, on_delete=models.SET_NULL, null=True, blank=True
+        Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name='blog_articles'
     )
     category = models.ForeignKey(
         ArticleCategory, on_delete=models.SET_NULL, null=True, blank=True
@@ -39,7 +39,7 @@ class Article(models.Model):
 
 class Comment(models.Model):
     author = models.ForeignKey(
-        Profile, on_delete=models.SET_NULL, null=True, blank=True
+        Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name='blog_comments'
     )
     article = models.ForeignKey(
         Article, on_delete=models.CASCADE, related_name="comments"
