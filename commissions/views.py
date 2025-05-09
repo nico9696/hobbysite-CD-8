@@ -71,7 +71,7 @@ def commission_detail(request, commission_id):
         "commission": commission,
         "job_details": job_details,
         "sum_manpower" : sum_manpower,
-        "sum_open_manpower" : sum_open_manpower
+        "sum_open_manpower" : sum_open_manpower,
     }
     
     return render(request, 'commissions/commission_detail.html', ctx)
@@ -89,7 +89,7 @@ def commission_create(request):
         commission_form = CommissionForm()
 
     ctx = {
-        'commission_form': commission_form
+        'commission_form': commission_form,
     }
 
     return render(request, 'commissions/commission_form.html', ctx)
@@ -126,7 +126,7 @@ def commission_update(request, commission_id):
         'commission_form': commission_form,
         'job_form': job_form,
         'jobs': jobs,
-        'commission': commission
+        'commission': commission,
     }
 
     return render(request, 'commissions/commission_form.html', ctx)
@@ -147,7 +147,7 @@ def job_create(request, commission_id):
 
     ctx = {
         'job_form': job_form,
-        'commission': commission
+        'commission': commission,
     }
 
     return render(request, 'commissions/job_create.html', ctx)
@@ -159,14 +159,26 @@ def job_detail(request, job_id):
     applicants = JobApplication.objects.filter(job=job)
     
     if request.method == "POST":
-        for applicant in applicants:
-            form = JobApplicantsForm(request.POST, instance=applicant)
-            if form.is_valid():
-                form.save()
+        applicant_id = request.POST.get('applicant_id')
+        action = request.POST.get('action')
+
+        if applicant_id and action:
+            try:
+                applicant = JobApplication.objects.get(id=applicant_id, job=job)
+                if action == "Accept":
+                    applicant.status = 'Accepted'
+                elif action == "Reject":
+                    applicant.status = 'Rejected'
+                applicant.save()
+            except JobApplication.DoesNotExist:
+                pass
+
+        return redirect('job_detail', job_id=job.id)
+
 
     ctx = {
         'job': job,
-        'applicants': applicants
+        'applicants': applicants,
     }
 
     return render(request, 'commissions/job_detail.html', ctx)

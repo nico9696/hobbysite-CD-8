@@ -1,3 +1,26 @@
 {% extends "commissions/layout.html" %}
 
-{% block title %}{{ job.role }}{% endblock %}
+
+{% block body %}
+    <h2>{{ job.role }} Applicants </h2>
+
+{% if user.is_authenticated %}
+    <ul>
+        {% for applicant in applicants %}
+                    <li>
+                        {{ applicant.applicant }} - Status: {{ applicant.get_status_display }}
+                    <div>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="applicant_id" value="{{ applicant.id }}">
+                            <button type="submit" name="action" value="Accept">Accept</button>
+                            <button type="submit" name="action" value="Reject">Reject</button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+{% else %}
+    <p><a href="{% url 'login' %}"> You must be logged in.</a></p>
+{% endif %}
+{% endblock %}
