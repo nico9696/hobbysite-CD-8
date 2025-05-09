@@ -74,7 +74,7 @@ def commission_create(request):
 @login_required
 def commission_update(request, commission_id):
     commission = Commission.objects.filter(id=commission_id).first()
-    
+
     if request.method == 'POST':
         commission_form = CommissionForm(request.POST, instance=commission)
         job_form = JobForm(request.POST)
@@ -107,3 +107,25 @@ def commission_update(request, commission_id):
     }
 
     return render(request, 'commissions/commission_form.html', ctx)
+
+@login_required
+def job_detail(request, job_id):
+    job = Job.objects.filter(id=job_id).first()
+    applicants = JobApplication.objects.filter(job=job)
+
+    if request.method == 'POST':
+
+        for applicant in applicants:
+            form = JobApplicantsForm(request.POST, instance=applicant)
+
+            if form.is_valid():
+                form.save()
+
+        return redirect('job_detail', job_id=job.id)
+
+    ctx = {
+        'job': job,
+        'applicants': applicants,
+    }
+
+    return render(request, 'jobs/job_detail.html', ctx)
