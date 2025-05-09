@@ -34,10 +34,10 @@ def article_detail(request, article_id):
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
-            comment.author = request.user.profile
-            comment.article = article
-            comment.save()
+            wiki_comment = comment_form.save(commit=False)
+            wiki_comment.author = request.user.profile
+            wiki_comment.article = article
+            wiki_comment.save()
             return redirect(article.get_absolute_url())
     else:
         comment_form = CommentForm()
@@ -57,10 +57,10 @@ def article_add(request):
     if request.method == 'POST':
         article_form = ArticleForm(request.POST, request.FILES)
         if article_form.is_valid():
-            article = article_form.save(commit=False)
-            article.author = request.user.profile
-            article.save()
-            return redirect(article.get_absolute_url())
+            wiki_article = article_form.save(commit=False)
+            wiki_article.author = request.user.profile
+            wiki_article.save()
+            return redirect(wiki_article.get_absolute_url())
     else:
         article_form = ArticleForm()
 

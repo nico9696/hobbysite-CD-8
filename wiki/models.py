@@ -21,7 +21,8 @@ class Article(models.Model):
     author = models.ForeignKey(
         "user_management.Profile",
         null=True,
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
+        related_name='wiki_articles'
     )
     category = models.ForeignKey(
         ArticleCategory,
@@ -54,7 +55,8 @@ class Comment(models.Model):
     author = models.ForeignKey(
         'user_management.Profile',
         null=True,
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
+        related_name='wiki_comments'
     )
     article = models.ForeignKey(
         Article,

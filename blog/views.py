@@ -51,9 +51,9 @@ class ArticleDetails(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        article = self.get_object()
-        context['related_articles'] = Article.objects.filter(author=article.author).exclude(pk=article.pk)[:2]
-        context['comments'] = Comment.objects.filter(article=article).order_by('-created_on')
+        blog_article = self.get_object()
+        context['related_articles'] = Article.objects.filter(author=blog_article.author).exclude(pk=blog_article.pk)[:2]
+        context['comments'] = Comment.objects.filter(article=blog_article).order_by('-created_on')
         context['comment_form'] = CommentForm()
         return context
 
@@ -64,13 +64,13 @@ class ArticleDetails(DetailView):
 
         form = CommentForm(request.POST)
         if form.is_valid():
-            comment = form.save(commit=False)
+            blog_comment = form.save(commit=False)
             try:
-                comment.author = request.user.profile
+                blog_comment.author = request.user.profile
             except AttributeError:
                 return HttpResponseForbidden("User profile missing.")
-            comment.article = self.object
-            comment.save()
+            blog_comment.article = self.object
+            blog_comment.save()
             return redirect('article_details', pk=self.object.pk)
 
         context = self.get_context_data(object=self.object)
@@ -98,9 +98,9 @@ class ArticleUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = ArticleForm
 
     def test_func(self):
-        article = self.get_object()
+        blog_article = self.get_object()
         try:
-            return self.request.user.profile == article.author
+            return self.request.user.profile == blog_article.author
         except AttributeError:
             return False
 
