@@ -18,7 +18,7 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>No commissions created.</p>
+        <p>No Commissions Created.</p>
     {% endif %}
 
     <h2>Commissions You Have Applied To</h2>
@@ -34,7 +34,7 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>You haven't applied to any commissions yet.</p>
+        <p>No Commissions Applied For.</p>
     {% endif %}
 
     <h2>All Commissions</h2>
@@ -50,7 +50,7 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>No commissions available.</p>
+        <p>No Commissions Available.</p>
     {% endif %}
     <a href="{% url 'commission_create' %}">
         <button>Create Commission</button>
