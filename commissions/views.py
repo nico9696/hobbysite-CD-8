@@ -169,4 +169,4 @@ def job_detail(request, job_id):
         'applicants': applicants
     }
 
-    return render(request, 'commissions/job_create.html', ctx)
+    return render(request, 'commissions/job_detail.html', ctx)

@@ -19,7 +19,13 @@
         {% for job in job_details %}
             <ul>
                 <div class="commission">
-                    <p>{{ job.job.role }} - Max: {{ job.job.people_required }}, Current: {{ job.accepted_applicants }}</p>
+                    <p>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'job_detail' job_id=job.job.id %}">{{ job.job.role }}</a> - Max: {{ job.job.people_required }}, Current: {{ job.accepted_applicants }}
+                        {% else %}
+                            {{ job.job.role }} - Max: {{ job.job.people_required }}, Current: {{ job.accepted_applicants }}
+                        {% endif %}
+                    </p>
                 </div>
 
                 {% if user.is_authenticated %}
