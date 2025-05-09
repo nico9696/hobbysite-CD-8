@@ -10,7 +10,7 @@ class CommissionForm(forms.ModelForm):
 class JobForm(forms.ModelForm):
     class Meta:
         model = Job
-        fields = ['role', 'manpower_required', 'status']
+        fields = ['role', 'people_required', 'status']
 
 class JobApplicationForm(forms.ModelForm):
     class Meta:
