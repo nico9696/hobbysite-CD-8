@@ -1,12 +1,17 @@
 {% extends "merchstore/layout.html" %}
 {% block body %}
-    <form method="post">
-        {% csrf_token %}
-        <h2>Add product</h2>
-        <p>Owner: you</p>
-        {{ add_product_form.as_p }}
-        <button type="submit">Create</button>
-    </form>
+    <div class="whole-update-add-form">
+        <div class="top-left-section">
+            <h4>Add Product</h4>
+        </div>
+        <form method="post" class="update-add-form">
+            {% csrf_token %}
+            {{ add_product_form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 
-    <a href="{% url 'show_products_list'%}">Back to list of all products!</a>
+    <footer>
+        <a href="{% url 'show_products_list'%}">Back to list of all products</a>
+    </footer>
 {% endblock %}
