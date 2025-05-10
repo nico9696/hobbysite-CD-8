@@ -53,7 +53,7 @@ def show_product_details(request, num):
         transaction_form = TransactionForm(request.POST, prefix="transaction")
 
         if not request.user.is_authenticated:
-            return redirect('login') 
+            return redirect('user_management:login') 
 
         if transaction_form.is_valid():
             transaction = transaction_form.save(commit=False) # Create but don't save yet
@@ -61,7 +61,7 @@ def show_product_details(request, num):
             # Prevent overselling
             if transaction.amount > product_obj.stock:
                 messages.error(request, "Not enough stock available.")
-                return redirect('show_product_details', num=num)  
+                return redirect('merchstore:show_product_details', num=num)  
             
             product_obj.stock -= transaction.amount # reduces stock based on quantity bought
 
@@ -76,7 +76,7 @@ def show_product_details(request, num):
             transaction.buyer = profile # Set the desired field value
             transaction.product = product_obj
             transaction.save() # Now save to the database
-        return redirect('show_cart')
+        return redirect('merchstore:show_cart')
 
     transaction_form = TransactionForm(prefix="transaction")
 
@@ -100,7 +100,7 @@ def add_product(request):
             product.owner = profile # Set the desired field value
             product.save() # Now save to the database
 
-        return redirect('show_products_list')
+        return redirect('merchstore:show_products_list')
     
     product_form = ProductForm(prefix="product")
 
@@ -132,7 +132,7 @@ def update_product(request, product_id):
             
             product_form.save() # Now save to the database
 
-        return redirect('show_products_list')
+        return redirect('merchstore:show_products_list')
     
     else:
         product_form = ProductForm(instance=product)  # Pre-filled with existing values
