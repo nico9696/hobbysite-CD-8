@@ -266,7 +266,7 @@ form button {
 
 .cart-container {
     max-width: 800px;
-    margin: 40px auto;
+    margin: 0px auto;
     padding: 20px;
     background-color: #222831;
     border-radius: 10px;
@@ -277,7 +277,7 @@ form button {
 .cart-container h1,
 .cart-container h2,
 .cart-container h3 {
-    color: #00ADB5;
+    color: #DFD0B8;
     margin-top: 0;
 }
 
