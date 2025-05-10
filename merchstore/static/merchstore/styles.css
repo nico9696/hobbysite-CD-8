@@ -62,14 +62,17 @@ footer a{
     padding-bottom: 55px; /* Reserve space if needed */
 }
 
-.top-left-section h4{
+.top-left-section h4 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 20px;
+    color: #00ADB5;
+    border-bottom: 2px solid #00ADB5;
+    display: inline-block;
+    padding: 5px 10px;
     background-color: #393E46;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    margin-bottom: 0px;
-    padding: 10px;
-    display: inline-block;
-    color: #DFD0B8;
 }
 
 .product-type{
@@ -173,7 +176,7 @@ footer a{
     margin-top: 0;
 }
 
-.purchase-form button {
+form button {
     margin-top: 10px;
     background-color: #222831;
     color: white;
@@ -209,4 +212,53 @@ footer a{
     color: #DFD0B8;
     font-weight: bold;
     text-align: center;
+}
+
+.whole-update-form {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #393E46;
+    border-radius: 10px;
+    color: #DFD0B8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.update-add-form p {
+    margin-bottom: 15px;
+}
+
+.update-add-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #DFD0B8;
+}
+
+.update-add-form input[type="text"],
+.update-add-form input[type="number"],
+.update-add-form textarea,
+.update-add-form select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #DFD0B8;
+    background-color: #222831;
+    color: #DFD0B8;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.update-add-form button {
+    background-color: #00ADB5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.update-add-form button:hover {
+    background-color: #007f85;
 }

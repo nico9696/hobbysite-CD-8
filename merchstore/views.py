@@ -127,8 +127,6 @@ def update_product(request, product_id):
             # change status based on stock
             if product.stock <= 0: 
                 product.status = 'out_of_stock'
-            elif product.stock >= 1:
-                product.status = 'available'
             
             product_form.save() # Now save to the database
 
