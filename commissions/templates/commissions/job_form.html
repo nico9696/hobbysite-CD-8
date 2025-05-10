@@ -1,0 +1,15 @@
+{% extends "commissions/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h2>Create/Edit Job</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ job_form.as_p }}
+        <div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+
+{% endblock %}
