@@ -14,7 +14,7 @@ class ProductType(models.Model):
     class Meta:
         ordering = ['name']  
         verbose_name = "Product Type"
-        verbose_name_plural = "Product Type" 
+        verbose_name_plural = "Product Types" 
 
 class Product(models.Model):
     STATUS_CHOICES = [
@@ -53,8 +53,6 @@ class Product(models.Model):
     # Orders Product alphabetically by name
     class Meta:
         ordering = ['name']  
-        verbose_name = "Product"
-        verbose_name_plural = "Product" 
 
 class Transaction(models.Model):
     STATUS_CHOICES = [
