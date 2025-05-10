@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> <!-- Imports Roboto font -->
+    </head>
+    <body>
+        <header>
+            <h1>Hobby Site</h1>
+        </header>
+
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'wiki:index' %}">Wiki</a>
+            <a href="{% url 'blog:index' %}">Blog</a>
+            <a href="{% url 'forum:index' %}">Forum</a>
+            <a href="{% url 'merchstore:index' %}">Merch Store</a>
+        </nav>
+
+        <div class="content-div">
+            {% block body %}{% endblock %}
+        </div>
+
+        <footer>
+            <p>Hobby Site - Wikipidiyi</p>
+        </footer>
+    </body>
+</html>
