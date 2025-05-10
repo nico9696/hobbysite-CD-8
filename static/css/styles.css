@@ -1,0 +1,143 @@
+/* General styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #222831;
+}
+
+/* Navbar styles */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #222831;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    height: 35px; 
+    opacity: 0.75;
+}
+
+nav a {
+    color: #DFD0B8;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 30px;
+    font-style: bold;
+    background-color: #393E46;
+    padding: 1px 8px;
+    border-radius: 10px;
+}
+
+.content-div {
+    padding: 40px 20px;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #222831;
+    padding: 7px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* adds a nice shadow */
+    height: 30px;
+    opacity: 0.75;
+}
+
+footer a{
+    color: #DFD0B8;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 22px;
+    font-style: bold;
+    background-color: #393E46;
+    padding: 1px 8px;
+    border-radius: 10px;
+}
+
+.product-section{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative; /* Needed for absolute positioning inside */
+    padding-bottom: 55px; /* Reserve space if needed */
+}
+
+.product-section-header h4{
+    background-color: #393E46;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 0px;
+    padding: 10px;
+    display: inline-block;
+    color: #DFD0B8;
+}
+
+.product-type{
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #948979;
+    padding: 0 10px;
+    margin-top: 0px;
+}
+
+.product-section-description {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.product-section-description p{
+    background-color: #393E46;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-top: 0px;
+    padding: 10px;
+    display: inline-block;
+    color: #DFD0B8;
+}
+
+.product-type-list{
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+
+.product-type-list li{
+    padding: 20px;
+    background-color: #393E46;
+    border-radius: 10px;
+}
+
+.product-type-list li a {
+    text-decoration: none; 
+    color: #DFD0B8;
+}
+
+.product-details{
+    background-color: cadetblue;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding:15px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    border: 1px solid black;
+}
+
+.product-details-list{
+    list-style: none;
+}
+
+.product-details-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

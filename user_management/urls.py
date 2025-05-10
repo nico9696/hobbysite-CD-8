@@ -1,9 +1,12 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
+from django.shortcuts import redirect
 
+app_name = "user_management"
 
 urlpatterns = [
+    path("", lambda request: redirect("user_management:home", permanent=False)),  # Redirect to 'home'
     path("login/", views.login_view, name="login"),
     path("logout/", views.logout_view, name="logout"),
     path("home/", views.home, name="home"),
