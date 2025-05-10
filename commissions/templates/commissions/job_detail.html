@@ -3,7 +3,8 @@
 
 
 {% block body %}
-    <h2>{{ job.role }} Applicants </h2>
+    <h2><a href="{% url 'commission_detail' commission_id=commission.id %}"> {{ commission }} </a></h2>
+    <h3>{{ job.role }} Applicants </h3>
 
 {% if user.is_authenticated %}
     <ul>
