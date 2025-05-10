@@ -10,20 +10,24 @@
         <a href="{% url 'job_update' job_id=job.id %}">
             <button>Edit Job</button>
         </a>
-        {% for applicant in applicants %}
-                    <li>
-                        {{ applicant.applicant }} - Status: {{ applicant.get_status_display }}
-                    <div>
-                        <form method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="applicant_id" value="{{ applicant.id }}">
-                            <button type="submit" name="action" value="Accept">Accept</button>
-                            <button type="submit" name="action" value="Reject">Reject</button>
-                        </form>
-                    </div>
+        {% if applicants %}
+            {% for applicant in applicants %}
+                <li>
+                    {{ applicant.applicant }} - Status: {{ applicant.get_status_display }}
+                        <div>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="applicant_id" value="{{ applicant.id }}">
+                                <button type="submit" name="action" value="Accept">Accept</button>
+                                <button type="submit" name="action" value="Reject">Reject</button>
+                            </form>
+                        </div>
                 </li>
             {% endfor %}
-        </ul>
+        {% else %}
+            <p>There are no applicants for this job.</p>
+        {% endif %}
+    </ul>
 {% else %}
     <p><a href="{% url 'login' %}"> You must be logged in.</a></p>
 {% endif %}

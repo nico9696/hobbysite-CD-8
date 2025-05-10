@@ -41,7 +41,7 @@ def commission_detail(request, commission_id):
     job_details = []
     for job in jobs:
         accepted_applicants = JobApplication.objects.filter(job=job, status='Accepted').count()
-        open_manpower = job.people_required - accepted_applicants
+        open_manpower = max(0, job.people_required - accepted_applicants)
         sum_manpower += job.people_required
         sum_open_manpower += open_manpower
 
@@ -53,6 +53,7 @@ def commission_detail(request, commission_id):
             'open_manpower': open_manpower,
             'accepted_applicants': accepted_applicants,
             'job_application': job_application,
+            'status': job.status,
         })
 
     if request.method == 'POST':
