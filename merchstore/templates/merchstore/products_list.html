@@ -1,4 +1,7 @@
-{% extends "merchstore/layout.html" %}
+{% extends 'base/layout.html' %}
+
+{% block title %}Merchstore - Hobby Site{% endblock %}
+
 {% block body %}
     {% if user.is_authenticated %}
         <a href="{% url 'add_product' %}">Add new product!</a>
@@ -45,4 +48,5 @@
             </ul>
         </div>
     {% endfor %}
+    
 {% endblock %}

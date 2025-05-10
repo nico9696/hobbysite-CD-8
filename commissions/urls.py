@@ -1,7 +1,11 @@
 from django.urls import path
 from commissions import views
+from django.shortcuts import redirect
+
+app_name = "commissions"
 
 urlpatterns = [
+    path("", lambda request: redirect("commissions:commission_list", permanent=False)),  # Redirect to 'commission_list'
     path('list/', views.commission_list, name='commission_list'),
     path('detail/<int:commission_id>/', views.commission_detail, name='commission_detail'),
     path('add/', views.commission_create, name='commission_create'),

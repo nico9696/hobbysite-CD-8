@@ -1,7 +1,11 @@
 from django.urls import path
 from . import views
+from django.shortcuts import redirect
+
+app_name = "merchstore"
 
 urlpatterns = [
+    path("", lambda request: redirect("merchstore:show_products_list", permanent=False)),  # Redirect to 'show_products_list'
     path("items/", views.show_products_list, name="show_products_list"), 
     path("item/<int:num>/", views.show_product_details, name="show_product_details"),
     path("item/add/", views.add_product, name="add_product"),

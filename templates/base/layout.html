@@ -13,10 +13,11 @@
 
         <nav>
             <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'wiki:index' %}">Wiki</a>
-            <a href="{% url 'blog:index' %}">Blog</a>
-            <a href="{% url 'forum:index' %}">Forum</a>
-            <a href="{% url 'merchstore:index' %}">Merch Store</a>
+            <a href="{% url 'wiki:wiki_list' %}">Wiki</a>
+            <a href="{% url 'blog:blog_list' %}">Blog</a>
+            <a href="{% url 'forum:forum_list' %}">Forum</a>
+            <a href="{% url 'commissions:commission_list' %}">Commissions</a>
+            <a href="{% url 'merchstore:show_products_list' %}">Merch Store</a>
         </nav>
 
         <div class="content-div">
