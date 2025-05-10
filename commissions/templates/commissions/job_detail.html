@@ -7,14 +7,18 @@
     <h3>{{ job.role }} Applicants </h3>
 
 {% if user.is_authenticated %}
+    {% if user.user == job.author %}
     <ul>
         <a href="{% url 'job_update' job_id=job.id %}">
             <button>Edit Job</button>
         </a>
+    {% endif %}
+    
         {% if applicants %}
             {% for applicant in applicants %}
                 <li>
                     {{ applicant.applicant }} - Status: {{ applicant.get_status_display }}
+                    {% if user.user == job.author %}
                         <div>
                             <form method="POST">
                                 {% csrf_token %}
@@ -23,6 +27,7 @@
                                 <button type="submit" name="action" value="Reject">Reject</button>
                             </form>
                         </div>
+                    {% endif %}
                 </li>
             {% endfor %}
         {% else %}

@@ -25,6 +25,7 @@ class Commission(models.Model):
           verbose_name_plural = "Commissions" 
 
 class Job(models.Model):
+    author = models.ForeignKey(Profile, null=True, on_delete=models.SET_NULL, related_name='jobs')
     commission = models.ForeignKey(Commission,on_delete=models.CASCADE)
     role =  models.CharField(max_length=255)
     people_required = models.PositiveIntegerField()

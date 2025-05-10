@@ -10,9 +10,11 @@
     <p>Total Manpower Required: {{ sum_manpower }} </p>
     <p>Open Positions: {{ sum_open_manpower }} </p>
     {% if user.is_authenticated %}
-        <a href="{% url 'commission_update' commission_id=commission.id %}">
-            <button>Edit Commission</button>
-        </a>
+        {% if user.profile == commission.author %}
+            <a href="{% url 'commission_update' commission_id=commission.id %}">
+                <button>Edit Commission</button>
+            </a>
+        {% endif %}
     {% endif %}
 
     <h3>Jobs:</h3>
@@ -56,9 +58,10 @@
                 <p>No Jobs.</p>
             </div>
         {% endfor %}  
-
-        <a href="{% url 'job_create' commission_id=commission.id %}">
-            <button>Create Job</button>
-        </a>
+        {% if user.profile == commission.author %}
+            <a href="{% url 'job_create' commission_id=commission.id %}">
+                <button>Create Job</button>
+            </a>
+        {% endif %}
     </ul>
 {% endblock %}
