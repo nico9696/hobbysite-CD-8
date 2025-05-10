@@ -98,6 +98,12 @@ def add_product(request):
         if product_form.is_valid():
             product = product_form.save(commit=False) # Create but don't save yet
             product.owner = profile # Set the desired field value
+            if product.stock <= 0: 
+                product.status = 'out_of_stock'
+            elif product.stock >= 1 and product.status == 'on_sale':
+                product.status = 'on_sale'
+            elif product.stock >= 1:
+                product.status = 'available'
             product.save() # Now save to the database
 
         return redirect('show_products_list')
@@ -127,6 +133,8 @@ def update_product(request, product_id):
             # change status based on stock
             if product.stock <= 0: 
                 product.status = 'out_of_stock'
+            elif product.stock >= 1 and product.status == 'on_sale':
+                product.status = 'on_sale'
             elif product.stock >= 1:
                 product.status = 'available'
             

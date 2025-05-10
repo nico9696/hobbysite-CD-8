@@ -1,36 +1,37 @@
 {% extends "merchstore/layout.html" %}
 {% block body %}
 
-    <h1>CART VIEW (see what you BOUGHT)</h1>
-    <h2>Transactions grouped by seller</h2>
+<div class="cart-container">
+    <h3>CART VIEW (see what you BOUGHT)</h3>
 
-    <!-- help from AI: -->
-    <!-- This groups the transactions list by the product's owner field (aka seller).
-    The result is stored in a new variable called seller_groups.
-    Each item in buyer_groups contains 2 fields:
-    grouper: the seller object (a Profile)
-    list: a list of transactions for that seller -->
     {% regroup transactions by product.owner as seller_groups %}
 
     {% if seller_groups %}
         {% for group in seller_groups %}
-            <h3>Seller: {{ group.grouper.user.username }}</h3>
-            <ul>
-                {% for transaction in group.list %}
-                    <li>
-                        <strong>Product:</strong> {{ transaction.product.name }} |
-                        <strong>Amount:</strong> {{ transaction.amount }} |
-                        <strong>Status:</strong> {{ transaction.get_status_display }} |
-                        <strong>Date:</strong> {{ transaction.created_on|date:"Y-m-d H:i" }}
-                    </li>
-                {% endfor %}
-            </ul>
+            <div class="top-left-section">
+                <h4>Seller: {{ group.grouper.user.username }}</h4>
+            </div>
+            <div class="trans-cart-details">
+                <ul>
+                    {% for transaction in group.list %}
+                        <li>
+                            <strong>Product:</strong> {{ transaction.product.name }} |
+                            <strong>Amount:</strong> {{ transaction.amount }} |
+                            <strong>Status:</strong> {{ transaction.get_status_display }} |
+                            <strong>Date:</strong> {{ transaction.created_on|date:"Y-m-d H:i" }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
             <hr>
         {% endfor %}
     {% else %}
         <p>No transactions found.</p>
     {% endif %} 
-   
-<a href="{% url 'show_products_list'%}">Back to list of all products!</a>    
+</div>
+
+<footer>
+    <a href="{% url 'show_products_list' %}">Back to list of all products</a>
+</footer>
 
 {% endblock %}
