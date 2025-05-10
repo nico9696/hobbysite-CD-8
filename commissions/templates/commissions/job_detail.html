@@ -1,0 +1,40 @@
+{% extends "commissions/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+    <h2><a href="{% url 'commission_detail' commission_id=commission.id %}"> {{ commission }} </a></h2>
+    <h3>{{ job.role }} Applicants </h3>
+
+{% if user.is_authenticated %}
+    {% if user.user == job.author %}
+    <ul>
+        <a href="{% url 'job_update' job_id=job.id %}">
+            <button>Edit Job</button>
+        </a>
+    {% endif %}
+    
+        {% if applicants %}
+            {% for applicant in applicants %}
+                <li>
+                    {{ applicant.applicant }} - Status: {{ applicant.get_status_display }}
+                    {% if user.user == job.author %}
+                        <div>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="applicant_id" value="{{ applicant.id }}">
+                                <button type="submit" name="action" value="Accept">Accept</button>
+                                <button type="submit" name="action" value="Reject">Reject</button>
+                            </form>
+                        </div>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        {% else %}
+            <p>There are no applicants for this job.</p>
+        {% endif %}
+    </ul>
+{% else %}
+    <p><a href="{% url 'login' %}"> You must be logged in.</a></p>
+{% endif %}
+{% endblock %}

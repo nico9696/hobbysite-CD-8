@@ -1,0 +1,12 @@
+{% extends "merchstore/layout.html" %}
+{% block body %}
+    <form method="post">
+        {% csrf_token %}
+        <h2>Update/Edit product</h2>
+        <p>Owner: you</p>
+        {{ update_product_form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="{% url 'show_products_list'%}">Back to list of all products!</a>
+{% endblock %}
