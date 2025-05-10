@@ -1,48 +1,65 @@
-{% extends "merchstore/layout.html" %}
+{% extends 'merchstore/layout.html' %}
+
+{% block title %}Merchstore - Hobby Site{% endblock %}
+
 {% block body %}
-    {% if user.is_authenticated %}
-        <a href="{% url 'add_product' %}">Add new product!</a>
-        <a href="{% url 'show_cart' %}">Show cart!</a>
-        <a href="{% url 'show_transactions' %}">Show Transactions!</a>
-    {% endif %}
-
-    <h1>your products</h1>
-    <div class="product-type">
-        <ul class="product-type-list">
-            {% for product in users_products_list %}
-                <li>
-                    <a href="{% url 'show_product_details' product.id %}">{{ product.name }}</a> 
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <h1>other peep's products</h1>
-    {% for product_type in product_type_list %}
+    
+    <div class="product-section">
+        <div class="top-left-section">
+            <h4>your products</h4>
+        </div>
         <div class="product-type">
-            <div class="product-type-description">
-                <h2>{{ product_type }}</h2>
-                <p>{{ product_type.description }}</p>
-            </div>
             <ul class="product-type-list">
-                {% if product_type.name != "Others" %}
-                    {% for product in not_users_products_list %}
-                        {% if product_type == product.product_type %}
-                            <li>
-                                <a href="{% url 'show_product_details' product.id %}">{{ product.name }}</a> 
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-                {% else %}
-                    {% for product in null_product_type_list %}
-                        {% if product.owner != profile %}
-                            <li>
-                                <a href="{% url 'show_product_details' product.id %}">{{ product.name }}</a> 
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
+                {% for product in users_products_list %}
+                    <li>
+                        <a href="{% url 'show_product_details' product.id %}" class="btn">
+                            {{ product.name }}
+                        </a>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
+    </div>
+
+    {% for product_type in product_type_list %}
+        <div class="product-section">
+            <div class="top-left-section">
+                <h4>{{ product_type }}</h4>
+            </div>
+            <div class="product-type">
+                <ul class="product-type-list">
+                    {% if product_type.name != "Others" %}
+                        {% for product in not_users_products_list %}
+                            {% if product_type == product.product_type %}
+                                <li>
+                                    <a href="{% url 'show_product_details' product.id %}" class="btn">
+                                        {{ product.name }}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        {% for product in null_product_type_list %}
+                            {% if product.owner != profile %}
+                                <li>
+                                    <a href="{% url 'show_product_details' product.id %}" class="btn">
+                                        {{ product.name }}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="product-section-description">
+                <p>desc: {{ product_type.description }}</p>
+            </div>
+        </div>
     {% endfor %}
+    
+    <footer>
+        <a href="{% url 'add_product' %}">Add new product</a>
+        <a href="{% url 'show_cart' %}">Show cart</a>
+        <a href="{% url 'show_transactions' %}">Show transactions</a>
+    </footer>
 {% endblock %}

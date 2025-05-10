@@ -1,23 +1,99 @@
+/* General styles */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color:bisque;
+    margin: 0;
+    padding: 0;
+    background-color: #222831;
 }
 
-h1{
-    text-align: center;
+nav {
+    width: 100%;
+    padding: 10px;
+    text-align: center;  
+    margin-top: 20px;
+}
+
+nav a {
+    color: #DFD0B8;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 30px;
+    font-style: bold;
+    background-color: #393E46;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.content-div {
+    padding: 40px 20px;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #222831;
+    padding: 7px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* adds a nice shadow */
+    height: 30px;
+    opacity: 0.75;
+}
+
+footer a{
+    color: #DFD0B8;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 22px;
+    font-style: bold;
+    background-color: #393E46;
+    padding: 1px 8px;
+    border-radius: 10px;
+}
+
+.product-section{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative; /* Needed for absolute positioning inside */
+    padding-bottom: 55px; /* Reserve space if needed */
+}
+
+.top-left-section h4{
+    background-color: #393E46;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 0px;
+    padding: 10px;
+    display: inline-block;
+    color: #DFD0B8;
 }
 
 .product-type{
-    border: 1px black solid;
-    border-radius: 10px;
-    background-color: cadetblue;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #948979;
     padding: 0 10px;
-    margin-bottom: 10px;
+    margin-top: 0px;
 }
 
-.product-type-description{
-    display: flex;
-    justify-content: space-between;
+.product-section-description {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.product-section-description p{
+    background-color: #393E46;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-top: 0px;
+    padding: 10px;
+    display: inline-block;
+    color: #DFD0B8;
 }
 
 .product-type-list{
@@ -26,34 +102,82 @@ h1{
     gap: 10px;
 }
 
-.product-type-list li{
-    padding: 20px;
-    background-color: bisque;
-    border-radius: 10px;
-}
-
-.product-type-list li a {
+.btn {
     text-decoration: none; 
-    color: black;
+    color: #DFD0B8;
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #393E46;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.btn:hover {
+    background-color: #222831;
 }
 
-.product-details{
-    background-color: cadetblue;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    padding:15px;
+.messages {
+    list-style-type: none;
+    padding-left: 0;
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.product-detail-block {
+    background-color: #393E46;
     border-radius: 10px;
-    margin-bottom: 50px;
-    border: 1px solid black;
+    padding: 15px;
+    margin-bottom: 20px;
+    color: #DFD0B8;
 }
 
-.product-details-list{
-    list-style: none;
-}
-
-.product-details-header{
+.product-details-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
+}
+
+.product-details-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.product-info p {
+    margin: 5px 0;
+    color: #DFD0B8;
+}
+
+.purchase-form {
+    background-color: #393E46;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    color: #DFD0B8;
+}
+
+.purchase-form h2 {
+    margin-top: 0;
+}
+
+.purchase-form button {
+    margin-top: 10px;
+    background-color: #00ADB5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.purchase-form button:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+}
+
+.edit-link {
+    text-align: center;
+    margin-top: 20px;
 }
