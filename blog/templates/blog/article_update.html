@@ -8,6 +8,6 @@
             {{ form.as_p }}
             <button type="submit">Update</button>
         </form>
-        <p><a href="{% url 'article_details' object.pk %}">Back to Article</a></p>
+<a href="{% url 'article_details' article.pk %}">Back to Article</a>
     </div>
 {% endblock %}
