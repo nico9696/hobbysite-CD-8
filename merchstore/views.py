@@ -32,7 +32,8 @@ def show_products_list(request):
         "user": user,
         "product_type_list": product_types,
         "product_list": Product.objects.all(),
-        "null_product_type_list": Product.objects.filter(product_type__isnull=True)
+        "null_product_type_list": Product.objects.filter(product_type__isnull=True),
+        "profile": profile,
     })
 
 

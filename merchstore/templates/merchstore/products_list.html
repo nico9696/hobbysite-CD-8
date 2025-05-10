@@ -35,9 +35,11 @@
                     {% endfor %}
                 {% else %}
                     {% for product in null_product_type_list %}
-                        <li>
-                            <a href="{% url 'show_product_details' product.id %}">{{ product.name }}</a> 
-                        </li>
+                        {% if product.owner != profile %}
+                            <li>
+                                <a href="{% url 'show_product_details' product.id %}">{{ product.name }}</a> 
+                            </li>
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
             </ul>
