@@ -5,10 +5,11 @@
     <head>
         <title>Forum App</title>
         <link rel='stylesheet' href="{% static 'forum/styles.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> <!-- Imports Roboto font -->
     </head>
     <body>
         <header>
-            <h1>Forum App</h1>
+            <a href="{% url 'home' %}">HOBBY SITE</a>
         </header>
         <main>
             {% block content %}

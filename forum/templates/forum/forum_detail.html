@@ -4,18 +4,18 @@
 <h1 class="category-name">{{ thread.category.name }}</h1>
 <div class="post-details">
     <h2>{{ thread.title }}</h2>
-    <div class="post-entry">
-        <p>{{ thread.entry }}</p>
-    </div>
-    {% if thread.image %}
-        <img src="{{ thread.image.url }}" alt="Thread Image">
-    {% endif %}
-    <p class="timestamp">
-        By {{ thread.author.user.username }} <br>
-        Created on: {{ thread.created_on }}, UTC <br>
-        Updated on: {{ thread.updated_on }}, UTC
-    </p>
-    <hr>
+    <div class="forum-detail">
+        <div class="post-entry">
+            <p>{{ thread.entry }}</p>
+            {% if thread.image %}
+                <img src="{{ thread.image.url }}" alt="Thread Image">
+            {% endif %}
+            <p class="timestamp">
+                By {{ thread.author.user.username }} <br>
+                Created on: {{ thread.created_on }}, UTC <br>
+                Updated on: {{ thread.updated_on }}, UTC
+            </p>
+        </div>
 
     {% for comment in comments %}
         <div class="post-entry">
@@ -28,33 +28,42 @@
                 Created on: {{ comment.created_on }}, UTC <br>
                 Updated on: {{ comment.updated_on }}, UTC
             </p>
-            <hr>
         </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
 
 {% if user.is_authenticated %}
-    <hr>
-    <h3>Write a Comment</h3>
-    <form method="POST">
+<div class="new-category-add-form">
+    <div class="top-left-section">
+        <h4>Write a Comment</h4>
+    </div>
+    <form method="POST" class="update-add-form">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
+</div>
 {% endif %}
 
-<hr>
-<h3>Related Posts</h3>
-<ul>
-    {% for related_thread in related_threads %}
-        <li><a href="{% url 'forum_detail' forum_id=related_thread.id %}">{{ related_thread.title }}</a></li>
-    {% endfor %}
-</ul>
+{% if related_threads %}
+<div class="category">
+    <div class="top-left-section">
+        <h4>Related Posts</h4>
+    </div>
+    <ul class="forum-list">
+        {% for related_thread in related_threads %}
+            <li><a href="{% url 'forum_detail' forum_id=related_thread.id %}">{{ related_thread.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif%}
 
-{% if thread.author == user.profile %}
-    <a href="{% url 'thread_update' thread.id %}">Edit Thread</a>
-{% endif %}
-<br>
-<a href="{% url 'forum_list' %}">Back to Forum</a>
+<footer>
+    {% if thread.author == user.profile %}
+        <a href="{% url 'thread_update' thread.id %}">Edit Thread</a>
+    {% endif %}
+    <a href="{% url 'forum_list' %}">Back to Forum</a>
+</footer>
 
 {% endblock %}
