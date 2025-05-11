@@ -1,32 +1,125 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background-color:bisque;
+    margin: 0;
+    padding: 0;
+    background-color: #222831;
 }
 
-h1{
-    text-align: center;
+nav {
+    width: 100%;
+    padding: 10px;
+    text-align: center;  
+    margin-top: 20px;
+}
+
+nav a {
+    color: #DFD0B8;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 30px;
+    font-style: bold;
+    background-color: #393E46;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.content-div {
+    padding: 40px 20px;
+}
+
+.commission-section{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding-bottom: 55px;
+}
+
+.top-left-section h4 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 20px;
+    color: #00ADB5;
+    border-bottom: 2px solid #00ADB5;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #393E46;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.commission-type{
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #948979;
+    padding: 0 10px;
+    margin-top: 0px;
+}
+
+.commission-type-list{
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+
+
+
+h1 a{
+    margin-top: 0px;
+    margin-bottom: 25px;
+    color: #DFD0B8;
+    text-decoration: none;
+    font-size: 30px;
+    font-style: bold;
+    background-color: #393E46;
+    padding: 8px;
+    border-radius: 10px;
 }
 
 .commission{
-    border: 1px black solid;
-    border-radius: 10px;
-    background-color: cadetblue;
-    padding: 0 10px;
-    margin-bottom: 10px;
+    text-decoration: none; 
+    color: #DFD0B8;
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #393E46;
+    text-decoration: none;
+    border-radius: 5px;
 }
 
-.dates{
+.commission-title{
+    text-decoration: none; 
+    color: #EEEEEE;
+    font-size: 20px;
+}
+
+.commission:hover {
+    background-color: #222831;
+}
+
+
+
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #222831;
+    padding: 7px;
+    align-items: center;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* adds a nice shadow */
+    height: 30px;
+    opacity: 0.75;
 }
 
-
-.jobs{
-    border: 1px black solid;
+footer a{
+    color: #DFD0B8;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 22px;
+    font-style: bold;
+    background-color: #393E46;
+    padding: 1px 8px;
     border-radius: 10px;
-    background-color: cadetblue;
-    padding: 0 10px;
-    margin-bottom: 10px;
 }
-

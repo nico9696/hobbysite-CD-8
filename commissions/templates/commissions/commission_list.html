@@ -1,59 +1,88 @@
 {% extends "commissions/layout.html" %}
 {% load static %}
 
-{% block title %}Commissions{% endblock %}
+{% block title %}Commissions  - Hobby Site{% endblock %}
+
 
 {% block body %}
 
+<h1><a href="{% url 'commission_list' %}">Commissions</a></h1>
 
-    <h2>Commissions You Have Created</h2>
-    {% if created_by_user %}
-        <ul>
-            {% for commission in created_by_user %}
-                <li class="commission">
-                    <a href="{% url 'commission_detail' commission_id=commission.id %}">{{ commission.title }}</a>
-                    <p>{{ commission.description }}</p>
-                    <p>Status: {{ commission.get_status_display }}</p>
-                    <p>Created on: {{ commission.created_on }}</p>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No Commissions Created.</p>
-    {% endif %}
 
-    <h2>Commissions You Have Applied To</h2>
-    {% if applied_by_user %}
-        <ul>
-            {% for commission in applied_by_user %}
-                <li class="commission">
-                    <a href="{% url 'commission_detail' commission_id=commission.id %}">{{ commission.title }}</a>
-                    <p>{{ commission.description }}</p>
-                    <p>Status: {{ commission.get_status_display }}</p>
-                    <p>Created on: {{ commission.created_on }}</p>
+    <div class="commission-section">
+        <div class="top-left-section">
+            <h4>Commissions You Have Created</h4>
+        </div>
+        <div class="commission-type">
+            {% if created_by_user %}
+            <ul class="commission-type-list">
+                {% for commission in created_by_user %}
+                <li>
+                    <a href="{% url 'commission_detail' commission_id=commission.id %}" class="commission">
+                        <p class = "commission-title">{{ commission.title }}</p>
+                        <p>{{ commission.description }}</p>
+                        <p><strong>Status:</strong> {{ commission.get_status_display }}</p>
+                        <p><strong>Created on:</strong> {{ commission.created_on }}</p>
+                    </a>
                 </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No Commissions Applied For.</p>
-    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+            {% else %}
+                <p>No commissions created.</p>
+            {% endif %}
+    </div>
 
-    <h2>All Commissions</h2>
-    {% if commission_list %}
-        <ul>
-            {% for commission in commission_list %}
-                <li class="commission">
-                    <a href="{% url 'commission_detail' commission_id=commission.id %}">{{ commission.title }}</a>
-                    <p>{{ commission.description }}</p>
-                    <p>Status: {{ commission.get_status_display }}</p>
-                    <p>Created on: {{ commission.created_on }}</p>
+
+    <div class="commission-section">
+        <div class="top-left-section">
+            <h4>Commissions You Have Applied To</h4>
+        </div>
+        <div class="commission-type">
+            {% if applied_by_user %}
+            <ul class="commission-type-list">
+                {% for commission in applied_by_user %}
+                <li>
+                    <a href="{% url 'commission_detail' commission_id=commission.id %}" class="commission">
+                        <p class = "commission-title">{{ commission.title }}</p>
+                        <p>{{ commission.description }}</p>
+                        <p><strong>Status:</strong> {{ commission.get_status_display }}</p>
+                        <p><strong>Created on:</strong> {{ commission.created_on }}</p>
+                    </a>
                 </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No Commissions Available.</p>
-    {% endif %}
-    <a href="{% url 'commission_create' %}">
-        <button>Create Commission</button>
-    </a>
+                {% endfor %}
+            </ul>
+        </div>
+            {% else %}
+                <p>No commissions applied to.</p>
+            {% endif %}
+    </div>
+
+    <div class="commission-section">
+        <div class="top-left-section">
+            <h4>All Commissions</h4>
+        </div>
+        <div class="commission-type">
+            {% if commission_list %}
+            <ul class="commission-type-list">
+                {% for commission in commission_list %}
+                <li>
+                    <a href="{% url 'commission_detail' commission_id=commission.id %}" class="commission">
+                        <p class = "commission-title">{{ commission.title }}</p>
+                        <p>{{ commission.description }}</p>
+                        <p><strong>Status:</strong> {{ commission.get_status_display }}</p>
+                        <p><strong>Created on:</strong> {{ commission.created_on }}</p>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+            {% else %}
+                <p>No commissions available.</p>
+            {% endif %}
+    </div>
+
+    <footer>
+        <a href="{% url 'commission_create' %}">Create Commission</a>
+    </footer>
 {% endblock %}

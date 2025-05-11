@@ -1,15 +1,19 @@
 {% load static %}
 
 <html lang="en">
-<head>
-    <title>{% block title %}Commissions{% endblock %}</title>
-    <link href="{% static 'commissions/styles.css' %}" rel="stylesheet">
-</head>
-<body>
-    <h1><a href="{% url 'commission_list' %}">Commissions</a> <h1>
+    <head>
+        <title>{% block title %}Commissions{% endblock %}</title>
+        <link href="{% static 'commissions/styles.css' %}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    </head>
+    <body>
+        <nav>
+            <a href="{% url 'home' %}">HOBBY SITE</a>
+        </nav>
 
-    {% block body %}
-    {% endblock %}
+        <div class="content-div">
+            {% block body %}{% endblock %}
+        </div>
 
-</body>
+    </body>
 </html>
