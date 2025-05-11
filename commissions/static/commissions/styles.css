@@ -27,6 +27,8 @@ nav a {
     padding: 40px 20px;
 }
 
+/* commission_list */
+
 .commission-section{
     display:flex;
     flex-direction: column;
@@ -96,7 +98,56 @@ h1 a{
     background-color: #222831;
 }
 
+/* commission_form */
 
+.whole-update-add-form {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #393E46;
+    border-radius: 10px;
+    color: #DFD0B8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.update-add-form p {
+    margin-bottom: 15px;
+}
+
+.update-add-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #DFD0B8;
+}
+
+.update-add-form input[type="text"],
+.update-add-form input[type="number"],
+.update-add-form textarea,
+.update-add-form select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #DFD0B8;
+    background-color: #222831;
+    color: #DFD0B8;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.update-add-form button {
+    background-color: #00ADB5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.update-add-form button:hover {
+    background-color: #007f85;
+}
 
 footer{
     position: fixed;
