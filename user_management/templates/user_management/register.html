@@ -7,13 +7,14 @@
 
 {% block body %}
 
-    <form action="{% url 'register' %}" method="post">
+    <div class="login-form">
+    <form action="{% url 'register' %}" method="post" class="update-add-form">
         {% csrf_token %}
         <input type="text" name="username" placeholder="Username">
         <input type="password" name="password" placeholder="Password">
         <input type="text" name="display_name" placeholder="Display Name">
         <input type="email" name="email" placeholder="Email">
-        <input type="submit" value="Register">
+        <input type="submit" value="Register" class="button-container">
     </form>
 
      <!-- Display error message -->
@@ -24,4 +25,5 @@
          {% endfor %}
      </ul>
  {% endif %}
+    </div>
 {% endblock %}

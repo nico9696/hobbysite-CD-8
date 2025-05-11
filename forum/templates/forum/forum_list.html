@@ -4,17 +4,17 @@
 <div class="main-content">
     <h2>Forum Threads</h2>
 
-    <a href="{% url 'thread_create' %}">Create a New Thread</a>
-
     {% if user_threads_by_category %}
-        <h3>My Threads</h3>
+    <div class="thread-section">
+        <div class="thread-main">
+            <h3>My Threads</h3>
+        </div>
         {% for category, threads in user_threads_by_category.items %}
             {% if threads %}
                 <div class="category">
-                    <h3>{{ category.name }}</h3>
-                    <p>{{ category.description }}</p>
-                    <hr>
-        
+                    <div class="top-left-section">
+                        <h4>{{ category.name }}</h4>
+                    </div>
                     <ul class="forum-list">
                         {% for title, thread_id in threads.items %}
                             <li>
@@ -22,20 +22,25 @@
                             </li>
                         {% endfor %}
                     </ul>
+                    <div class="bottom-right-section">
+                        <p>{{ category.description }}</p>
+                    </div>
                 </div>
             {% endif %}
         {% endfor %}
-        <hr>
     {% endif %}
+    </div>
 
-    <h3>Other Threads</h3>
+    <div class="thread-section">
+        <div class="thread-main">
+            <h3>Other Threads</h3>
+        </div>
     {% for category, threads in other_threads_by_category.items %}
         {% if threads %}
             <div class="category">
-                <h3>{{ category.name }}</h3>
-                <p>{{ category.description }}</p>
-                <hr>
-
+                <div class="top-left-section">
+                    <h4>{{ category.name }}</h4>
+                </div>
                 <ul class="forum-list">
                     {% for title, thread_id in threads.items %}
                         <li>
@@ -43,8 +48,16 @@
                         </li>
                     {% endfor %}
                 </ul>
+                <div class="bottom-right-section">
+                    <p>{{ category.description }}</p>
+                </div>
             </div>
         {% endif %}
     {% endfor %}
+    </div>
+
+    <footer>
+        <a href="{% url 'thread_create' %}">Create a New Thread</a>
+    </footer>
 </div>
 {% endblock %}
