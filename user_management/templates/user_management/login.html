@@ -7,21 +7,23 @@
 
 {% block body %}
 
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="Username">
-        <input type="password" name="password" placeholder="Password">
-        <input type="submit" value="Login">
-    </form>
+    <div class="login-form">
+        <form action="{% url 'login' %}" method="post" class="update-add-form">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" value="Login" class="button-container">
+        </form>
 
-    <p>Don't have an account?</p>
-    <a href="{% url 'register' %}">
-        <button type="button">Register</button>
-    </a>
+        <p>Don't have an account?</p>
+        <a href="{% url 'register' %}">
+            <button type="button">Register</button>
+        </a>
 
-    <p>Forgot Password?</p>
-    <a href="{% url 'reset_password' %}">
-        <button type="button">Reset Password</button>
-    </a>
+        <p>Forgot Password?</p>
+        <a href="{% url 'reset_password' %}">
+            <button type="button">Reset Password</button>
+        </a>
+    </div>
 
 {% endblock %}
