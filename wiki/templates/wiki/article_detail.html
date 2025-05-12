@@ -23,11 +23,15 @@
         </div>
     </div>
 
-    <div class="side-content">
-        <h3>Read More :</h3>
-        {% for article in related_articles %}
-            <a href="{{ article.get_absolute_url }}" class="link-button">{{ article.title }}</a>
-        {% endfor %}
+    <div class="article-section">
+        <span class="section-header">Read More</span>
+        <div class="section-content">
+            <ul>
+                {% for article in related_articles %}
+                    <li><a href="{{ article.get_absolute_url }}" class="link-btn">{{ article.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 
     <div class="main-content">
