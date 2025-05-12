@@ -36,7 +36,13 @@
                                             <p>All positions for this job are filled.</p>
                                         {% endif %}
                                     {% else %}
-                                <p>You have already applied for this job.</p>
+                                        {% if job.job_application.status == 'Rejected' %}
+                                            <p>You have been rejected for this job.</p>
+                                        {% elif job.job_application.status == 'Accepted' %}
+                                            <p>You have been accepted for this job.</p>
+                                        {% elif job.job_application.status == 'Pending' %}
+                                            <p>You have already applied for this job.</p>
+                                        {% endif %}
                                     {% endif %}
                                 {% else %}
                                     <p>All positions for this job are filled.</p>

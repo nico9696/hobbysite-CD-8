@@ -7,13 +7,14 @@
 {% if user.is_authenticated %}
     {% if user.user == job.author %}
     <ul>
-    {% if applicants %}
+    
         <div class="job-details-whole">
             <div class="job-details">
                 <h1><a href="{% url 'commission_detail' commission_id=commission.id %}"> {{ commission }} </a></h1>
                 <div class="top-left-section">
                     <h4> Applicants for: {{ job.role }}  </h4>
                 </div>
+                {% if applicants %}
                 {% for applicant in applicants %}
                 <div class="job-detail-block">
                     <li>
@@ -31,11 +32,14 @@
                         {% endif %}
                     </li>
                 {% endfor %}
+                {% else %}
+                <div class="job-detail-block">
+                    <p>There are no applicants for this job.</p>
+                </div>
+            {% endif %}
                 </div>
             </div>
-            {% else %}
-                <p>There are no applicants for this job.</p>
-            {% endif %}
+
     </ul>
     {% endif %}
 {% else %}
