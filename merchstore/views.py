@@ -16,6 +16,7 @@ def show_products_list(request):
         is_users = Product.objects.filter(owner=profile)
         is_not_users = Product.objects.filter(~Q(owner=profile))
     else:
+        profile = None
         is_users = None
         is_not_users = Product.objects.all()
 
@@ -106,6 +107,8 @@ def add_product(request):
                 product.status = 'available'
             product.save() # Now save to the database
 
+            return redirect('show_product_details', num=product.id)
+
         return redirect('show_products_list')
     
     product_form = ProductForm(prefix="product")
@@ -139,6 +142,8 @@ def update_product(request, product_id):
                 product.status = 'available'
             
             product_form.save() # Now save to the database
+
+            return redirect('show_product_details', num=product_id)
 
         return redirect('show_products_list')
     

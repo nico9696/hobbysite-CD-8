@@ -83,6 +83,10 @@ footer a{
     margin-top: 0px;
 }
 
+#your-products{
+    background-color:#007f85;
+}
+
 .product-section-description {
     position: absolute;
     bottom: 0;
