@@ -1,14 +1,12 @@
+/* General Styles */
 body {
 	font-family: 'Roboto', sans-serif;
-	background-color: bisque;
-	margin: 0px;
+	margin: 0;
+	padding: 0;
+	background-color: #222831;
 	height: 100vh; /* height of browser */
 	display: flex;
 	flex-direction: column;
-}
-
-hr {
-	border: 1px solid black;
 }
 
 header {
@@ -18,67 +16,212 @@ header {
 }
 
 nav {
-	margin: 20px;
+	padding: 1px;
+	text-align: center;
+    margin-top: 20px;
 	display: flex;
-	gap: 20px;
+	justify-content: center;
 }
 
-footer {
-	background-color: rgb(175, 148, 108);
-	padding: 2px 20px;
-	text-align: center;
+nav a {
+    color: #DFD0B8;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 30px;
+    font-style: bold;
+    background-color: #393E46;
+    padding: 8px;
+    border-radius: 10px;
 }
 
 .content-div {
-	flex: 1;
-	margin: 20px;
-}
-
-.main-content, .side-content {
-	background-color: cadetblue;
-	padding: 30px 30px;
-	margin: 20px 0;
-	border-radius: 20px;
-}
-
-.main-content::after {
-	content: "";
-	clear: both;
-	display: table;
-}
-
-.side-content {
-	padding: 10px 20px;
+    padding: 40px 20px 60px;
 	display: flex;
-	align-items: center;
-	gap: 20px;
+	flex-direction: column;
+	gap: 55px;
 }
 
-.category-section {
-	margin-bottom: 50px;
+.card-section {
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #393E46;
+    border-radius: 10px;
+    color: #DFD0B8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.articles-list {
-	list-style: none;
+.dark-card {
+	background-color: #222831;
+}
+
+.span-screen {
+    width: 95%;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 7px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+	gap: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* adds a nice shadow */
+    opacity: 0.75;
+}
+
+footer a {
+    color: #DFD0B8;
+    text-decoration: none;
+    font-size: 22px;
+    font-style: bold;
+    background-color: #393E46;
+    padding: 1px 8px;
+    border-radius: 10px;
+}
+
+
+
+/* Section Styles */
+.article-section {
+	display: flex;
+	flex-direction: column;
+}
+
+.header-section {
+	display: flex;
+	gap: 10px;
+}
+
+.section-header {
+	align-self: flex-start;
+	background-color: #393E46;
+	color: #00ADB5;
+	font-weight: bold;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 10px 10px 0 0;
+	border-bottom: 2px solid #00ADB5;
+}
+
+.subheader {
+	font-weight: normal;
+	font-size: auto;
+	font-size: 16px;
+	align-self: flex-end;
+}
+
+.section-content {
+    border-radius: 0 10px 10px 10px;
+    background-color: #948979;
+	color: #222831;
+    padding: 0 10px;
+    margin-top: 0px;
+}
+
+.has-desc-border {
+	border-bottom-right-radius: 0px;
+}
+
+.section-content p {
+	margin: 40px;
+    color: #222831;
 	flex-wrap: wrap;
-	display: flex;
-	gap: 20px;
 }
 
-.article-image {
+.section-content ul {
+	list-style: none;
+	display: flex;
+	gap: 10px;
+}
+
+.link-btn {
+    text-decoration: none;
+	border: none;
+    color: #DFD0B8;
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #393E46;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.link-btn:hover {
+    background-color: #222831;
+}
+
+.section-desc {
+	align-self: flex-end;
+	text-align: right;
+	background-color: #393E46;
+	color: #DFD0B8;
+	border-radius: 0 0 10px 10px;
+	padding: 10px;
+	max-width: 75%;
+}
+
+
+
+/* General Form Styles */
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+form textarea {
+	width: 100%;
+    padding: 10px;
+	box-sizing: border-box;
+	min-height: 5em;
+	resize: vertical;
+}
+
+form button {
+	display: block;
+	width: fit-content;
+    background-color: #00ADB5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+form button:hover {
+	background-color: #007f85;
+}
+
+
+
+/* Styles specific to article detail */
+.article-img {
 	float: right;
-	margin: 20px 0 20px 20px;
+	margin: 40px 40px 20px 20px;
+	border-radius: 10px;
 	width: 300px;
 	height: auto;
 }
 
-.article-date {
-	font-size: 0.9em; 
-	margin-top: 50px;
+.comment-form {
+	width: 100%;
+	align-self: center;
+}
+
+.comment-textarea {
+    border-radius: 6px;
+    border: 1px solid #DFD0B8;
+    background-color: #222831;
+    color: #DFD0B8;
+	height: 5em; /* 5 lines of text */
+}
+
+.comment-form button {
+	align-self: flex-end;
 }
 
 .comment {
-	margin: 20px 20px;
 	display: flex;
 	flex-direction: column;
 }
@@ -89,71 +232,57 @@ footer {
 
 .comment .comment-date {
 	text-align: right;
-	font-size: 0.75em;
+	font-size: 12px;
 }
 
-.link-button {
-	display: flex;
-	font-size: 1em;
-	padding: 10px 20px;
-	border-radius: 5px;
-	background-color: bisque;
-	border: 2px solid tan;
-	text-decoration: none;
-	color: black;
-	text-align: center;
+
+
+/* Styles specific to article add/update */
+.article-form {
+	width: 600px;
 }
 
-.link-button:hover {
-	background-color: tan;
-	color: white;
+.article-form input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #DFD0B8;
+    background-color: #222831;
+    color: #DFD0B8;
+    box-sizing: border-box;
+    margin-bottom: 15px;
 }
 
-.link-button:active {
-	background-color: #c0a582;
-	border-color: #c0a582;
+.article-form label {
+	display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #DFD0B8;
 }
 
-form {
-	display: flex;
-	flex-direction: column;
+.article-form a {
+	color: #faf3e7;
+	display: inline-block;
 }
 
-form label {
-	font-weight: bold;
-	margin-bottom: 10px;
-	vertical-align:middle;
+.article-form a:hover {
+	color: #ddd3c0;
 }
 
-form button {
+.article-form a:active {
+	color: #cfc1a9;
+}
+
+
+
+/* Alignment fix for image clear */
+.article-form input[type="checkbox"] {
+	display: inline;
 	width: fit-content;
 }
 
-.submit-wrapper {
-	display: flex;
-	justify-content: flex-end;
-}
-
-.article-input, .article-textarea, .comment-textarea {
-	background-color: rgb(222, 248, 248);
-	padding: 5px;
-	box-sizing: border-box;
-	border-radius: 5px;
-	border: 1px solid rgb(43, 69, 80);
-}
-
-.article-input, .article-textarea {
-	margin: 0px 20px;
-	vertical-align: middle;
-}
-
-.article-textarea {
-	width: 80%;
-	resize: vertical;
-}
-
-.comment-textarea {
-	width: 100%;
-	height: 5em;
-	resize: vertical;
+.article-form label[for$="-clear_id"] {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
 }

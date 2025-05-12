@@ -1,22 +1,20 @@
 {% extends "wiki/layout.html" %}
 
 {% block title %}
-    Create Article - Wikipidiyi
-{% endblock %}
-
-{% block nav %}
-    <a href="{% url 'wiki_list' %}" class="link-button">Back to Article List</a>
+    Create Article - Wiki
 {% endblock %}
 
 {% block body %}
-    <div class="main-content">
-        <h1>Create New Article</h1>
-        <form method="post" enctype="multipart/form-data">
+    <div class="card-section">
+        <span class="section-header">Create New Article</span>
+        <form method="post" class="article-form" enctype="multipart/form-data">
             {% csrf_token %}
             {{ article_form.as_p }}
-            <div class="submit-wrapper">
-                <button type="submit" class="link-button">Submit</button>
-            </div>
+            <button type="submit">Submit</button>
         </form>
     </div>
+{% endblock %}
+
+{% block footer %}
+    <a href="{% url 'wiki_list' %}">Back to Article List</a>
 {% endblock %}

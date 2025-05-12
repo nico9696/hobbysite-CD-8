@@ -1,42 +1,38 @@
 {% extends "wiki/layout.html" %}
 
-{% block title %}
-    Wikipidiyi Articles
-{% endblock %}
-
-{% block nav %}
-    <a class="link-button" href="{% url 'article_add' %}">Create New Article</a>
-{% endblock %}
+{% block title %}Wiki - Hobby Site{% endblock %}
 
 {% block body %}
-    <h1 style="text-align:center">Articles</h1>
-    <div class="main-content">
-        {% if user_articles %}
-            <div class="category-section">
-                <h2>Your Articles</h2>
-                <hr>
-                <ul class="articles-list">
+    {% if user_articles %}
+        <div class="article-section">
+            <span class="section-header">Your Articles</span>
+            <div class="section-content">
+                <ul>
                     {% for article in user_articles %}
-                        <li><a href="{{ article.get_absolute_url }}" class="link-button">{{ article.title }}</a></li>
+                        <li><a href="{{ article.get_absolute_url }}" class="link-btn">{{ article.title }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
-            <h2>Other Articles</h2>
-            <hr>
-        {% endif %}
-        
-        {% for category in categories %}
-            <div class="category-section">
-                <h3>{{ category.name }}</h2>
-                <p>{{ category.description }}</p>
-                <ul class="articles-list">
+        </div>
+    {% endif %}
+
+    {% for category in categories %}
+        <div class="article-section">
+            <span class="section-header">{{ category.name }}</span>
+            <div class="section-content has-desc-border">
+                <ul>
                     {% for article in non_user_articles %}
                         {% if article.category == category %}
-                            <li><a href="{{ article.get_absolute_url }}" class="link-button">{{ article.title }}</a></li>
+                            <li><a href="{{ article.get_absolute_url }}" class="link-btn">{{ article.title }}</a></li>
                         {% endif %}
                     {% endfor %}
                 </ul>
             </div>
-        {% endfor %}
-    </div>
+            <span class="section-desc">{{ category.description }}</span>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block footer %}
+    <a href="{% url 'article_add' %}">Create article</a>
 {% endblock %}

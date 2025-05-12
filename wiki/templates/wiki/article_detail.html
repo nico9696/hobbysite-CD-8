@@ -2,60 +2,69 @@
 {% load static %}
 
 {% block title %}
-    {{ article.title }} - Wikipidiyi
+    {{ article.title }} - Wiki
 {% endblock title %}
 
-{% block nav %}
-    <a href="{% url 'wiki_list' %}" class="link-button">Back to Article List</a>
-    {% if article.author == user.profile %}
-        <a href="{% url 'article_edit' article.id %}" class="link-button">Edit</a>
-    {% endif %}
-{% endblock %}
-
 {% block body %}
-    <div class="main-content">
-        {% if article.header_image %}
-        <img src="{{ article.header_image.url }}" alt="{{ article.title }}" class="article-image">
-        {% endif %}
-        <h1>{{ article.title }}</h1>
-		<p><b>Category:</b> {{ article.category }}</p>
-        <p>{{ article.entry | linebreaks }}</p>
+    <div class="article-section">
+        <div class="header-section">
+            <span class="section-header">{{ article.title }}</span>
+            <span class="section-header subheader"><b>Category:</b> {{ article.category }}</span>
+        </div>
 
-        <p class="article-date">
-            Created on: {{ article.created_on }}, UTC<br>
-            Last updated on: {{ article.updated_on }}, UTC
-        </p>
+        <div class="section-content has-desc-border">
+            {% if article.header_image %}
+                <img src="{{ article.header_image.url }}" alt="{{ article.title }}" class="article-img">
+            {% endif %}
+            <p>{{ article.entry | linebreaks }}</p>
+        </div>
+
+        <div class="section-desc">
+            <b>Created on:</b> {{ article.created_on }}, UTC<br>
+            <b>Last updated on:</b> {{ article.updated_on }}, UTC
+        </div>
     </div>
 
-    <div class="side-content">
-        <h3>Read More :</h3>
-        {% for article in related_articles %}
-            <a href="{{ article.get_absolute_url }}" class="link-button">{{ article.title }}</a>
-        {% endfor %}
+    <div class="article-section card-section span-screen">
+        <span class="section-header">Read More</span>
+        <div class="section-content">
+            <ul>
+                {% for article in related_articles %}
+                    <li><a href="{{ article.get_absolute_url }}" class="link-btn">{{ article.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 
-    <div class="main-content">
-        <h2>Comments</h2>
-        {% if user.is_authenticated %}
-            <form method="post" style="margin-bottom:50px">
-                {% csrf_token %}
-                {{ comment_form.as_p }}
-                <div class="submit-wrapper">
-                    <button type="submit" class="link-button">Comment</button>
-                </div>
-            </form>
-
+    <div class="article-section card-section span-screen">
+        <span class="section-header">Comments</span>
+            {% if user.is_authenticated %}
+                <form method="post" class="comment-form">
+                    {% csrf_token %}
+                    {{ comment_form.as_p }}
+                    <button type="submit">Comment</button>
+                </form>
+            {% endif %}
+        
             {% for comment in comments %}
-                <hr>
-                <div class="comment">
-                    <h3>{{ comment.author }}</h3>
-                    <p>{{ comment.entry | linebreaks }}</p>
-                    <div class="comment-date">
-                        Posted on: {{comment.created_on}}<br>
-                        Last edited on: {{ comment.updated_on }}
+                <div class="card-section dark-card span-screen">
+                    <div class="comment">
+                        <h3>{{ comment.author }}</h3>
+                        <p>{{ comment.entry | linebreaks }}</p>
+                        <div class="comment-date">
+                            Posted on: {{comment.created_on}}<br>
+                            Last edited on: {{ comment.updated_on }}
+                        </div>
                     </div>
                 </div>
             {% endfor %}
-        {% endif %}
+        
     </div>
 {% endblock body %}
+
+{% block footer %}
+    {% if article.author == user.profile %}
+        <a href="{% url 'article_edit' article.id %}">Edit Article</a>
+    {% endif %}
+    <a href="{% url 'wiki_list' %}">Back to Articles</a>
+{% endblock %}
