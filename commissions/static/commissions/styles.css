@@ -1,32 +1,320 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background-color:bisque;
+    margin: 0;
+    padding: 0;
+    background-color: #222831;
 }
 
-h1{
-    text-align: center;
+nav {
+    width: 100%;
+    padding: 10px;
+    text-align: center;  
+    margin-top: 20px;
+}
+
+nav a {
+    color: #DFD0B8;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 30px;
+    font-style: bold;
+    background-color: #393E46;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.content-div {
+    padding: 40px 20px;
+}
+
+/* commission_list */
+
+.commission-section{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding-bottom: 55px;
+}
+
+.top-left-section h4 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 20px;
+    color: #00ADB5;
+    border-bottom: 2px solid #00ADB5;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #393E46;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.commission-type{
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #948979;
+    padding: 0 10px;
+    margin-top: 0px;
+}
+
+.commission-type-list{
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+
+
+
+h1 a{
+    margin-top: 0px;
+    margin-bottom: 25px;
+    color: #DFD0B8;
+    text-decoration: none;
+    font-size: 30px;
+    font-style: bold;
+    background-color: #393E46;
+    padding: 8px;
+    border-radius: 10px;
 }
 
 .commission{
-    border: 1px black solid;
-    border-radius: 10px;
-    background-color: cadetblue;
-    padding: 0 10px;
-    margin-bottom: 10px;
+    text-decoration: none; 
+    color: #DFD0B8;
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #393E46;
+    text-decoration: none;
+    border-radius: 5px;
 }
 
-.dates{
+.commission-title{
+    text-decoration: none; 
+    color: #EEEEEE;
+    font-size: 20px;
+}
+
+.commission:hover {
+    background-color: #222831;
+}
+
+.commission-type strong {
+    color: #EEEEEE;
+}
+
+/* commission_form */
+
+.whole-update-add-form {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #393E46;
+    border-radius: 10px;
+    color: #DFD0B8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.update-add-form p {
+    margin-bottom: 15px;
+}
+
+.update-add-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #DFD0B8;
+}
+
+.update-add-form input[type="text"],
+.update-add-form input[type="number"],
+.update-add-form textarea,
+.update-add-form select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #DFD0B8;
+    background-color: #222831;
+    color: #DFD0B8;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.update-add-form button {
+    background-color: #00ADB5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.update-add-form button:hover {
+    background-color: #007f85;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #222831;
+    padding: 7px;
+    align-items: center;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* adds a nice shadow */
+    height: 30px;
+    opacity: 0.75;
+}
+
+footer a{
+    color: #DFD0B8;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 22px;
+    font-style: bold;
+    background-color: #393E46;
+    padding: 1px 8px;
+    border-radius: 10px;
+}
+
+/* commission_detail */
+
+.job-container {
+    max-width: 800px;
+    margin: 0px auto;
+    padding: 20px;
+    background-color: #222831;
+    border-radius: 10px;
+    color: #DFD0B8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.job-container h1,
+.job-container h2,
+.job-container h3 {
+    color: #DFD0B8;
+    margin-top: 0;
+}
+
+.job-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0 20px 0;
+}
+
+.job-container li {
+    background-color: #393E46;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 4px solid #00ADB5;
+}
+
+.job-container strong {
+    color: #EEEEEE;
+}
+
+.job-container a {
+    color: #DFD0B8;
+    text-decoration: none;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #DFD0B8;
+    margin: 30px 0;
+}
+
+.job-container-details{
+    background-color: #948979;
+    padding: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.job-container-details li:hover {
+    background-color: #222831;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.job-container-details button {
+    margin-top: 10px;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    background-color: #DFD0B8;
+    z-index: 2;
+    position: relative;
+}
+
+.job-container-details button:hover {
+    background-color: #007f85;
+}
+
+/* job_detail */
+
+.job-details-whole{
+    display: flex;
+    flex-direction: row;
     align-items: flex-end;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+
+}
+
+.job-details li{
+    list-style: none;
+}
+
+.job-detail-block {
+    background-color: #948979;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 15px;
+    color: #222831;
+    min-width: 400px;
+    max-width: 600px;
+    word-wrap: break-word;
+}
+
+.job-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.job-details-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.job-info p {
+    margin: 5px 0;
+    color: #222831;
+}
+.job-detail-block strong {
+    margin: 5px 0;
+    color: black;
 }
 
 
-.jobs{
-    border: 1px black solid;
-    border-radius: 10px;
-    background-color: cadetblue;
-    padding: 0 10px;
-    margin-bottom: 10px;
+form button {
+    margin-top: 10px;
+    background-color: #222831;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
