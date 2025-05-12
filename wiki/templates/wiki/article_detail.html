@@ -2,29 +2,25 @@
 {% load static %}
 
 {% block title %}
-    {{ article.title }} - Wikipidiyi
+    {{ article.title }} - Wiki
 {% endblock title %}
 
-{% block nav %}
-    <a href="{% url 'wiki_list' %}" class="link-button">Back to Article List</a>
-    {% if article.author == user.profile %}
-        <a href="{% url 'article_edit' article.id %}" class="link-button">Edit</a>
-    {% endif %}
-{% endblock %}
-
 {% block body %}
-    <div class="main-content">
-        {% if article.header_image %}
-        <img src="{{ article.header_image.url }}" alt="{{ article.title }}" class="article-image">
-        {% endif %}
-        <h1>{{ article.title }}</h1>
-		<p><b>Category:</b> {{ article.category }}</p>
-        <p>{{ article.entry | linebreaks }}</p>
+    <div class="article-section">
+        <div class="header-section">
+            <span class="section-header">{{ article.title }}</span>
+            <span class="section-header subheader"><b>Category:</b> {{ article.category }}</span>
+        </div>
 
-        <p class="article-date">
-            Created on: {{ article.created_on }}, UTC<br>
-            Last updated on: {{ article.updated_on }}, UTC
-        </p>
+        <div class="section-content has-desc-border">
+            <img src="{{ article.header_image.url }}" alt="{{ article.title }}" class="article-img">
+            <p>{{ article.entry | linebreaks }}</p>
+        </div>
+
+        <div class="section-desc">
+            <b>Created on:</b> {{ article.created_on }}, UTC<br>
+            <b>Last updated on:</b> {{ article.updated_on }}, UTC
+        </div>
     </div>
 
     <div class="side-content">
@@ -59,3 +55,10 @@
         {% endif %}
     </div>
 {% endblock body %}
+
+{% block footer %}
+    {% if article.author == user.profile %}
+        <a href="{% url 'article_edit' article.id %}">Edit Article</a>
+    {% endif %}
+    <a href="{% url 'wiki_list' %}">Back to Articles</a>
+{% endblock %}

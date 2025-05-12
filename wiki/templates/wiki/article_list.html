@@ -5,7 +5,7 @@
 {% block body %}
     {% if user_articles %}
         <div class="article-section">
-            <span class="section-title">Your Articles</span>
+            <span class="section-header">Your Articles</span>
             <div class="section-content">
                 <ul>
                     {% for article in user_articles %}
@@ -18,7 +18,7 @@
 
     {% for category in categories %}
         <div class="article-section">
-            <span class="section-title">{{ category.name }}</span>
+            <span class="section-header">{{ category.name }}</span>
             <div class="section-content has-desc-border">
                 <ul>
                     {% for article in non_user_articles %}

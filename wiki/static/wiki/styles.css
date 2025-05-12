@@ -41,7 +41,7 @@ nav a {
 }
 
 .content-div {
-    padding: 40px 20px;
+    padding: 40px 20px 60px;
 	display: flex;
 	flex-direction: column;
 	gap: 55px;
@@ -77,7 +77,12 @@ footer a {
 	flex-direction: column;
 }
 
-.section-title {
+.header-section {
+	display: flex;
+	gap: 10px;
+}
+
+.section-header {
 	align-self: flex-start;
 	background-color: #393E46;
 	color: #00ADB5;
@@ -88,15 +93,29 @@ footer a {
 	border-bottom: 2px solid #00ADB5;
 }
 
+.subheader {
+	font-weight: normal;
+	font-size: auto;
+	font-size: 16px;
+	align-self: flex-end;
+}
+
 .section-content {
     border-radius: 0 10px 10px 10px;
     background-color: #948979;
+	color: #222831;
     padding: 0 10px;
     margin-top: 0px;
 }
 
 .has-desc-border {
 	border-bottom-right-radius: 0px;
+}
+
+.section-content p {
+	margin: 40px;
+    color: #222831;
+	flex-wrap: wrap;
 }
 
 .section-content ul {
@@ -121,11 +140,23 @@ footer a {
 
 .section-desc {
 	align-self: flex-end;
+	text-align: right;
 	background-color: #393E46;
 	color: #DFD0B8;
 	border-radius: 0 0 10px 10px;
 	padding: 10px;
+	max-width: 75%;
 }
+
+/* Styles specific to article detail */
+.article-img {
+	float: right;
+	margin: 40px 40px 20px 20px;
+	border-radius: 10px;
+	width: 300px;
+	height: auto;
+}
+
 
 /*
 Old code used in old website design.
