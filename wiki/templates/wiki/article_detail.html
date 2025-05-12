@@ -28,35 +28,36 @@
         <div class="section-content">
             <ul>
                 {% for article in related_articles %}
-                    <li><a href="{{ article.get_absolute_url }}" class="link-btn">{{ article.title }}</a></li>
+                    <li><a href="{{ article.get_absolute_url }}" class="btn">{{ article.title }}</a></li>
                 {% endfor %}
             </ul>
         </div>
     </div>
 
-    <div class="main-content">
-        <h2>Comments</h2>
-        {% if user.is_authenticated %}
-            <form method="post" style="margin-bottom:50px">
-                {% csrf_token %}
-                {{ comment_form.as_p }}
-                <div class="submit-wrapper">
-                    <button type="submit" class="link-button">Comment</button>
-                </div>
-            </form>
+    <div class="article-section">
+        <span class="section-header">Comments</span>
 
-            {% for comment in comments %}
-                <hr>
-                <div class="comment">
-                    <h3>{{ comment.author }}</h3>
-                    <p>{{ comment.entry | linebreaks }}</p>
-                    <div class="comment-date">
-                        Posted on: {{comment.created_on}}<br>
-                        Last edited on: {{ comment.updated_on }}
+        <div class="section-content">
+            {% if user.is_authenticated %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ comment_form.as_p }}
+                    <button type="submit">Comment</button>
+                </form>
+
+                {% for comment in comments %}
+                    <hr>
+                    <div class="comment">
+                        <h3>{{ comment.author }}</h3>
+                        <p>{{ comment.entry | linebreaks }}</p>
+                        <div class="comment-date">
+                            Posted on: {{comment.created_on}}<br>
+                            Last edited on: {{ comment.updated_on }}
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
-        {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
     </div>
 {% endblock body %}
 

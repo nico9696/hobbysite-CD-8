@@ -124,8 +124,9 @@ footer a {
 	gap: 10px;
 }
 
-.link-btn {
-    text-decoration: none; 
+.btn {
+    text-decoration: none;
+	border: none;
     color: #DFD0B8;
     display: inline-block;
     padding: 10px 15px;
@@ -134,7 +135,7 @@ footer a {
     border-radius: 5px;
 }
 
-.link-btn:hover {
+.btn:hover {
     background-color: #222831;
 }
 
@@ -155,6 +156,56 @@ footer a {
 	border-radius: 10px;
 	width: 300px;
 	height: auto;
+}
+
+.comment-textarea {
+	width: 100%;
+    padding: 10px;
+	box-sizing: border-box;
+    border-radius: 6px;
+    border: 1px solid #DFD0B8;
+    background-color: #222831;
+    color: #DFD0B8;
+	min-height: 5em;
+	height: 5em; /* 5 lines of text */
+	resize: vertical;
+}
+
+.comment {
+	margin: 20px 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+.comment p {
+	margin: 0 2.5% 20px;
+}
+
+.comment .comment-date {
+	text-align: right;
+	font-size: 0.75em;
+}
+
+/* Form styles */
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+form button {
+	width: fit-content;
+	align-self:flex-end;
+    background-color: #00ADB5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+	margin-right: 40px;
+}
+
+form button:hover {
+	background-color: #007f85;
 }
 
 /*
