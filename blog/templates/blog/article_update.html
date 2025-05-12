@@ -8,6 +8,10 @@
             {{ form.as_p }}
             <button type="submit">Update</button>
         </form>
-<a href="{% url 'article_details' article.pk %}">Back to Article</a>
+    </div>
+
+    <!-- Back link outside the brown box -->
+    <div class="bottom-create-container">
+        <a href="{% url 'article_details' article.pk %}" class="create-link-button">Back to Article</a>
     </div>
 {% endblock %}
