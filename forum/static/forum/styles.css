@@ -250,3 +250,7 @@ footer a{
 .update-add-form button:hover {
     background-color: #007f85;
 }
+
+img{
+    max-width: 700px;
+}
