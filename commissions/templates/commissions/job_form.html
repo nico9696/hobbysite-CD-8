@@ -2,14 +2,19 @@
 {% load static %}
 
 {% block body %}
-    <h2>Create/Edit Job</h2>
-
-    <form method="POST">
-        {% csrf_token %}
-        {{ job_form.as_p }}
-        <div>
-            <button type="submit">Save</button>
+    <div class="whole-update-add-form">
+        <div class="top-left-section">
+            <h4>Create/Edit Job</h4>
         </div>
-    </form>
+        <form method="POST" lass="update-add-form">
+            {% csrf_token %}
+            {{ job_form.as_p }}
+            <button type="submit">Save</button>
+        </form>
+    </div>
+
+    <footer>
+        <a href="{% url 'commission_list' %}">Back to list of all commissions</a>
+    </footer>
 
 {% endblock %}
