@@ -267,6 +267,7 @@ form button:hover {
 
 /* Alignment fix for image clear */
 .article-form input[type="checkbox"] {
+	display: inline;
 	width: fit-content;
 }
 
