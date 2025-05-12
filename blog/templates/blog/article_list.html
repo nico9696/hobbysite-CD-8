@@ -1,6 +1,7 @@
 {% extends "blog/layout.html" %}
 
 {% block body %}
+    <!-- User's Articles Section -->
     {% if user.is_authenticated and user.profile %}
         <div class="article-category">
             <h2>Your Articles</h2>
@@ -14,17 +15,17 @@
                 {% endfor %}
             </ul>
         </div>
-
-        <div class="create-article-link" style="margin-bottom: 15px;">
-            <p><a href="{% url 'article_create' %}">Create New Article</a></p>
-        </div>
     {% endif %}
 
+    <!-- Articles by Category -->
     {% for category, articles in articles_by_category.items %}
         <div class="article-category">
             <div class="article-category-description">
                 <h2>{{ category.name }}</h2>
-                <p>{{ category.description }}</p>
+                <!-- New Light Grey Box for Description -->
+                <div class="category-description-box">
+                    <p>{{ category.description }}</p>
+                </div>
             </div>
             <ul class="article-category-list">
                 {% for article in articles %}
@@ -39,4 +40,11 @@
     {% empty %}
         <p>No categories available.</p>
     {% endfor %}
+
+    <!-- Centered Create Article Box at Bottom -->
+    {% if user.is_authenticated and user.profile %}
+        <div class="bottom-create-container">
+            <a href="{% url 'article_create' %}" class="create-link-button">Create New Article</a>
+        </div>
+    {% endif %}
 {% endblock %}
