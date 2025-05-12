@@ -205,7 +205,7 @@ footer a{
 }
 
 .job-container li {
-    background-color: #222831;
+    background-color: #393E46;
     padding: 12px;
     border-radius: 8px;
     margin-bottom: 10px;
@@ -235,6 +235,12 @@ hr {
     border-top-right-radius: 10px;
 }
 
+.job-container-details li:hover {
+    background-color: #222831;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 .job-container-details button {
     margin-top: 10px;
     color: black;
@@ -243,4 +249,10 @@ hr {
     border-radius: 8px;
     font-weight: bold;
     background-color: #DFD0B8;
+    z-index: 2;
+    position: relative;
+}
+
+.job-container-details button:hover {
+    background-color: #007f85;
 }
