@@ -3,38 +3,55 @@
 
 
 {% block body %}
-    <h2><a href="{% url 'commission_detail' commission_id=commission.id %}"> {{ commission }} </a></h2>
-    <h3>{{ job.role }} Applicants </h3>
 
 {% if user.is_authenticated %}
     {% if user.user == job.author %}
     <ul>
-        <a href="{% url 'job_update' job_id=job.id %}">
-            <button>Edit Job</button>
-        </a>
-    {% endif %}
-    
-        {% if applicants %}
-            {% for applicant in applicants %}
-                <li>
-                    {{ applicant.applicant }} - Status: {{ applicant.get_status_display }}
-                    {% if user.user == job.author %}
-                        <div>
-                            <form method="POST">
-                                {% csrf_token %}
-                                <input type="hidden" name="applicant_id" value="{{ applicant.id }}">
-                                <button type="submit" name="action" value="Accept">Accept</button>
-                                <button type="submit" name="action" value="Reject">Reject</button>
-                            </form>
-                        </div>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        {% else %}
-            <p>There are no applicants for this job.</p>
-        {% endif %}
+    {% if applicants %}
+        <div class="job-details-whole">
+            <div class="job-details">
+                <h1><a href="{% url 'commission_detail' commission_id=commission.id %}"> {{ commission }} </a></h1>
+                <div class="top-left-section">
+                    <h4> Applicants for: {{ job.role }}  </h4>
+                </div>
+                {% for applicant in applicants %}
+                <div class="job-detail-block">
+                    <li>
+                        <p><strong>{{ applicant.applicant }}</strong></p>
+                        <p><strong>Status:</strong> {{ applicant.get_status_display }}</p>
+                        {% if user.user == job.author %}
+                            <div>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="applicant_id" value="{{ applicant.id }}">
+                                    <button type="submit" name="action" value="Accept">Accept</button>
+                                    <button type="submit" name="action" value="Reject">Reject</button>
+                                </form>
+                            </div>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </div>
+            </div>
+            {% else %}
+                <p>There are no applicants for this job.</p>
+            {% endif %}
     </ul>
+    {% endif %}
 {% else %}
     <p><a href="{% url 'login' %}"> You must be logged in.</a></p>
 {% endif %}
+
+</div>
+
+<footer>
+    {% if user.is_authenticated %}
+        {% if user.user == job.author %}
+            <a href="{% url 'job_update' job_id=job.id %}">Edit your Job</a>
+        {% endif %}
+    {% endif %}
+    <a href="{% url 'commission_list' %}">Back to list of all commissions</a>
+</footer>
+
+
 {% endblock %}
