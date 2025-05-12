@@ -98,6 +98,10 @@ h1 a{
     background-color: #222831;
 }
 
+.commission-type strong {
+    color: #EEEEEE;
+}
+
 /* commission_form */
 
 .whole-update-add-form {
@@ -173,4 +177,70 @@ footer a{
     background-color: #393E46;
     padding: 1px 8px;
     border-radius: 10px;
+}
+
+/* commission_detail */
+
+.job-container {
+    max-width: 800px;
+    margin: 0px auto;
+    padding: 20px;
+    background-color: #222831;
+    border-radius: 10px;
+    color: #DFD0B8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.job-container h1,
+.job-container h2,
+.job-container h3 {
+    color: #DFD0B8;
+    margin-top: 0;
+}
+
+.job-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0 20px 0;
+}
+
+.job-container li {
+    background-color: #222831;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 4px solid #00ADB5;
+}
+
+.job-container strong {
+    color: #EEEEEE;
+}
+
+.job-container a {
+    color: #DFD0B8;
+    text-decoration: none;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #DFD0B8;
+    margin: 30px 0;
+}
+
+.job-container-details{
+    background-color: #948979;
+    padding: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.job-container-details button {
+    margin-top: 10px;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    background-color: #DFD0B8;
 }
