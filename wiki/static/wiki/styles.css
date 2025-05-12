@@ -9,12 +9,6 @@ body {
 	flex-direction: column;
 }
 
-hr {
-    border: none;
-    border-top: 1px solid #DFD0B8;
-    margin: 30px 0;
-}
-
 header {
 	background-color: tan;
 	padding: 5px 20px;
@@ -48,13 +42,21 @@ nav a {
 }
 
 .card-section {
-	width: 600px;
+	flex: 1;
     margin: 40px auto;
     padding: 20px;
     background-color: #393E46;
     border-radius: 10px;
     color: #DFD0B8;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark-card {
+	background-color: #222831;
+}
+
+.span-screen {
+    width: 95%;
 }
 
 footer {
@@ -198,14 +200,19 @@ form button:hover {
 .article-img {
 	float: right;
 	margin: 40px 40px 20px 20px;
+	border: 1px solid #222831;
 	border-radius: 10px;
 	width: 300px;
 	height: auto;
 }
 
+.comment-form {
+	width: 100%;
+	align-self: center;
+}
+
 .comment-form button {
 	align-self: flex-end;
-	margin: 0 40px 20px 0;
 }
 
 .comment-textarea {
@@ -217,7 +224,6 @@ form button:hover {
 }
 
 .comment {
-	margin: 20px 20px;
 	display: flex;
 	flex-direction: column;
 }
@@ -228,12 +234,16 @@ form button:hover {
 
 .comment .comment-date {
 	text-align: right;
-	font-size: 0.75em;
+	font-size: 12px;
 }
 
 
 
 /* Styles specific to article add/update */
+.article-form {
+	width: 600px;
+}
+
 .article-form label {
 	display: block;
     margin-bottom: 5px;
@@ -264,6 +274,8 @@ form button:hover {
     box-sizing: border-box;
     margin-bottom: 15px;
 }
+
+
 
 /* Alignment fix for image clear */
 .article-form input[type="checkbox"] {

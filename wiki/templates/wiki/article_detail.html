@@ -36,19 +36,18 @@
         </div>
     </div>
 
-    <div class="article-section">
+    <div class="article-section card-section span-screen">
         <span class="section-header">Comments</span>
-
-        <div class="section-content">
             {% if user.is_authenticated %}
                 <form method="post" class="comment-form">
                     {% csrf_token %}
                     {{ comment_form.as_p }}
                     <button type="submit">Comment</button>
                 </form>
-
-                {% for comment in comments %}
-                    <hr>
+            {% endif %}
+        
+            {% for comment in comments %}
+                <div class="card-section dark-card span-screen">
                     <div class="comment">
                         <h3>{{ comment.author }}</h3>
                         <p>{{ comment.entry | linebreaks }}</p>
@@ -57,9 +56,9 @@
                             Last edited on: {{ comment.updated_on }}
                         </div>
                     </div>
-                {% endfor %}
-            {% endif %}
-        </div>
+                </div>
+            {% endfor %}
+        
     </div>
 {% endblock body %}
 
