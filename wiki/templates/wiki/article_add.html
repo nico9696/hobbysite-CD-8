@@ -4,10 +4,6 @@
     Create Article - Wikipidiyi
 {% endblock %}
 
-{% block nav %}
-    <a href="{% url 'wiki_list' %}" class="link-button">Back to Article List</a>
-{% endblock %}
-
 {% block body %}
     <div class="card-section">
         <span class="section-header">Create New Article</span>
@@ -19,4 +15,8 @@
             </div>
         </form>
     </div>
+{% endblock %}
+
+{% block footer %}
+    <a href="{% url 'wiki_list' %}" class="link-button">Back to Article List</a>
 {% endblock %}
