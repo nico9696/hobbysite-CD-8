@@ -10,13 +10,11 @@
         <form method="post" class="article-form" enctype="multipart/form-data">
             {% csrf_token %}
             {{ article_form.as_p }}
-            <div class="submit-wrapper">
-                <button type="submit" class="link-button">Submit</button>
-            </div>
+            <button type="submit">Submit</button>
         </form>
     </div>
 {% endblock %}
 
 {% block footer %}
-    <a href="{% url 'wiki_list' %}" class="link-button">Back to Article List</a>
+    <a href="{% url 'wiki_list' %}">Back to Article List</a>
 {% endblock %}

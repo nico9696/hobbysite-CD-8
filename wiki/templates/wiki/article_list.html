@@ -9,7 +9,7 @@
             <div class="section-content">
                 <ul>
                     {% for article in user_articles %}
-                        <li><a href="{{ article.get_absolute_url }}" class="btn">{{ article.title }}</a></li>
+                        <li><a href="{{ article.get_absolute_url }}" class="link-btn">{{ article.title }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -23,7 +23,7 @@
                 <ul>
                     {% for article in non_user_articles %}
                         {% if article.category == category %}
-                            <li><a href="{{ article.get_absolute_url }}" class="btn">{{ article.title }}</a></li>
+                            <li><a href="{{ article.get_absolute_url }}" class="link-btn">{{ article.title }}</a></li>
                         {% endif %}
                     {% endfor %}
                 </ul>

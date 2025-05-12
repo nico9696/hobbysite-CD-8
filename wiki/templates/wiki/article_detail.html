@@ -30,7 +30,7 @@
         <div class="section-content">
             <ul>
                 {% for article in related_articles %}
-                    <li><a href="{{ article.get_absolute_url }}" class="btn">{{ article.title }}</a></li>
+                    <li><a href="{{ article.get_absolute_url }}" class="link-btn">{{ article.title }}</a></li>
                 {% endfor %}
             </ul>
         </div>

@@ -42,7 +42,6 @@ nav a {
 }
 
 .card-section {
-	flex: 1;
     margin: 40px auto;
     padding: 20px;
     background-color: #393E46;
@@ -138,7 +137,7 @@ footer a {
 	gap: 10px;
 }
 
-.btn {
+.link-btn {
     text-decoration: none;
 	border: none;
     color: #DFD0B8;
@@ -149,7 +148,7 @@ footer a {
     border-radius: 5px;
 }
 
-.btn:hover {
+.link-btn:hover {
     background-color: #222831;
 }
 
@@ -171,6 +170,14 @@ form {
 	flex-direction: column;
 }
 
+form textarea {
+	width: 100%;
+    padding: 10px;
+	box-sizing: border-box;
+	min-height: 5em;
+	resize: vertical;
+}
+
 form button {
 	display: block;
 	width: fit-content;
@@ -180,14 +187,6 @@ form button {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-}
-
-form textarea {
-	width: 100%;
-    padding: 10px;
-	box-sizing: border-box;
-	min-height: 5em;
-	resize: vertical;
 }
 
 form button:hover {
@@ -210,16 +209,16 @@ form button:hover {
 	align-self: center;
 }
 
-.comment-form button {
-	align-self: flex-end;
-}
-
 .comment-textarea {
     border-radius: 6px;
     border: 1px solid #DFD0B8;
     background-color: #222831;
     color: #DFD0B8;
 	height: 5em; /* 5 lines of text */
+}
+
+.comment-form button {
+	align-self: flex-end;
 }
 
 .comment {
@@ -243,6 +242,17 @@ form button:hover {
 	width: 600px;
 }
 
+.article-form input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #DFD0B8;
+    background-color: #222831;
+    color: #DFD0B8;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
 .article-form label {
 	display: block;
     margin-bottom: 5px;
@@ -261,17 +271,6 @@ form button:hover {
 
 .article-form a:active {
 	color: #cfc1a9;
-}
-
-.article-form input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #DFD0B8;
-    background-color: #222831;
-    color: #DFD0B8;
-    box-sizing: border-box;
-    margin-bottom: 15px;
 }
 
 
