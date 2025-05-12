@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block body %}
+
 <div class="article-details">
     <ul class="article-details-list">
         <li>
@@ -26,46 +27,54 @@
             <p class="article-content">{{ article.entry }}</p>
 
             <!-- More from author -->
-            <h3>More from this author:</h3>
-            <ul>
-                {% for related_article in related_articles %}
-                    <li><a href="{% url 'article_details' related_article.pk %}">{{ related_article.title }}</a></li>
-                {% empty %}
-                    <li>No other articles by this author.</li>
-                {% endfor %}
-            </ul>
+            <div class="related-articles">
+                <h3>More from this author:</h3>
+                <ul>
+                    {% for related_article in related_articles %}
+                        <li>
+                            <a href="{% url 'article_details' related_article.pk %}">
+                                {{ related_article.title }}
+                            </a>
+                        </li>
+                    {% empty %}
+                        <li>No other articles by this author.</li>
+                    {% endfor %}
+                </ul>
+            </div>
 
             <!-- Comment form -->
             {% if user.is_authenticated %}
+            <div class="comment-form">
                 <h3>Leave a Comment</h3>
                 <form method="post">
                     {% csrf_token %}
                     {{ comment_form.as_p }}
                     <button type="submit">Submit Comment</button>
                 </form>
+            </div>
             {% endif %}
 
             <!-- Comments section -->
-            <h3>Comments</h3>
-            <ul>
-                {% for comment in comments %}
-                    <li>
-                        <strong>{{ comment.author.user.username }}</strong>: {{ comment.entry }} <br>
-                        <small>On {{ comment.created_on }}</small>
-                    </li>
-                {% empty %}
-                    <li>No comments yet.</li>
-                {% endfor %}
-            </ul>
-        </li>
-    </ul>
+            <div class="comments-section">
+                <h3>Comments</h3>
+                <ul>
+                    {% for comment in comments %}
+                        <li>
+                            <strong>{{ comment.author.user.username }}</strong>: {{ comment.entry }} <br>
+                            <small>On {{ comment.created_on }}</small>
+                        </li>
+                    {% empty %}
+                        <li>No comments yet.</li>
+                    {% endfor %}
+                </ul>
+            </div>
 </div>
 
 <!-- Buttons Outside the Brown Box -->
-<div class="bottom-create-container">
+<footer>
     {% if user.is_authenticated and user.profile == article.author %}
         <a href="{% url 'article_update' article.pk %}" class="create-link-button">Edit Article</a>
     {% endif %}
     <a href="{% url 'blog_list' %}" class="create-link-button" style="margin-left: 10px;">Back to Article List</a>
-</div>
+</footer>
 {% endblock %}

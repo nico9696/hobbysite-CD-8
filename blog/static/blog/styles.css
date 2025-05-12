@@ -46,10 +46,15 @@ h1 {
 
 /* Article Category Container */
 .article-category {
-    border-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     background-color: #948979;
     padding: 20px 30px; /* Adds padding to ensure it doesn't touch the edges */
-    margin: 30px auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0px;
+    margin-bottom: 30px;
     width: 95%; /* Slightly less than full width for spacing */
     max-width: 1400px; /* Max width to prevent it from getting too wide */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -95,39 +100,153 @@ h1 {
     background-color: #00ADB5;
 }
 
-/* Article Details Block */
 .article-details {
-    background-color: #948979;
-    width: 60%;
-    margin: 30px auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background-color: #3A3F47;
+    width: 85%;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    color: #DFD0B8;
+    line-height: 1.6;
 }
 
-.article-details-list {
-    list-style: none;
-    padding-left: 0;
+.article-details h1 {
+    font-size: 2.5em;
+    color: #00ADB5;
+    margin-bottom: 10px;
 }
 
 .article-details-header {
+    border-bottom: 1px solid #555;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    flex-wrap: wrap;
+}
+
+.article-timestamps p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    color: #ccc;
+}
+
+/* Image Styling */
+.article-details img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Article Content */
+.article-content {
+    font-size: 1.1em;
+    margin: 25px 0;
+    white-space: pre-line;
+}
+
+/* More from Author */
+.related-articles {
+    margin-top: 40px;
+}
+
+.related-articles h3 {
+    font-size: 1.5em;
+    color: #00ADB5;
+    margin-bottom: 10px;
+}
+
+.related-articles ul {
+    list-style: disc inside;
+    padding-left: 0;
+}
+
+.related-articles li {
+    margin: 8px 0;
+}
+
+.related-articles a {
+    color: #DFD0B8;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.related-articles a:hover {
+    color: #F8B400;
+}
+
+
+/* Comment Form */
+.comment-form {
+    margin-top: 40px;
+}
+
+.comment-form h3 {
+    font-size: 1.5em;
+    color: #00ADB5;
     margin-bottom: 15px;
 }
 
-.article-details-header h2 {
-    margin: 0;
-    font-size: 24px;
+.comment-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-/* Create New Article Section at Bottom */
-.bottom-create-container {
-    display: flex;
-    justify-content: center;
-    margin: 50px 0;
+.comment-form button {
+    align-self: flex-start;
+    background-color: #00ADB5;
+    color: #222831;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
+.comment-form button:hover {
+    background-color: #0198a1;
+}
+
+
+/* Comments Section */
+.comments-section {
+    margin-top: 40px;
+}
+
+.comments-section h3 {
+    font-size: 1.5em;
+    color: #00ADB5;
+    margin-bottom: 10px;
+}
+
+.comments-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.comments-section li {
+    background-color: #393E46;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    color: #EEE;
+}
+
+.comments-section li strong {
+    color: #F8B400;
+}
+
+.comments-section li small {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.85em;
+    color: #aaa;
+}
+
 
 .create-article-box {
     background-color: #948979; /* Same light grey background */
@@ -156,4 +275,78 @@ h1 {
 
 .create-link-button:hover {
     background-color: #00ADB5;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #222831;
+    padding: 7px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* adds a nice shadow */
+    height: 30px;
+    opacity: 0.75;
+    text-align: center;
+}
+
+footer a{
+    color: #DFD0B8;
+    text-decoration: none;
+    margin: 15px;
+    font-size: 22px;
+    font-style: bold;
+    background-color: #393E46;
+    padding: 1px 4px;
+    border-radius: 10px;
+}
+
+.top-left-section h4 {
+    margin: 0px 10px;
+    font-size: 20px;
+    color: #00ADB5;
+    border-bottom: 2px solid #00ADB5;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #393E46;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Form Styling */
+.styled-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.styled-form input,
+.styled-form textarea,
+.styled-form select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #eee;
+    font-family: inherit;
+    font-size: 1em;
+    resize: vertical;
+}
+
+.form-button {
+    background-color: #00ADB5;
+    color: #222831;
+    padding: 10px 20px;
+    border: none;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+    background-color: #0198a1;
 }

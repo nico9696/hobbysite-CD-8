@@ -3,8 +3,10 @@
 {% block body %}
     <!-- User's Articles Section -->
     {% if user.is_authenticated and user.profile %}
+        <div class="top-left-section">
+            <h4>Your Articles</h4>
+        </div>
         <div class="article-category">
-            <h2>Your Articles</h2>
             <ul class="article-category-list">
                 {% for article in user_articles %}
                     <li>
@@ -19,9 +21,11 @@
 
     <!-- Articles by Category -->
     {% for category, articles in articles_by_category.items %}
+        <div class="top-left-section">
+            <h4>{{category.name}}</h4>
+        </div>
         <div class="article-category">
             <div class="article-category-description">
-                <h2>{{ category.name }}</h2>
                 <!-- New Light Grey Box for Description -->
                 <div class="category-description-box">
                     <p>{{ category.description }}</p>
@@ -43,8 +47,8 @@
 
     <!-- Centered Create Article Box at Bottom -->
     {% if user.is_authenticated and user.profile %}
-        <div class="bottom-create-container">
+        <footer>
             <a href="{% url 'article_create' %}" class="create-link-button">Create New Article</a>
-        </div>
+        </footer>
     {% endif %}
 {% endblock %}

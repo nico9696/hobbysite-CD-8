@@ -3,15 +3,14 @@
 {% block body %}
     <div class="article-details">
         <h1>Edit Article</h1>
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" class="styled-form">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Update</button>
+            <button type="submit" class="form-button">Update</button>
         </form>
     </div>
 
-    <!-- Back link outside the brown box -->
-    <div class="bottom-create-container">
+    <footer>
         <a href="{% url 'article_details' article.pk %}" class="create-link-button">Back to Article</a>
-    </div>
+    </footer>
 {% endblock %}
