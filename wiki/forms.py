@@ -7,8 +7,6 @@ class ArticleForm(forms.ModelForm):
         model = Article
         fields = ['title', 'category', 'entry', 'header_image']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'article-input'}),
-            'category': forms.Select(attrs={'class': 'article-input'}),
             'entry': forms.Textarea(attrs={'class': 'article-textarea'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'article-file'})
         }

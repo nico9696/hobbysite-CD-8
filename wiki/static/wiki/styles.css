@@ -47,6 +47,16 @@ nav a {
 	gap: 55px;
 }
 
+.card-section {
+	width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #393E46;
+    border-radius: 10px;
+    color: #DFD0B8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
 footer {
     position: fixed;
     bottom: 0;
@@ -70,6 +80,8 @@ footer a {
     padding: 1px 8px;
     border-radius: 10px;
 }
+
+
 
 /* Section Styles */
 .article-section {
@@ -149,6 +161,39 @@ footer a {
 	max-width: 75%;
 }
 
+
+
+/* General Form Styles */
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+form button {
+	display: block;
+	width: fit-content;
+    background-color: #00ADB5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+form textarea {
+	width: 100%;
+    padding: 10px;
+	box-sizing: border-box;
+	min-height: 5em;
+	resize: vertical;
+}
+
+form button:hover {
+	background-color: #007f85;
+}
+
+
+
 /* Styles specific to article detail */
 .article-img {
 	float: right;
@@ -158,17 +203,17 @@ footer a {
 	height: auto;
 }
 
+.comment-form button {
+	align-self: flex-end;
+	margin: 0 40px 20px 0;
+}
+
 .comment-textarea {
-	width: 100%;
-    padding: 10px;
-	box-sizing: border-box;
     border-radius: 6px;
     border: 1px solid #DFD0B8;
     background-color: #222831;
     color: #DFD0B8;
-	min-height: 5em;
 	height: 5em; /* 5 lines of text */
-	resize: vertical;
 }
 
 .comment {
@@ -186,155 +231,47 @@ footer a {
 	font-size: 0.75em;
 }
 
-/* Form styles */
-form {
-	display: flex;
-	flex-direction: column;
-}
 
-form button {
+
+/* Styles specific to article add/update */
+.article-form label {
 	display: block;
-	width: fit-content;
-	align-self: flex-end;
-    background-color: #00ADB5;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-	margin: 0 40px 20px 0;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #DFD0B8;
 }
 
-form button:hover {
-	background-color: #007f85;
+.article-form a {
+	color: #faf3e7;
+	display: inline-block;
 }
 
-/*
-Old code used in old website design.
-Design for other webpages will be redone.
-
-.main-content, .side-content {
-	background-color: cadetblue;
-	padding: 30px 30px;
-	margin: 20px 0;
-	border-radius: 20px;
+.article-form a:hover {
+	color: #ddd3c0;
 }
 
-.main-content::after {
-	content: "";
-	clear: both;
-	display: table;
+.article-form a:active {
+	color: #cfc1a9;
 }
 
-.side-content {
-	padding: 10px 20px;
-	display: flex;
-	align-items: center;
-	gap: 20px;
+.article-form input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #DFD0B8;
+    background-color: #222831;
+    color: #DFD0B8;
+    box-sizing: border-box;
+    margin-bottom: 15px;
 }
 
-.category-section {
-	margin-bottom: 50px;
-}
-
-.articles-list {
-	list-style: none;
-	flex-wrap: wrap;
-	display: flex;
-	gap: 20px;
-}
-
-.article-image {
-	float: right;
-	margin: 20px 0 20px 20px;
-	width: 300px;
-	height: auto;
-}
-
-.article-date {
-	font-size: 0.9em; 
-	margin-top: 50px;
-}
-
-.comment {
-	margin: 20px 20px;
-	display: flex;
-	flex-direction: column;
-}
-
-.comment p {
-	margin: 0 2.5% 20px;
-}
-
-.comment .comment-date {
-	text-align: right;
-	font-size: 0.75em;
-}
-
-.link-button {
-	display: flex;
-	font-size: 1em;
-	padding: 10px 20px;
-	border-radius: 5px;
-	background-color: bisque;
-	border: 2px solid tan;
-	text-decoration: none;
-	color: black;
-	text-align: center;
-}
-
-.link-button:hover {
-	background-color: tan;
-	color: white;
-}
-
-.link-button:active {
-	background-color: #c0a582;
-	border-color: #c0a582;
-}
-
-form {
-	display: flex;
-	flex-direction: column;
-}
-
-form label {
-	font-weight: bold;
-	margin-bottom: 10px;
-	vertical-align:middle;
-}
-
-form button {
+/* Alignment fix for image clear */
+.article-form input[type="checkbox"] {
 	width: fit-content;
 }
 
-.submit-wrapper {
-	display: flex;
-	justify-content: flex-end;
+.article-form label[for$="-clear_id"] {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
 }
-
-.article-input, .article-textarea, .comment-textarea {
-	background-color: rgb(222, 248, 248);
-	padding: 5px;
-	box-sizing: border-box;
-	border-radius: 5px;
-	border: 1px solid rgb(43, 69, 80);
-}
-
-.article-input, .article-textarea {
-	margin: 0px 20px;
-	vertical-align: middle;
-}
-
-.article-textarea {
-	width: 80%;
-	resize: vertical;
-}
-
-.comment-textarea {
-	width: 100%;
-	height: 5em;
-	resize: vertical;
-}
-
-*/

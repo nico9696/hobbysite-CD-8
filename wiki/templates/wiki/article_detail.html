@@ -39,7 +39,7 @@
 
         <div class="section-content">
             {% if user.is_authenticated %}
-                <form method="post">
+                <form method="post" class="comment-form">
                     {% csrf_token %}
                     {{ comment_form.as_p }}
                     <button type="submit">Comment</button>
