@@ -6,7 +6,7 @@
         <div class="top-left-section">
             <h4>Create/Edit Job</h4>
         </div>
-        <form method="POST" lass="update-add-form">
+        <form method="POST" class="update-add-form">
             {% csrf_token %}
             {{ job_form.as_p }}
             <button type="submit">Save</button>
