@@ -71,7 +71,7 @@ footer a {
     border-radius: 10px;
 }
 
-/* Category Sections */
+/* Section Styles */
 .article-section {
 	display: flex;
 	flex-direction: column;
@@ -88,15 +88,18 @@ footer a {
 	border-bottom: 2px solid #00ADB5;
 }
 
-.article-list {
-    border-bottom-left-radius: 10px;
-    border-top-right-radius: 10px;
+.section-content {
+    border-radius: 0 10px 10px 10px;
     background-color: #948979;
     padding: 0 10px;
     margin-top: 0px;
 }
 
-.article-list ul {
+.has-desc-border {
+	border-bottom-right-radius: 0px;
+}
+
+.section-content ul {
 	list-style: none;
 	display: flex;
 	gap: 10px;
@@ -114,6 +117,14 @@ footer a {
 
 .link-btn:hover {
     background-color: #222831;
+}
+
+.section-desc {
+	align-self: flex-end;
+	background-color: #393E46;
+	color: #DFD0B8;
+	border-radius: 0 0 10px 10px;
+	padding: 10px;
 }
 
 /*

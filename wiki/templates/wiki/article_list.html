@@ -6,7 +6,7 @@
     {% if user_articles %}
         <div class="article-section">
             <span class="section-title">Your Articles</span>
-            <div class="article-list">
+            <div class="section-content">
                 <ul>
                     {% for article in user_articles %}
                         <li><a href="{{ article.get_absolute_url }}" class="link-btn">{{ article.title }}</a></li>
@@ -19,7 +19,7 @@
     {% for category in categories %}
         <div class="article-section">
             <span class="section-title">{{ category.name }}</span>
-            <div class="article-list">
+            <div class="section-content has-desc-border">
                 <ul>
                     {% for article in non_user_articles %}
                         {% if article.category == category %}
@@ -28,6 +28,7 @@
                     {% endfor %}
                 </ul>
             </div>
+            <span class="section-desc">{{ category.description }}</span>
         </div>
     {% endfor %}
 {% endblock %}
