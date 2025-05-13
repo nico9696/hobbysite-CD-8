@@ -9,4 +9,5 @@ Bonus (merchstore):
 - There is also an "Others" category which groups products with no product type together.
 
 For password reset:
-- need to pip install environ and it only works with a .env file that is gitignored. 
+- requires django-environ, which can be found in requirements.txt.
+- only works with an .env file when run in localhost. `.env` is not included in this repo.
