@@ -149,3 +149,8 @@ MEDIA_URL = '/media/'
 
 # Login
 LOGIN_URL = '/profile/login/'
+
+# for deployment
+CSRF_TRUSTED_ORIGINS = [
+    'https://hobbysite-cd-8.onrender.com',
+]
