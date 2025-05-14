@@ -16,5 +16,6 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/profile/login/', permanent=False)),  # Redirect root URL to profile/login/
 ]
 
+# for image rendering
 if settings.DEBUG or os.environ.get('RENDER'):
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
