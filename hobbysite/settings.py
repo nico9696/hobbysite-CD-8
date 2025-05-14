@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 import environ
 import dj_database_url
 
@@ -29,7 +30,7 @@ environ.Env.read_env(env_file=BASE_DIR / '.env')
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = ['hobbysite-cd-8.onrender.com', '127.0.0.1']
 
@@ -92,7 +93,7 @@ DATABASES = {
     }
 }
 
-DATABASES["default"] = dj_database_url.parse("postgresql://hobbysite_cd8_sql_user:Xq23NbBmLC2SWZmyy2MxOWG4LvCjF75I@dpg-d0hne3odl3ps738qqipg-a.singapore-postgres.render.com/hobbysite_cd8_sql")
+DATABASES["default"] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -129,6 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -144,10 +146,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-
-# Media folders
-MEDIA_ROOT = BASE_DIR/'media'
-MEDIA_URL = '/media/'
 
 # Login
 LOGIN_URL = '/profile/login/'
