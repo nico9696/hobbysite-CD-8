@@ -1,16 +1,22 @@
+databases:
+  - name: mysitedb
+    plan: free
+    databaseName: mysite
+    user: mysite
+
 services:
   - type: web
-    name: hobbysite
-    env: python
-    buildCommand: |
-      pip install -r requirements.txt
-      python manage.py collectstatic --noinput
-    startCommand: gunicorn hobbysite.wsgi:application
-    staticPublishPath: staticfiles
+    plan: free
+    name: mysite
+    runtime: python
+    buildCommand: './build.sh'
+    startCommand: 'python -m gunicorn mysite.asgi:application -k uvicorn.workers.UvicornWorker' 
     envVars:
-      - key: RENDER
-        value: "True"
-    disk:
-      name: media
-      mountPath: /media
-      sizeGB: 1
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mysitedb
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
